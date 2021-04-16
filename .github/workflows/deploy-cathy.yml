@@ -1,0 +1,53 @@
+name: deploy-cathy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [production]
+    paths:
+      - cathy/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: production
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - run: cd cathy
+      - run: npm install
+      - run: npm run build
+      - run: tar -cvzf build.tar.gz dist package.json
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: builds
+          path: build.tar.gz
+
+  deploy:
+    needs: build
+    runs-on: [self-hosted, cathy]
+    environment: Production - cathy
+    steps:
+      - run: rm -rf *
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: builds
+
+      - run: tar -xvf build.tar.gz
+      - run: npm install --production
+
+      - run: |
+          touch .env
+          echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
+          echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
+          echo CALLBACK_URL=${{ secrets.CALLBACK_URL }} >> .env
+          echo DASHBOARD_URL=${{ secrets.DASHBOARD_URL }} >> .env
+
+      - run: pm2 start ./dist/src/index.js --name "cathy"
