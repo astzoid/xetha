@@ -1,16 +1,45 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    open-pull-requests-limit: 200
-    directory: 
-    - '/'
-    - 'athena'
-    - 'cathy'
-    - 'xanatha'
+    open-pull-requests-limit: 20
+    directory: /
     schedule:
       interval: daily
     commit-message:
       include: scope
-      prefix: chore
+      prefix: build
+    reviewers:
+      - oadpoaw
+
+  - package-ecosystem: npm
+    open-pull-requests-limit: 20
+    directory: /athena
+    schedule:
+      interval: daily
+    commit-message:
+      include: scope
+      prefix: build
+    reviewers:
+      - oadpoaw
+
+  - package-ecosystem: npm
+    open-pull-requests-limit: 20
+    directory: /cathy
+    schedule:
+      interval: daily
+    commit-message:
+      include: scope
+      prefix: build
+    reviewers:
+      - oadpoaw
+
+  - package-ecosystem: npm
+    open-pull-requests-limit: 20
+    directory: /xanatha
+    schedule:
+      interval: daily
+    commit-message:
+      include: scope
+      prefix: build
     reviewers:
       - oadpoaw
