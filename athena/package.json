@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "athena",
-  "version": "1.4.9",
+  "version": "1.4.10",
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",

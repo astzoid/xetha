@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.10](https://github.com/xetha-bot/xetha/compare/v1.4.9...v1.4.10) (2021-04-16)
+
+
+### Bug Fixes
+
+* **ci:** working directory ([5a1de82](https://github.com/xetha-bot/xetha/commit/5a1de82402e06323d9b8b0b5a01a0a1779483f5c))
+
+
+
+
+
 ## 1.4.9 (2021-04-16)
 
 
