@@ -3,10 +3,10 @@ updates:
   - package-ecosystem: npm
     open-pull-requests-limit: 200
     directory: 
-    - /
-    - /athena
-    - /cathy
-    - /xanatha
+    - '/'
+    - 'athena'
+    - 'cathy'
+    - 'xanatha'
     schedule:
       interval: daily
     commit-message:
