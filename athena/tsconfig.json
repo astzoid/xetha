@@ -10,7 +10,7 @@
         "jsx": "react",
         "noEmit": true,
         "strict": true,
-        "skipLibCheck": false,
+        "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,
         "allowSyntheticDefaultImports": true,
