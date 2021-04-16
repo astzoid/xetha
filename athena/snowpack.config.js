@@ -46,7 +46,7 @@ module.exports = {
         port: 3000
     },
     buildOptions: {
-        /* ... */
+        out: 'dist',
     },
     routes: [
         {
