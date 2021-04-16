@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    open-pull-requests-limit: 200
+    directory: 
+    - /
+    - /athena
+    - /cathy
+    - /xanatha
+    schedule:
+      interval: daily
+    commit-message:
+      include: scope
+      prefix: chore
+    reviewers:
+      - oadpoaw
