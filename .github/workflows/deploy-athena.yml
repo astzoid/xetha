@@ -19,10 +19,11 @@ jobs:
         with:
           node-version: 14.x
 
-      - run: cd athena
-      - run: npm install
-      - run: npm run build
-      - run: tar -cvzf build.tar.gz dist
+      - working-directory: ./athena
+        run: |
+          npm ci
+          npm run build
+          tar -cvzf build.tar.gz dist
 
       - uses: actions/upload-artifact@v2
         with:

@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: 14.x
 
-      - run: cd cathy
-      - run: npm install
-      - run: npm run build
+      - working-directory: ./cathy
+        run: |
+          npm ci
+          npm run build

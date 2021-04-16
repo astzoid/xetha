@@ -19,10 +19,11 @@ jobs:
         with:
           node-version: 14.x
 
-      - run: cd xanatha
-      - run: npm install
-      - run: npm run build
-      - run: tar -cvzf build.tar.gz dist package.json
+      - working-directory: ./xanatha
+        run: |
+          npm ci
+          npm run build
+          tar -cvzf build.tar.gz dist package.json
 
       - uses: actions/upload-artifact@v2
         with:
