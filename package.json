@@ -2,11 +2,6 @@
   "private": true,
   "name": "xetha",
   "scripts": {
-    "postbuild": "lerna run clean --since",
-    "build": "lerna run build --since",
-    "test": "lerna run test --since",
-    "bump": "lerna version --conventional-commits --yes",
-    "diff": "lerna diff"
   },
   "workspaces": [
     "athena",
