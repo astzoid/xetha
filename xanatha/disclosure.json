@@ -1,0 +1,31 @@
+{
+    "prefix": "-",
+    "ownerID": ["258528688495132672"],
+    "messages": {
+        "THROTTLE": {
+            "MESSAGE": "⏰ Please wait **${EXPIRATION}** before reusing the command again.\n\nThe cooldown for this command is **${COMMAND_COOLDOWN}**"
+        },
+        "COMMAND": {
+            "OWNER_ONLY": "<:no:800415449488556053> This command is only available to the Bot Owner(s).",
+            "GUILD_ONLY": "<:no:800415449488556053> This command can only be executed in a guild.",
+            "MISSING_PERMISSIONS": "<:no:800415449488556053> You need the following permission(s) to perform this command.\n${PERMISSIONS}",
+            "MISSING_BOT_PERMISSIONS": "<:no:800415449488556053> I need the following permission(s) to perform this command.\n${PERMISSIONS}",
+            "NO_ARGUMENTS": "<:no:800415449488556053> You didn't provide any arguments, ${AUTHOR}!\nThe proper usage would be:\n${USAGE}",
+            "NOT_ENOUGH_ARGUMENTS": "<:no:800415449488556053> You didn't specify enough arguments to execute this command.\nThe proper usage would be:\n${USAGE}",
+            "COMMAND_DISABLED": "<:no:800415449488556053> That command is currently disabled.\nReason: **${REASON}**"
+        },
+        "PROMPT": {
+            "TIMEOUT": "You did not reply within **${TIMEOUT}**\n\nPlease try again.",
+            "ERRORS": {
+                "BOOLEAN": "<:no:800415449488556053> It should be a valid Boolean\nIt's either `true`, `false`, `yes`, `no`, `y`, `n`\n\nPlease try again.",
+                "NUMBER": "<:no:800415449488556053> It should be a valid Number\n\nPlease try again.",
+                "USER": "<:no:800415449488556053> It should be a valid User\n\nYou can type the User's ID, Username, Tag or you can even mention the User.\n\nPlease try again.",
+                "ROLE": "<:no:800415449488556053> It should be a valid Role\n\nYou can type the Role's ID, Name or you can even mention the Role.\n\nPlease try again.",
+                "TEXT_CHANNEL": "<:no:800415449488556053> It should be a valid Text Channel\n\nYou can type the Text Channel's ID, Name or you can even mention the text channel.\n\nPlease try again.",
+                "VOICE_CHANNEL": "<:no:800415449488556053> It should be a valid Voice Channel\n\nYou can type the Voice Channel's ID or Name\n\nPlease try again.",
+                "CATEGORY_CHANNEL": "<:no:800415449488556053> It should be a valid Category Channel\n\nYou can type the Category Channel's ID or Name\n\nPlease try again.",
+                "COMMAND": "<:no:800415449488556053> It should be a valid Command\n\nYou can type the Command's name or some of It's aliases\n\nPlease try again."
+            }
+        }
+    }
+}

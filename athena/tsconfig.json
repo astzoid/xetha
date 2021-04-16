@@ -1,0 +1,19 @@
+{
+    "include": [
+        "src",
+        "typings"
+    ],
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "esnext",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "noEmit": true,
+        "strict": true,
+        "skipLibCheck": false,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "importsNotUsedAsValues": "error"
+    },
+}
