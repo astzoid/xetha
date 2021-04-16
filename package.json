@@ -2,6 +2,8 @@
   "private": true,
   "name": "xetha",
   "scripts": {
+    "bump": "lerna version --conventional-commits --yes",
+    "diff": "lerna diff"
   },
   "workspaces": [
     "athena",
