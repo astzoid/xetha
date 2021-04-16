@@ -1,21 +1,21 @@
-name: cathy-test
+name: test-xanatha
 
 on:
   push:
     branches: [main]
     paths:
-     - /cathy/**
+      - xanatha/**
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: staging - cathy
+    environment: Staging - xanatha
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
 
-      - run: cd cathy
+      - run: cd xanatha
       - run: npm install
       - run: npm run build

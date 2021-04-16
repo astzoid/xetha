@@ -1,21 +1,21 @@
-name: athena-test
+name: test-cathy
 
 on:
   push:
     branches: [main]
     paths:
-     - /athena/**
+      - cathy/**
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: staging - athena
+    environment: Staging - cathy
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
 
-      - run: cd athena
+      - run: cd cathy
       - run: npm install
       - run: npm run build
