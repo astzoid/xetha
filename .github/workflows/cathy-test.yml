@@ -1,0 +1,21 @@
+name: cathy-test
+
+on:
+  push:
+    branches: [main]
+    paths:
+     - /cathy/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: staging - cathy
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - run: cd cathy
+      - run: npm install
+      - run: npm run build
