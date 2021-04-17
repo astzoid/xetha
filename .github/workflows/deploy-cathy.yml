@@ -28,7 +28,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: builds
-          path: build.tar.gz
+          path: cathy/build.tar.gz
 
   deploy:
     needs: build
