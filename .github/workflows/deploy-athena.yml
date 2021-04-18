@@ -19,11 +19,25 @@ jobs:
         with:
           node-version: 14.x
 
-      - working-directory: ./athena
-        run: |
-          npm ci
-          npm run build
-          tar -cvzf build.tar.gz dist
+      - name: Install Dependencies
+        working-directory: ./athena
+        run: npm ci
+
+      - name: Lint
+        working-directory: ./athena
+        run: npm run lint
+
+      - name: Build
+        working-directory: ./athena
+        run: npm run build
+
+      - name: Test
+        working-directory: ./athena
+        run: npm test
+
+      - name: Zip
+        working-directory: ./athena
+        run: tar -cvzf build.tar.gz dist
 
       - uses: actions/upload-artifact@v2
         with:

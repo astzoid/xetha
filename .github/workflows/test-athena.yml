@@ -7,7 +7,7 @@ on:
       - athena/**
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     environment: Staging - athena
     steps:
@@ -16,7 +16,18 @@ jobs:
         with:
           node-version: 14.x
 
-      - working-directory: ./athena
-        run: |
-          npm ci
-          npm run build
+      - name: Install Dependencies
+        working-directory: ./athena
+        run: npm ci
+
+      - name: Lint
+        working-directory: ./athena
+        run: npm run lint
+
+      - name: Build
+        working-directory: ./athena
+        run: npm run build
+
+      - name: Test
+        working-directory: ./athena
+        run: npm test
