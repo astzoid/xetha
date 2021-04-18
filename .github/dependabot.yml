@@ -13,7 +13,7 @@ updates:
 
   - package-ecosystem: npm
     open-pull-requests-limit: 20
-    directory: /athena
+    directory: athena
     schedule:
       interval: daily
     commit-message:
@@ -24,7 +24,7 @@ updates:
 
   - package-ecosystem: npm
     open-pull-requests-limit: 20
-    directory: /cathy
+    directory: cathy
     schedule:
       interval: daily
     commit-message:
@@ -35,7 +35,7 @@ updates:
 
   - package-ecosystem: npm
     open-pull-requests-limit: 20
-    directory: /xanatha
+    directory: xanatha
     schedule:
       interval: daily
     commit-message:
