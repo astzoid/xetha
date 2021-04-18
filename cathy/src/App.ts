@@ -10,7 +10,11 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import session from 'express-session';
 import API from './api/v1';
-import { corsOptions, rateLimitOptions, sessionOptions } from './utils/Constants';
+import {
+  corsOptions,
+  rateLimitOptions,
+  sessionOptions,
+} from './utils/Constants';
 import Logger from './utils/Logger';
 import { makeCatcher } from '@xetha/async-wrapper';
 import processor from '@xetha/processor';

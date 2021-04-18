@@ -6,23 +6,25 @@ import AsyncWrapper from '@xetha/async-wrapper';
 
 const status = Router();
 
-status.get('/', AsyncWrapper(async (_req, res) => {
-
-    const response = await RequestHandler.request('GET', { route: '/api/status' })
-        .then((res) => res)
-        .catch((err) => err);
+status.get(
+  '/',
+  AsyncWrapper(async (_req, res) => {
+    const response = await RequestHandler.request('GET', {
+      route: '/api/status',
+    })
+      .then((res) => res)
+      .catch((err) => err);
 
     if (response instanceof APIResponse) {
-
-        return res.status(200).json({
-            version, uptime: process.uptime(),
-            status: response.body,
-        });
-
+      return res.status(200).json({
+        version,
+        uptime: process.uptime(),
+        status: response.body,
+      });
     }
 
     throw response;
-
-}));
+  }),
+);
 
 export default status;

@@ -6,33 +6,34 @@ import AsyncWrapper from '@xetha/async-wrapper';
 const commands = Router();
 
 type Commands = {
-    name: string;
-    description: string;
-    usage: string[];
-    category: string;
-    aliases: string[];
+  name: string;
+  description: string;
+  usage: string[];
+  category: string;
+  aliases: string[];
 }[];
 
 let cmds: Commands = [];
 
-commands.get('/', AsyncWrapper(async (_req, res) => {
-
+commands.get(
+  '/',
+  AsyncWrapper(async (_req, res) => {
     if (cmds.length) return res.status(200).json(cmds);
 
-    const response = await RequestHandler.request<Commands>('GET', { route: '/api/commands' })
-        .then((res) => res)
-        .catch((err) => err);
+    const response = await RequestHandler.request<Commands>('GET', {
+      route: '/api/commands',
+    })
+      .then((res) => res)
+      .catch((err) => err);
 
     if (response instanceof APIResponse) {
+      cmds = response.body;
 
-        cmds = response.body;
-
-        return res.status(200).json(cmds);
-
+      return res.status(200).json(cmds);
     }
 
     throw response;
-
-}));
+  }),
+);
 
 export default commands;
