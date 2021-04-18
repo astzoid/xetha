@@ -4,7 +4,9 @@ import './database/database';
 import BlacklistManager from './managers/BlacklistManager';
 import GuildManager from './managers/GuildManager';
 import MemberManager from './managers/MemberManager';
-import PermissionManager, { RolePermission } from './managers/PermissionManager';
+import PermissionManager, {
+    RolePermission,
+} from './managers/PermissionManager';
 import ProfileManager from './managers/ProfileManager';
 import { Config } from './utils/Constants';
 
@@ -21,19 +23,21 @@ client.managers = {
 client.xetha = Config;
 
 client.init = async function () {
-
     await this.managers.blacklist.synchronize();
 
     return this;
-
 };
 
 client.dispatcher.generators.prefix = async (message) => {
-
     let prefix = client.config.prefix;
 
     if (message.guild) {
-        prefix = (await client.managers.guilds.fetch(message.guild.id, message.guild.name)).prefix;
+        prefix = (
+            await client.managers.guilds.fetch(
+                message.guild.id,
+                message.guild.name,
+            )
+        ).prefix;
     }
 
     if (typeof prefix !== 'string') {
@@ -41,11 +45,9 @@ client.dispatcher.generators.prefix = async (message) => {
     }
 
     return prefix;
-
 };
 
 client.dispatcher.beforeExecute = (message) => {
-
     if (message.guild) {
         if (client.managers.blacklist.getServer(message.guild.id)) {
             return false;
@@ -57,27 +59,41 @@ client.dispatcher.beforeExecute = (message) => {
     }
 
     return true;
-
 };
 
 client.dispatcher.addInhibitor(async (message, command) => {
-
-    const guild = message.guild ? await client.managers.guilds.fetch(message.guild.id, message.guild.name) : null;
-    const profile = await client.managers.profiles.fetch(message.author.id, message.author.tag);
+    const guild = message.guild
+        ? await client.managers.guilds.fetch(
+              message.guild.id,
+              message.guild.name,
+          )
+        : null;
+    const profile = await client.managers.profiles.fetch(
+        message.author.id,
+        message.author.tag,
+    );
 
     if (
         client.managers.permissions.level(message, guild, profile) <
-        client.managers.permissions.cache.get(command.config.permission ?? 'Bot Owner').level
+        client.managers.permissions.cache.get(
+            command.config.permission ?? 'Bot Owner',
+        ).level
     ) {
-        await message.channel.send(`<:no:800415449488556053> You do not have permission to use this command.\nYour permission level is \`${client.managers.permissions.levels[client.managers.permissions.level(message, guild, profile)]}\`\nThis command requires \`${command.config.permission}\``);
+        await message.channel.send(
+            `<:no:800415449488556053> You do not have permission to use this command.\nYour permission level is \`${
+                client.managers.permissions.levels[
+                    client.managers.permissions.level(message, guild, profile)
+                ]
+            }\`\nThis command requires \`${command.config.permission}\``,
+        );
         return false;
     }
 
     return true;
-
 }, 2);
 
-client.init()
+client
+    .init()
     .then(() => client.initialize())
     .then(() => client.login());
 

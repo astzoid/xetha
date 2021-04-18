@@ -23,14 +23,14 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const args = argv._;
         const query = encodeURIComponent(args.join(' '));
         const queries = `?q=${query}&page=1&pagesize=1&order=asc&sort=relevance&answers=1&site=stackoverflow`;
 
         try {
-
-            const response = await fetch(`http://api.stackexchange.com/2.2/search/advanced${queries}`);
+            const response = await fetch(
+                `http://api.stackexchange.com/2.2/search/advanced${queries}`,
+            );
             const body = await response.json();
 
             if (!body.items.length) {
@@ -42,20 +42,48 @@ export default class extends Command {
             message.channel.send(
                 new MessageEmbed()
                     .setColor(Colors.silver)
-                    .setAuthor('Stack Exchange', 'https://i.imgur.com/P2jAgE3.png', 'https://stackoverflow.com/')
+                    .setAuthor(
+                        'Stack Exchange',
+                        'https://i.imgur.com/P2jAgE3.png',
+                        'https://stackoverflow.com/',
+                    )
                     .setURL(data.link)
                     .setTitle(data.title)
                     .addField('❯ ID', data.question_id, true)
-                    .addField('❯ Asker', `[${data.owner.display_name}](${data.owner.link})`, true)
-                    .addField('❯ Views', Utils.toHumanReadable(data.view_count), true)
-                    .addField('❯ Score', Utils.toHumanReadable(data.score), true)
-                    .addField('❯ Creation Date', moment.utc(data.creation_date * 1000).format('MM/DD/YYYY h:mm A'), true)
-                    .addField('❯ Last Activity', moment.utc(data.last_activity_date * 1000).format('MM/DD/YYYY h:mm A'), true)
+                    .addField(
+                        '❯ Asker',
+                        `[${data.owner.display_name}](${data.owner.link})`,
+                        true,
+                    )
+                    .addField(
+                        '❯ Views',
+                        Utils.toHumanReadable(data.view_count),
+                        true,
+                    )
+                    .addField(
+                        '❯ Score',
+                        Utils.toHumanReadable(data.score),
+                        true,
+                    )
+                    .addField(
+                        '❯ Creation Date',
+                        moment
+                            .utc(data.creation_date * 1000)
+                            .format('MM/DD/YYYY h:mm A'),
+                        true,
+                    )
+                    .addField(
+                        '❯ Last Activity',
+                        moment
+                            .utc(data.last_activity_date * 1000)
+                            .format('MM/DD/YYYY h:mm A'),
+                        true,
+                    ),
             );
-
         } catch (err) {
-            return message.channel.send(`Oh no, an error occurred: \`${err.message}\`. Try again later!`);
+            return message.channel.send(
+                `Oh no, an error occurred: \`${err.message}\`. Try again later!`,
+            );
         }
     }
-
 }

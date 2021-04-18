@@ -20,16 +20,13 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const response = await fetch(`https://api.adviceslip.com/advice`);
         const body = await response.json();
 
         message.channel.send(
             new MessageEmbed()
                 .setDescription(body.slip.advice)
-                .setURL('https://adviceslip.com')
+                .setURL('https://adviceslip.com'),
         );
-
     }
-
 }

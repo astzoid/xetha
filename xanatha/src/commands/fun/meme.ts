@@ -26,22 +26,24 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
-        const response = await fetch(url[Math.floor(Math.random() * url.length)]);
+        const response = await fetch(
+            url[Math.floor(Math.random() * url.length)],
+        );
         const body = await response.json();
 
-        const index = body.data.children[Math.floor(Math.random() * 99) + 1].data;
+        const index =
+            body.data.children[Math.floor(Math.random() * 99) + 1].data;
         const title = index.title;
 
         if (index.post_hint !== 'image') {
-
             return message.channel.send(
                 new MessageEmbed()
                     .setAuthor('r/dankmemes or r/memes')
                     .setColor(Colors.random)
-                    .setDescription(`[${title}](${this.client.xetha.support.invite})`)
+                    .setDescription(
+                        `[${title}](${this.client.xetha.support.invite})`,
+                    ),
             );
-
         }
 
         const image = index.url;
@@ -51,9 +53,9 @@ export default class extends Command {
                 .setAuthor('r/dankmemes or r/memes')
                 .setImage(image)
                 .setColor(Colors.random)
-                .setDescription(`[${title}](${this.client.xetha.support.invite})`)
+                .setDescription(
+                    `[${title}](${this.client.xetha.support.invite})`,
+                ),
         );
-
     }
-
 }

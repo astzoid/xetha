@@ -21,7 +21,6 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const response = await fetch('https://randomfox.ca/floof/');
         const { image } = await response.json();
 
@@ -29,9 +28,7 @@ export default class extends Command {
             new MessageEmbed()
                 .setColor(Colors.random)
                 .setURL('https://randomfox.ca/')
-                .setImage(image)
+                .setImage(image),
         );
-
     }
-
 }

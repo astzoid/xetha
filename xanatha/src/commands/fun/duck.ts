@@ -21,7 +21,6 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const response = await fetch('https://random-d.uk/api/v1/random');
         const body = await response.json();
 
@@ -30,9 +29,7 @@ export default class extends Command {
                 .setColor(Colors.random)
                 .setURL('https://random-d.uk/')
                 .setImage(body.url)
-                .setFooter(body.message)
+                .setFooter(body.message),
         );
-
     }
-
 }

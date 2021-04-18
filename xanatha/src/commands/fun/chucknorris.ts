@@ -21,7 +21,6 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const response = await fetch(`https://api.chucknorris.io/jokes/random`);
         const body = await response.json();
 
@@ -31,9 +30,7 @@ export default class extends Command {
                 .setThumbnail(body.icon_url)
                 .setURL(body.url)
                 .setDescription(body.value)
-                .setTimestamp(new Date(body.created_at))
+                .setTimestamp(new Date(body.created_at)),
         );
-
     }
-
 }

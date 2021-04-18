@@ -31,9 +31,14 @@ export default class extends Command {
         }
 
         const data = await this.fetchGame(id);
-        const current = data.price_overview ? `$${data.price_overview.final / 100}` : 'Free';
-        const original = data.price_overview ? `$${data.price_overview.initial / 100}` : 'Free';
-        const price = current === original ? current : `~~${original}~~ ${current}`;
+        const current = data.price_overview
+            ? `$${data.price_overview.final / 100}`
+            : 'Free';
+        const original = data.price_overview
+            ? `$${data.price_overview.initial / 100}`
+            : 'Free';
+        const price =
+            current === original ? current : `~~${original}~~ ${current}`;
 
         const platforms = [];
 
@@ -52,26 +57,59 @@ export default class extends Command {
         message.channel.send(
             new MessageEmbed()
                 .setColor(Colors.navy)
-                .setAuthor('Steam', 'https://i.imgur.com/xxr2UBZ.png', 'http://store.steampowered.com/')
+                .setAuthor(
+                    'Steam',
+                    'https://i.imgur.com/xxr2UBZ.png',
+                    'http://store.steampowered.com/',
+                )
                 .setTitle(data.name)
                 .setURL(`http://store.steampowered.com/app/${data.steam_appid}`)
                 .setThumbnail(data.header_image)
                 .addField('❯ Price', price, true)
-                .addField('❯ Metascore', data.metacritic ? data.metacritic.score : '???', true)
-                .addField('❯ Recommendations', data.recommendations ? Utils.toHumanReadable(data.recommendations.total) : '???', true)
+                .addField(
+                    '❯ Metascore',
+                    data.metacritic ? data.metacritic.score : '???',
+                    true,
+                )
+                .addField(
+                    '❯ Recommendations',
+                    data.recommendations
+                        ? Utils.toHumanReadable(data.recommendations.total)
+                        : '???',
+                    true,
+                )
                 .addField('❯ Platforms', platforms.join(', ') || 'None', true)
-                .addField('❯ Release Date', data.release_date ? data.release_date.date : '???', true)
-                .addField('❯ DLC Count', data.dlc ? Utils.toHumanReadable(data.dlc.length) : 0, true)
-                .addField('❯ Developers', data.developers ? data.developers.join(', ') || '???' : '???')
-                .addField('❯ Publishers', data.publishers ? data.publishers.join(', ') || '???' : '???')
+                .addField(
+                    '❯ Release Date',
+                    data.release_date ? data.release_date.date : '???',
+                    true,
+                )
+                .addField(
+                    '❯ DLC Count',
+                    data.dlc ? Utils.toHumanReadable(data.dlc.length) : 0,
+                    true,
+                )
+                .addField(
+                    '❯ Developers',
+                    data.developers
+                        ? data.developers.join(', ') || '???'
+                        : '???',
+                )
+                .addField(
+                    '❯ Publishers',
+                    data.publishers
+                        ? data.publishers.join(', ') || '???'
+                        : '???',
+                ),
         );
     }
 
     private async search(query: string) {
-
         const queries = `?cc=us&l=en&term=${encodeURIComponent(query)}`;
 
-        const response = await fetch(`https://store.steampowered.com/api/storesearch${queries}`);
+        const response = await fetch(
+            `https://store.steampowered.com/api/storesearch${queries}`,
+        );
         const body = await response.json();
 
         if (!body.items.length) {
@@ -79,16 +117,14 @@ export default class extends Command {
         }
 
         return body.items[0].id;
-
     }
 
     private async fetchGame(id: any) {
-
-        const response = await fetch(`https://store.steampowered.com/api/appdetails?appids=${id}`);
+        const response = await fetch(
+            `https://store.steampowered.com/api/appdetails?appids=${id}`,
+        );
         const body = await response.json();
 
         return body[id.toString()].data;
-
     }
-
 }

@@ -7,8 +7,7 @@ const ReqLvlChart: number[] = [];
 const maxLevel = 200;
 
 for (let i = 0; i <= maxLevel; i++) {
-
-    ReqLvlChart.push(15 * (i * i) + (50 * i) + 150);
+    ReqLvlChart.push(15 * (i * i) + 50 * i + 150);
 
     if (i === 0) {
         LvlChart.push(i);
@@ -24,14 +23,14 @@ for (let i = 0; i <= maxLevel; i++) {
 type UserXP = MemberAttributes | ProfileAttributes;
 
 export default class Leveling {
-
     static maxLevel: typeof maxLevel = maxLevel;
     static LevelChart: typeof LvlChart = LvlChart;
     static RequireedLevelChart: typeof ReqLvlChart = ReqLvlChart;
 
     static level(member: UserXP) {
         for (let i = 0; i <= Leveling.maxLevel; i++) {
-            if (member.experience >= Leveling.LevelChart[i] &&
+            if (
+                member.experience >= Leveling.LevelChart[i] &&
                 member.experience <= Leveling.LevelChart[i + 1]
             ) {
                 return i;
@@ -53,9 +52,10 @@ export default class Leveling {
 
     static progress(member: UserXP) {
         return (
-            (member.experience - Leveling.levelxp(member)) /
-            (Leveling.nextlevelxp(member) - Leveling.levelxp(member))
-        ) * 100;
+            ((member.experience - Leveling.levelxp(member)) /
+                (Leveling.nextlevelxp(member) - Leveling.levelxp(member))) *
+            100
+        );
         // (xp - lxp / nxp - lxp) * 100 = n
     }
 
@@ -66,5 +66,4 @@ export default class Leveling {
     static progressXP(member: UserXP) {
         return Leveling.nextlevelxp(member) - member.experience;
     }
-
 }

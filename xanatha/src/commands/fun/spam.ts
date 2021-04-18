@@ -20,7 +20,10 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-        message.channel.send({ files: [path.join(path.resolve(process.cwd()), 'assets', 'spam.png')] });
+        message.channel.send({
+            files: [
+                path.join(path.resolve(process.cwd()), 'assets', 'spam.png'),
+            ],
+        });
     }
-
 }

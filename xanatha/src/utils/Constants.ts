@@ -3,9 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const version = JSON.parse(
-    fs.readFileSync(
-        path.join(process.cwd(), 'package.json')
-    ).toString()
+    fs.readFileSync(path.join(process.cwd(), 'package.json')).toString(),
 ).version;
 
 export const DiscordClientOptions: ClientOptions = {
@@ -22,7 +20,7 @@ export const Config = {
         guildDelete: '830052145919164416',
         blacklistserver: '830052212931166228',
         blacklistuser: '830052212931166228',
-    }
+    },
 };
 
 export const Colors = {

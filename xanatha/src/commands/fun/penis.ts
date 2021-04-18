@@ -7,7 +7,7 @@ export default class extends Command {
     constructor(client: Disclosure) {
         super(client, {
             name: 'penis',
-            description: 'Calculates your penis size till it\'s smallest form',
+            description: "Calculates your penis size till it's smallest form",
             cooldown: 5,
             args: 0,
             usage: ['penis [user]'],
@@ -21,8 +21,8 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
-        let target = await this.client.resolveUser(argv._[0]) || message.author;
+        let target =
+            (await this.client.resolveUser(argv._[0])) || message.author;
 
         if (!target) {
             target = message.author;
@@ -42,7 +42,5 @@ export default class extends Command {
         embed.setDescription(`8${gland}D`);
 
         return message.channel.send(embed);
-
     }
-
 }

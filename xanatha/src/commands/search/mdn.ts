@@ -7,7 +7,8 @@ export default class extends Command {
     constructor(client: Disclosure) {
         super(client, {
             name: 'mdn',
-            description: 'Searches MDN (JavaScript Documentation) for your query.',
+            description:
+                'Searches MDN (JavaScript Documentation) for your query.',
             cooldown: 10,
             args: 1,
             usage: ['mdn <query>'],
@@ -21,11 +22,12 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const args = argv._;
 
         const query = encodeURIComponent(args[0].replace(/#/g, '.prototype.'));
-        const response = await fetch(`https://developer.mozilla.org/en-US/search.json?q=${query}&locale=en-US&highlight=false`);
+        const response = await fetch(
+            `https://developer.mozilla.org/en-US/search.json?q=${query}&locale=en-US&highlight=false`,
+        );
         const body = await response.json();
 
         if (!body.documents.length) {
@@ -37,11 +39,14 @@ export default class extends Command {
         message.channel.send(
             new MessageEmbed()
                 .setColor(Colors.blue)
-                .setAuthor('MDN', 'https://i.imgur.com/DFGXabG.png', 'https://developer.mozilla.org/')
+                .setAuthor(
+                    'MDN',
+                    'https://i.imgur.com/DFGXabG.png',
+                    'https://developer.mozilla.org/',
+                )
                 .setURL(data.url)
                 .setTitle(data.title)
-                .setDescription(data.excerpt)
+                .setDescription(data.excerpt),
         );
     }
-
 }

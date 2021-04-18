@@ -5,19 +5,22 @@ import { Colors } from '../utils/Constants';
 import Escapes from '@xetha/escapes';
 
 export default class extends DiscordEvent {
-
     constructor(client: Disclosure) {
         super(client, 'roleDelete');
     }
 
     async exec(role: Role) {
-
-        if (this.client.managers.blacklist.getServer(role.guild.id) ||
-            this.client.managers.blacklist.getUser(role.guild.ownerID)) {
+        if (
+            this.client.managers.blacklist.getServer(role.guild.id) ||
+            this.client.managers.blacklist.getUser(role.guild.ownerID)
+        ) {
             return;
         }
 
-        const guild = await this.client.managers.guilds.fetch(role.guild.id, role.guild.name);
+        const guild = await this.client.managers.guilds.fetch(
+            role.guild.id,
+            role.guild.name,
+        );
         if (!guild.logging_enabled || !guild.logging_role_delete) {
             return;
         }
@@ -34,12 +37,19 @@ export default class extends DiscordEvent {
         }
 
         if (role.guild.me.hasPermission('VIEW_AUDIT_LOG')) {
-
-            const logs = await role.guild.fetchAuditLogs({ limit: 1, type: 'ROLE_DELETE' });
-            const log = logs.entries.find(l => l.target instanceof Role && l.target.id === role.id);
+            const logs = await role.guild.fetchAuditLogs({
+                limit: 1,
+                type: 'ROLE_DELETE',
+            });
+            const log = logs.entries.find(
+                (l) => l.target instanceof Role && l.target.id === role.id,
+            );
 
             if (log && log.executor.id !== this.client.user.id) {
-                embed.setAuthor(`${log.executor.tag} / ${log.executor.id}`, log.executor.displayAvatarURL({ dynamic: true }));
+                embed.setAuthor(
+                    `${log.executor.tag} / ${log.executor.id}`,
+                    log.executor.displayAvatarURL({ dynamic: true }),
+                );
             }
 
             if (log.reason) {
@@ -48,7 +58,5 @@ export default class extends DiscordEvent {
         }
 
         await Handlers.logging(this.client, embed, role.guild, guild);
-
     }
-
 }

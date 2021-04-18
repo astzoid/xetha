@@ -10,16 +10,17 @@ import processor from '@xetha/processor';
 
 processor(Logger);
 
-const manager = new DisclosureSharder({
-    totalShards: 'auto',
-    respawn: true,
-    execArgv: ['--trace-warnings'],
-}, Logger);
+const manager = new DisclosureSharder(
+    {
+        totalShards: 'auto',
+        respawn: true,
+        execArgv: ['--trace-warnings'],
+    },
+    Logger,
+);
 
 (async function () {
-
     await manager.initialize().spawn();
 
     server(manager);
-
-}());
+})();

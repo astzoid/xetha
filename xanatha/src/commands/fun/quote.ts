@@ -20,16 +20,13 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const index = quotes[Math.floor(Math.random() * quotes.length)];
 
         message.channel.send(
             new MessageEmbed()
                 .setColor('RANDOM')
                 .setDescription(`${index.quote}`)
-                .setFooter(`- ${index.author}`)
+                .setFooter(`- ${index.author}`),
         );
-
     }
-
 }

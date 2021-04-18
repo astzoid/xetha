@@ -20,18 +20,15 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const response = await fetch(`https://icanhazdadjoke.com/`, {
             headers: {
                 Accept: 'application/json',
-                "User-Agent": "xetha discord bot"
-            }
+                'User-Agent': 'xetha discord bot',
+            },
         });
 
         const body = await response.json();
 
         message.channel.send(body.joke);
-
     }
-
 }

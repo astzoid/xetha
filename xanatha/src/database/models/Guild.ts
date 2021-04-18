@@ -1,293 +1,296 @@
 import mongoose from 'mongoose';
 
-const Guild = mongoose.model<GuildAttributes>('guild', new mongoose.Schema<GuildAttributes>({
-    guild_id: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    name: {
-        type: String,
-        required: true,
-    },
-    premium: {
-        type: Boolean,
-        default: false,
-    },
-    prefix: {
-        type: String,
-        default: '-',
-    },
-    moderator_role: {
-        type: String,
-        default: '',
-    },
-    administrator_role: {
-        type: String,
-        default: '',
-    },
-    disabled_commands: {
-        type: Object,
-        default: [],
-    },
-    listing_enabled: {
-        type: Boolean,
-        default: false,
-    },
-    listing_description: {
-        type: String,
-        default: '',
-    },
-    listing_upvotes: {
-        type: Number,
-        default: 0,
-    },
-    listing_tags: {
-        type: Object,
-        default: [],
-    },
-    welcome_enabled: {
-        type: Boolean,
-        default: false,
-    },
-    welcome_message: {
-        type: String,
-        default: 'Welcome {{user}} to the server!',
-    },
-    welcome_channel: {
-        type: String,
-        default: '',
-    },
-    farewell_enabled: {
-        type: Boolean,
-        default: false,
-    },
-    farewell_message: {
-        type: String,
-        default: 'Good bye {{user}} to the server.',
-    },
-    farewell_channel: {
-        type: String,
-        default: '',
-    },
-    ticket_enabled: {
-        type: Boolean,
-        default: false,
-    },
-    ticket_category: {
-        type: String,
-        default: '',
-    },
-    ticket_support_role: {
-        type: String,
-        default: '',
-    },
-    ticket_reaction_channel: {
-        type: String,
-        default: '',
-    },
-    ticket_log_channel: {
-        type: String,
-        default: '',
-    },
-    moderation_enabled: {
-        type: Boolean,
-        default: false,
-    },
-    moderation_cases: {
-        type: Object,
-        default: [],
-    },
-    moderation_log_channel: {
-        type: String,
-        default: '',
-    },
-    moderation_warning_enabled: {
-        type: Boolean,
-        default: false,
-    },
-    moderation_warning_thresholds: {
-        type: Object,
-        default: [],
-    },
-    moderation_banned_words_enabled: {
-        type: Boolean,
-        default: false,
-    },
-    moderation_banned_words: {
-        type: Object,
-        default: [],
-    },
-    moderation_whitelisted_words: {
-        type: Object,
-        default: [],
-    },
-    moderation_whitelisted_links: {
-        type: Object,
-        default: [],
-    },
-    moderation_filter_links: {
-        type: Boolean,
-        default: false,
-    },
-    moderation_filter_invite: {
-        type: Boolean,
-        default: false,
-    },
-    moderation_filter_caps: {
-        type: Boolean,
-        default: false,
-    },
-    moderation_filter_swear: {
-        type: Boolean,
-        default: false,
-    },
-    tags_enabled: {
-        type: Boolean,
-        default: false,
-    },
-    tags_author_role: {
-        type: String,
-        default: '',
-    },
-    tags_list: {
-        type: Object,
-        default: [],
-    },
-    leveling_enabled: {
-        type: Boolean,
-        default: false,
-    },
-    leveling_minimum: {
-        type: Number,
-        default: 10,
-    },
-    leveling_maximum: {
-        type: Number,
-        default: 20,
-    },
-    leveling_cooldown: {
-        type: Number,
-        default: 60,
-    },
-    leveling_stack_rewards: {
-        type: Boolean,
-        default: false,
-    },
-    leveling_role_rewards: {
-        type: Object,
-        default: [],
-    },
-    leveling_message: {
-        type: String,
-        default: '{{user}} has level up to level **{{new_level}}** from level **{{old_level}}**!'
-    },
-    leveling_log_channel: {
-        type: String,
-        default: '',
-    },
-    logging_enabled: {
-        type: Boolean,
-        default: false,
-    },
-    logging_channel_id: {
-        type: String,
-        default: '',
-    },
-    logging_errors: {
-        type: Boolean,
-        default: false,
-    },
-    logging_message_update: {
-        type: Boolean,
-        default: false,
-    },
-    logging_message_delete: {
-        type: Boolean,
-        default: false,
-    },
-    logging_channel_create: {
-        type: Boolean,
-        default: false,
-    },
-    logging_channel_update: {
-        type: Boolean,
-        default: false,
-    },
-    logging_channel_delete: {
-        type: Boolean,
-        default: false,
-    },
-    logging_role_create: {
-        type: Boolean,
-        default: false,
-    },
-    logging_role_update: {
-        type: Boolean,
-        default: false,
-    },
-    logging_role_delete: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_add: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_remove: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_update: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_kick: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_ban_add: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_ban_remove: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_voice_join: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_voice_leave: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_voice_move: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_voice_deafen: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_voice_muted: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_voice_server_deafen: {
-        type: Boolean,
-        default: false,
-    },
-    logging_member_voice_server_muted: {
-        type: Boolean,
-        default: false,
-    },
-}));
+const Guild = mongoose.model<GuildAttributes>(
+    'guild',
+    new mongoose.Schema<GuildAttributes>({
+        guild_id: {
+            type: String,
+            required: true,
+            unique: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
+        premium: {
+            type: Boolean,
+            default: false,
+        },
+        prefix: {
+            type: String,
+            default: '-',
+        },
+        moderator_role: {
+            type: String,
+            default: '',
+        },
+        administrator_role: {
+            type: String,
+            default: '',
+        },
+        disabled_commands: {
+            type: Object,
+            default: [],
+        },
+        listing_enabled: {
+            type: Boolean,
+            default: false,
+        },
+        listing_description: {
+            type: String,
+            default: '',
+        },
+        listing_upvotes: {
+            type: Number,
+            default: 0,
+        },
+        listing_tags: {
+            type: Object,
+            default: [],
+        },
+        welcome_enabled: {
+            type: Boolean,
+            default: false,
+        },
+        welcome_message: {
+            type: String,
+            default: 'Welcome {{user}} to the server!',
+        },
+        welcome_channel: {
+            type: String,
+            default: '',
+        },
+        farewell_enabled: {
+            type: Boolean,
+            default: false,
+        },
+        farewell_message: {
+            type: String,
+            default: 'Good bye {{user}} to the server.',
+        },
+        farewell_channel: {
+            type: String,
+            default: '',
+        },
+        ticket_enabled: {
+            type: Boolean,
+            default: false,
+        },
+        ticket_category: {
+            type: String,
+            default: '',
+        },
+        ticket_support_role: {
+            type: String,
+            default: '',
+        },
+        ticket_reaction_channel: {
+            type: String,
+            default: '',
+        },
+        ticket_log_channel: {
+            type: String,
+            default: '',
+        },
+        moderation_enabled: {
+            type: Boolean,
+            default: false,
+        },
+        moderation_cases: {
+            type: Object,
+            default: [],
+        },
+        moderation_log_channel: {
+            type: String,
+            default: '',
+        },
+        moderation_warning_enabled: {
+            type: Boolean,
+            default: false,
+        },
+        moderation_warning_thresholds: {
+            type: Object,
+            default: [],
+        },
+        moderation_banned_words_enabled: {
+            type: Boolean,
+            default: false,
+        },
+        moderation_banned_words: {
+            type: Object,
+            default: [],
+        },
+        moderation_whitelisted_words: {
+            type: Object,
+            default: [],
+        },
+        moderation_whitelisted_links: {
+            type: Object,
+            default: [],
+        },
+        moderation_filter_links: {
+            type: Boolean,
+            default: false,
+        },
+        moderation_filter_invite: {
+            type: Boolean,
+            default: false,
+        },
+        moderation_filter_caps: {
+            type: Boolean,
+            default: false,
+        },
+        moderation_filter_swear: {
+            type: Boolean,
+            default: false,
+        },
+        tags_enabled: {
+            type: Boolean,
+            default: false,
+        },
+        tags_author_role: {
+            type: String,
+            default: '',
+        },
+        tags_list: {
+            type: Object,
+            default: [],
+        },
+        leveling_enabled: {
+            type: Boolean,
+            default: false,
+        },
+        leveling_minimum: {
+            type: Number,
+            default: 10,
+        },
+        leveling_maximum: {
+            type: Number,
+            default: 20,
+        },
+        leveling_cooldown: {
+            type: Number,
+            default: 60,
+        },
+        leveling_stack_rewards: {
+            type: Boolean,
+            default: false,
+        },
+        leveling_role_rewards: {
+            type: Object,
+            default: [],
+        },
+        leveling_message: {
+            type: String,
+            default:
+                '{{user}} has level up to level **{{new_level}}** from level **{{old_level}}**!',
+        },
+        leveling_log_channel: {
+            type: String,
+            default: '',
+        },
+        logging_enabled: {
+            type: Boolean,
+            default: false,
+        },
+        logging_channel_id: {
+            type: String,
+            default: '',
+        },
+        logging_errors: {
+            type: Boolean,
+            default: false,
+        },
+        logging_message_update: {
+            type: Boolean,
+            default: false,
+        },
+        logging_message_delete: {
+            type: Boolean,
+            default: false,
+        },
+        logging_channel_create: {
+            type: Boolean,
+            default: false,
+        },
+        logging_channel_update: {
+            type: Boolean,
+            default: false,
+        },
+        logging_channel_delete: {
+            type: Boolean,
+            default: false,
+        },
+        logging_role_create: {
+            type: Boolean,
+            default: false,
+        },
+        logging_role_update: {
+            type: Boolean,
+            default: false,
+        },
+        logging_role_delete: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_add: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_remove: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_update: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_kick: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_ban_add: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_ban_remove: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_voice_join: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_voice_leave: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_voice_move: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_voice_deafen: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_voice_muted: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_voice_server_deafen: {
+            type: Boolean,
+            default: false,
+        },
+        logging_member_voice_server_muted: {
+            type: Boolean,
+            default: false,
+        },
+    }),
+);
 
 export default Guild;
 
 export interface GuildAttributes extends mongoose.Document {
-
     guild_id: string;
     name: string;
 
@@ -372,16 +375,14 @@ export interface GuildAttributes extends mongoose.Document {
     logging_member_voice_muted: boolean;
     logging_member_voice_server_deafen: boolean;
     logging_member_voice_server_muted: boolean;
-
 }
-
 
 export type GuildRoleRewards = RoleReward[];
 
 export interface RoleReward {
     id: string;
     level: number;
-};
+}
 
 export interface Case {
     type: string;
@@ -400,7 +401,7 @@ export interface Tag {
     value: string;
     aliases: Array<string>;
     author: string;
-};
+}
 
 // public async addTag(tag: GuildTag) {
 //     if (!this.data.tags.enabled) return false;

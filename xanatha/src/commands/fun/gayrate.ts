@@ -20,7 +20,6 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const stat = Random.number(101, 0);
         const target = message.mentions.users.first() || message.author;
 
@@ -28,9 +27,9 @@ export default class extends Command {
             new MessageEmbed()
                 .setColor('RANDOM')
                 .setAuthor(`Gay Rate 3000 go brrr`)
-                .setDescription(`${target.username} is ${stat}% gay :rainbow_flag: `)
+                .setDescription(
+                    `${target.username} is ${stat}% gay :rainbow_flag: `,
+                ),
         );
-
     }
-
 }

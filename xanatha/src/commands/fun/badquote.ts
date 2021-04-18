@@ -21,8 +21,9 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
-        const response = await fetch(`https://breaking-bad-quotes.herokuapp.com/v1/quotes`);
+        const response = await fetch(
+            `https://breaking-bad-quotes.herokuapp.com/v1/quotes`,
+        );
         const body = await response.json();
 
         message.channel.send(
@@ -30,9 +31,7 @@ export default class extends Command {
                 .setColor(Colors.random)
                 .setURL('https://breaking-bad-quotes.herokuapp.com/')
                 .setDescription(`${body[0]['quote']}`)
-                .setFooter(`- ${body[0]['author']}`)
+                .setFooter(`- ${body[0]['author']}`),
         );
-
     }
-
 }

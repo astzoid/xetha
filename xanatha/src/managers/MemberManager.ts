@@ -3,14 +3,14 @@ import { Collection } from 'discord.js';
 import Member, { MemberAttributes } from '../database/models/Member';
 import { Disclosure } from 'disclosure-discord';
 
-export default class MemberManager extends Manager<Collection<string, MemberAttributes>> {
-
+export default class MemberManager extends Manager<
+    Collection<string, MemberAttributes>
+> {
     public constructor(client: Disclosure) {
         super(client);
     }
 
     public async fetch(guild_id: string, member_id: string, tag: string) {
-
         let member = await Member.findOne({ guild_id, member_id });
 
         if (!member) {
@@ -22,7 +22,6 @@ export default class MemberManager extends Manager<Collection<string, MemberAttr
         }
 
         return member;
-
     }
 
     public delete(guild_id: string, member_id: string) {
@@ -32,5 +31,4 @@ export default class MemberManager extends Manager<Collection<string, MemberAttr
     public deleteAll(guild_id: string) {
         return Member.deleteMany({ guild_id });
     }
-
 }

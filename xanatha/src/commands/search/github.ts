@@ -23,47 +23,85 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const args = argv._;
         const author = args.shift();
         const repository = args.shift();
 
         try {
-
-            const response = await fetch(`https://api.github.com/repos/${encodeURIComponent(author)}/${encodeURIComponent(repository)}`).catch(e => { throw e; });
+            const response = await fetch(
+                `https://api.github.com/repos/${encodeURIComponent(
+                    author,
+                )}/${encodeURIComponent(repository)}`,
+            ).catch((e) => {
+                throw e;
+            });
             const body = await response.json();
 
             if (body.message && body.message === 'Not Found') {
-
                 throw { status: 404 };
-
             }
 
             message.channel.send(
                 new MessageEmbed()
                     .setColor(Colors.white)
-                    .setAuthor('GitHub', 'https://i.imgur.com/e4HunUm.png', 'https://github.com/')
+                    .setAuthor(
+                        'GitHub',
+                        'https://i.imgur.com/e4HunUm.png',
+                        'https://github.com/',
+                    )
                     .setTitle(body.full_name)
                     .setURL(body.html_url)
-                    .setDescription(body.description ? Utils.shorten(body.description) : 'No description.')
-                    .setThumbnail(body.owner ? (body.owner.avatar_url ? body.owner.avatar_url : null) :
-                        (body.organization ? (body.organization.avatar_url ? body.organization.avatar_url : null) : null))
-                    .addField('❯ Stars', Utils.toHumanReadable(body.stargazers_count), true)
-                    .addField('❯ Forks', Utils.toHumanReadable(body.forks), true)
-                    .addField('❯ Issues', Utils.toHumanReadable(body.open_issues), true)
+                    .setDescription(
+                        body.description
+                            ? Utils.shorten(body.description)
+                            : 'No description.',
+                    )
+                    .setThumbnail(
+                        body.owner
+                            ? body.owner.avatar_url
+                                ? body.owner.avatar_url
+                                : null
+                            : body.organization
+                            ? body.organization.avatar_url
+                                ? body.organization.avatar_url
+                                : null
+                            : null,
+                    )
+                    .addField(
+                        '❯ Stars',
+                        Utils.toHumanReadable(body.stargazers_count),
+                        true,
+                    )
+                    .addField(
+                        '❯ Forks',
+                        Utils.toHumanReadable(body.forks),
+                        true,
+                    )
+                    .addField(
+                        '❯ Issues',
+                        Utils.toHumanReadable(body.open_issues),
+                        true,
+                    )
                     .addField('❯ Language', body.language || '???', true)
-                    .addField('❯ Creation Date', moment.utc(body.created_at).format('MM/DD/YYYY h:mm A'), true)
-                    .addField('❯ Modification Date', moment.utc(body.updated_at).format('MM/DD/YYYY h:mm A'), true)
+                    .addField(
+                        '❯ Creation Date',
+                        moment.utc(body.created_at).format('MM/DD/YYYY h:mm A'),
+                        true,
+                    )
+                    .addField(
+                        '❯ Modification Date',
+                        moment.utc(body.updated_at).format('MM/DD/YYYY h:mm A'),
+                        true,
+                    ),
             );
-
         } catch (err) {
             if (err.status && err.status === 404) {
                 return message.channel.send('Could not find any results.');
             }
 
-            return message.channel.send(`Oh no, an error occurred: \`${err.message}\`. Try again later!`);
-
+            return message.channel.send(
+                `Oh no, an error occurred: \`${err.message}\`. Try again later!`,
+            );
         }
     }
-
 }

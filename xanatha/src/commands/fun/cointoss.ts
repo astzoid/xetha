@@ -21,7 +21,8 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-        message.channel.send(answers[Math.floor(Math.random() * answers.length)]);
+        message.channel.send(
+            answers[Math.floor(Math.random() * answers.length)],
+        );
     }
-
 }

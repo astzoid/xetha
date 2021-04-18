@@ -3,13 +3,11 @@ import Profile, { ProfileAttributes } from '../database/models/Profile';
 import { Disclosure } from 'disclosure-discord';
 
 export default class ProfileManager extends Manager<ProfileAttributes> {
-
     public constructor(client: Disclosure) {
         super(client);
     }
 
     public async fetch(user_id: string, tag: string) {
-
         let profile = await Profile.findOne({ user_id });
 
         if (!profile) {
@@ -21,11 +19,9 @@ export default class ProfileManager extends Manager<ProfileAttributes> {
         }
 
         return profile;
-
     }
 
     public delete(user_id: string) {
         return Profile.deleteMany({ user_id });
     }
-
 }

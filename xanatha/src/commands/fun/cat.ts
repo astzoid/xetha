@@ -20,7 +20,6 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const response = await fetch('http://placekitten.com/200/300');
         const body = await response.json();
 
@@ -29,9 +28,7 @@ export default class extends Command {
                 .setColor('RANDOM')
                 .setImage(body)
                 .setURL('http://placekitten.com/')
-                .setFooter('http://placekitten.com/')
+                .setFooter('http://placekitten.com/'),
         );
-
     }
-
 }

@@ -5,7 +5,7 @@ export default class extends Command {
     constructor(client: Disclosure) {
         super(client, {
             name: 'support',
-            description: 'Sends Xetha\'s Support Discord Server',
+            description: "Sends Xetha's Support Discord Server",
             cooldown: 3,
             args: 0,
             usage: ['support'],
@@ -19,17 +19,16 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
-        const OWNER = await this.client.users.fetch(this.client.config.ownerID[0]);
+        const OWNER = await this.client.users.fetch(
+            this.client.config.ownerID[0],
+        );
 
         return message.channel.send(
             new MessageEmbed()
                 .setColor(0x00ffff)
                 .setTitle('Xetha Development')
                 .setDescription(`${this.client.xetha.support.invite}`)
-                .setFooter(`Made by ${OWNER.tag}`)
+                .setFooter(`Made by ${OWNER.tag}`),
         );
-
     }
-
 }

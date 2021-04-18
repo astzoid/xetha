@@ -2,7 +2,6 @@ import { Disclosure, Command, Arguments } from 'disclosure-discord';
 import { Message } from 'discord.js';
 
 const findGuild = function (id: string) {
-
     const guild = this.guilds.cache.get(id);
 
     if (!guild) {
@@ -10,7 +9,6 @@ const findGuild = function (id: string) {
     }
 
     return guild;
-
 };
 
 export default class extends Command {
@@ -31,28 +29,28 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const args = argv._;
 
         if (args.length) {
-
-            return await this.client.shard.broadcastEval(`(${findGuild}).call(this, '${args[0]}')`)
+            return await this.client.shard
+                .broadcastEval(`(${findGuild}).call(this, '${args[0]}')`)
                 .then((results: any[]) => {
-
-                    const result = results.find(g => g);
+                    const result = results.find((g) => g);
 
                     if (!result) {
-                        return message.channel.send(`i couldn't find that guild, sorry :/`);
+                        return message.channel.send(
+                            `i couldn't find that guild, sorry :/`,
+                        );
                     }
 
-                    message.channel.send(`That server is located on shard ${result.shardID}`);
-
+                    message.channel.send(
+                        `That server is located on shard ${result.shardID}`,
+                    );
                 });
-
         }
 
-        message.channel.send(`This server is located on shard ${message.guild.shardID}`);
-
+        message.channel.send(
+            `This server is located on shard ${message.guild.shardID}`,
+        );
     }
-
 }

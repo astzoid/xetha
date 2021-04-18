@@ -11,13 +11,13 @@ interface Config {
 }
 
 export default function Commands(manager: DisclosureSharder) {
-
     const route = Router();
 
-    route.get('/', AsyncWrapper(async (_req, res) => {
-
-        const shards = await manager.broadcastEval(
-            `this.commands
+    route.get(
+        '/',
+        AsyncWrapper(async (_req, res) => {
+            const shards = (await manager.broadcastEval(
+                `this.commands
                 .filter((command) => {
                     if (command.config.category) {
                         if (command.config.category === 'staff') {
@@ -37,12 +37,13 @@ export default function Commands(manager: DisclosureSharder) {
                         category: command.config.category,
                         aliases: command.config.aliases
                     }
-                });`, 0) as Array<Config>;
+                });`,
+                0,
+            )) as Array<Config>;
 
-        res.status(200).json(shards);
-
-    }));
+            res.status(200).json(shards);
+        }),
+    );
 
     return route;
-
 }

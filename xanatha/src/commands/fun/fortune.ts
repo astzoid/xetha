@@ -21,14 +21,16 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         message.channel.send(
             new MessageEmbed()
                 .setColor(Colors.random)
-                .setAuthor('Your fortune 🥠 says...', this.client.user.displayAvatarURL({ dynamic: true }))
-                .setDescription(fortune[Math.floor(Math.random() * fortune.length)])
+                .setAuthor(
+                    'Your fortune 🥠 says...',
+                    this.client.user.displayAvatarURL({ dynamic: true }),
+                )
+                .setDescription(
+                    fortune[Math.floor(Math.random() * fortune.length)],
+                ),
         );
-
     }
-
 }

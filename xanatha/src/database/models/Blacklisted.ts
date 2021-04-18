@@ -20,8 +20,14 @@ const Schema = new mongoose.Schema<BlacklistedAttributes>({
     },
 });
 
-const BlacklistedServer = mongoose.model<BlacklistedAttributes>('blacklisted_server', Schema);
-const BlacklistedUser = mongoose.model<BlacklistedAttributes>('blacklisted_user', Schema);
+const BlacklistedServer = mongoose.model<BlacklistedAttributes>(
+    'blacklisted_server',
+    Schema,
+);
+const BlacklistedUser = mongoose.model<BlacklistedAttributes>(
+    'blacklisted_user',
+    Schema,
+);
 
 export { BlacklistedServer, BlacklistedUser };
 
@@ -29,5 +35,5 @@ export interface BlacklistedAttributes extends mongoose.Document {
     target_id: string;
     reason: string;
     moderator: string;
-    date: number,
+    date: number;
 }

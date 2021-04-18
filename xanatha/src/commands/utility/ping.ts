@@ -19,11 +19,14 @@ export default class extends Command {
     }
 
     async execute(message: Message, argv: Arguments) {
-
         const msg = await message.channel.send(`Ping?`);
 
-        await msg.edit(`Pong!\nLatency: \`${Math.round(msg.createdTimestamp - message.createdTimestamp)}ms\`\nWebSocket API Latency :\`${Math.round(this.client.ws.ping)}ms\``);
-
+        await msg.edit(
+            `Pong!\nLatency: \`${Math.round(
+                msg.createdTimestamp - message.createdTimestamp,
+            )}ms\`\nWebSocket API Latency :\`${Math.round(
+                this.client.ws.ping,
+            )}ms\``,
+        );
     }
-
 }
