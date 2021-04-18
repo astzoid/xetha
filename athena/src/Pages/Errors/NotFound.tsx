@@ -10,22 +10,25 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 export default function NotFound() {
+  const styles = useStyles();
 
-    const styles = useStyles();
-
-    return (
-        <div className={styles.content}>
-            <Meta title="Not Found" description="Not Found" noindex nofollow />
-            <Container className={styles.mg}>
-                <Container className={styles.center}>
-                    <Avatar alt="paper" src={NoData} className={styles.logo} />
-                    <Typography color="textPrimary" component="h1" variant="h2">Not Found</Typography>
-                    <Typography className={styles.mg} color="textSecondary">
-                        You have visited an unknown airspace!
-                    </Typography>
-                    <Button component={Link} to="/" variant="contained" color="primary">Go to Home</Button>
-                </Container>
-            </Container>
-        </div>
-    );
+  return (
+    <div className={styles.content}>
+      <Meta title="Not Found" description="Not Found" noindex nofollow />
+      <Container className={styles.mg}>
+        <Container className={styles.center}>
+          <Avatar alt="paper" src={NoData} className={styles.logo} />
+          <Typography color="textPrimary" component="h1" variant="h2">
+            Not Found
+          </Typography>
+          <Typography className={styles.mg} color="textSecondary">
+            You have visited an unknown airspace!
+          </Typography>
+          <Button component={Link} to="/" variant="contained" color="primary">
+            Go to Home
+          </Button>
+        </Container>
+      </Container>
+    </div>
+  );
 }

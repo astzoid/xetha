@@ -20,37 +20,36 @@ const Terms = lazy(() => import('./Pages/Terms'));
 const NotFound = lazy(() => import('./Pages/Errors/NotFound'));
 
 export default function App() {
+  const [user, setUser] = useState<User>(null);
+  const [loaded, setLoaded] = useState(false);
 
-    const [user, setUser] = useState<User>(null);
-    const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    RequestHandler.request<User>('GET', { route: '/api/user' })
+      .then((response) => setUser(response.body))
+      .catch((err) => console.error(err))
+      .finally(() => setLoaded(true));
+  }, []);
 
-    useEffect(() => {
-        RequestHandler.request<User>('GET', { route: '/api/user' })
-            .then((response) => setUser(response.body))
-            .catch((err) => console.error(err))
-            .finally(() => setLoaded(true));
-    }, []);
+  return (
+    <userContext.Provider value={{ user, loaded }}>
+      <Navbar />
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
 
-    return (
-        <userContext.Provider value={{ user, loaded }}>
-            <Navbar />
-            <Suspense fallback={<Loader />}>
-                <Switch>
-                    <Route exact path="/" component={LandingPage} />
+          <Route path="/discord" component={Discord} />
+          <Route path="/invite" component={Invite} />
 
-                    <Route path="/discord" component={Discord} />
-                    <Route path="/invite" component={Invite} />
+          <Route path="/commands" component={Commands} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/status" component={Status} />
+          <Route path="/terms" component={Terms} />
 
-                    <Route path="/commands" component={Commands} />
-                    <Route path="/dashboard" component={Dashboard} />
-                    <Route path="/privacy" component={Privacy} />
-                    <Route path="/status" component={Status} />
-                    <Route path="/terms" component={Terms} />
-
-                    <Route path="*" component={NotFound} />
-                </Switch>
-                <Footer />
-            </Suspense>
-        </userContext.Provider>
-    );
+          <Route path="*" component={NotFound} />
+        </Switch>
+        <Footer />
+      </Suspense>
+    </userContext.Provider>
+  );
 }

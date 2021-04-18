@@ -12,28 +12,28 @@ import './App.css';
 import styles from './App.module.css';
 
 const Theme = createMuiTheme({
-    palette: {
-        type: 'dark',
-        primary: blue,
-        secondary: grey,
-    }
+  palette: {
+    type: 'dark',
+    primary: blue,
+    secondary: grey,
+  },
 });
 
 const mount = document.createElement('div');
 
-mount.id = styles["app-mount"];
+mount.id = styles['app-mount'];
 
 document.body.prepend(mount);
 
 ReactDOM.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <HelmetProvider>
-                <ThemeProvider theme={Theme}>
-                    <App />
-                </ThemeProvider>
-            </HelmetProvider>
-        </BrowserRouter>
-    </React.StrictMode>
-    , document.getElementById(styles["app-mount"])
+  <React.StrictMode>
+    <BrowserRouter>
+      <HelmetProvider>
+        <ThemeProvider theme={Theme}>
+          <App />
+        </ThemeProvider>
+      </HelmetProvider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById(styles['app-mount']),
 );
