@@ -1,8 +1,9 @@
 {
+  "$schema": "https://json.schemastore.org/lerna",
   "packages": [
     "athena",
     "cathy",
     "xanatha"
   ],
-  "version": "1.4.10"
+  "version": "independent"
 }
