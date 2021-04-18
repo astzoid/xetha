@@ -7,7 +7,7 @@ on:
       - xanatha/**
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,7 +15,18 @@ jobs:
         with:
           node-version: 14.x
 
-      - working-directory: ./xanatha
-        run: |
-          npm ci
-          npm run build
+      - name: Install Dependencies
+        working-directory: ./xanatha
+        run: npm ci
+
+      - name: Lint
+        working-directory: ./xanatha
+        run: npm run lint
+
+      - name: Build
+        working-directory: ./xanatha
+        run: npm run build
+
+      - name: Test
+        working-directory: ./xanatha
+        run: npm test
