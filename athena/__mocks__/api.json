@@ -1,0 +1,473 @@
+{
+  "user": {
+    "user_id": "258528688495132672",
+    "username": "undefine",
+    "discriminator": "2690",
+    "tag": "undefine#2690",
+    "avatar": "a_e6b27b577581c53271da6469c47aeed8",
+    "guilds": [
+      {
+        "id": "769470407240581130",
+        "name": "Server Boilerplate",
+        "icon": null,
+        "owner": true,
+        "permissions": 2147483647,
+        "features": [
+          "NEWS",
+          "COMMUNITY"
+        ],
+        "permissions_new": "8589934591"
+      },
+      {
+        "id": "795997034531651616",
+        "name": "Private Server",
+        "icon": null,
+        "owner": true,
+        "permissions": 2147483647,
+        "features": [],
+        "permissions_new": "8589934591"
+      },
+      {
+        "id": "797083010549022740",
+        "name": "xetha-bot.me",
+        "icon": "cb867b6c3b5748cbcce797539d8ad88c",
+        "owner": true,
+        "permissions": 2147483647,
+        "features": [
+          "NEWS",
+          "COMMUNITY"
+        ],
+        "permissions_new": "8589934591"
+      },
+      {
+        "id": "797084336586883082",
+        "name": "Testing Server",
+        "icon": null,
+        "owner": true,
+        "permissions": 2147483647,
+        "features": [],
+        "permissions_new": "8589934591"
+      },
+      {
+        "id": "799847822849474580",
+        "name": "Emoji Server",
+        "icon": null,
+        "owner": true,
+        "permissions": 2147483647,
+        "features": [],
+        "permissions_new": "8589934591"
+      },
+      {
+        "id": "824504251551842304",
+        "name": "Yurva Bot",
+        "icon": "bd9a67cb7f5978620835f33edef5e119",
+        "owner": false,
+        "permissions": 2147483647,
+        "features": [
+          "NEWS",
+          "COMMUNITY"
+        ],
+        "permissions_new": "8589934591"
+      },
+      {
+        "id": "825715357212999690",
+        "name": "undefine's server",
+        "icon": "313ff0c354b3cdae63fcd5857b8203b5",
+        "owner": true,
+        "permissions": 2147483647,
+        "features": [],
+        "permissions_new": "8589934591"
+      },
+      {
+        "id": "827858620662022165",
+        "name": "Drinking Dude Tech",
+        "icon": "dc0e770f48d5ac99d81fac36aa02ec62",
+        "owner": true,
+        "permissions": 2147483647,
+        "features": [
+          "NEWS",
+          "COMMUNITY"
+        ],
+        "permissions_new": "8589934591"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "name": "help",
+      "description": "Shows the list of the Bot's Commands",
+      "usage": [
+        "help [command]",
+        "help [category]"
+      ],
+      "category": null,
+      "aliases": []
+    },
+    {
+      "name": "ping",
+      "description": "Ping ping pong pong boomboom",
+      "usage": [
+        "ping"
+      ],
+      "category": "utility",
+      "aliases": []
+    },
+    {
+      "name": "8ball",
+      "description": "The 8ball command to answer you lame questions",
+      "usage": [
+        "8ball [question]"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "advice",
+      "description": "The command that gives you life advices",
+      "usage": [
+        "advice"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "badquote",
+      "description": "This gives you a bad quote to degrade your morals",
+      "usage": [
+        "badquote"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "bye",
+      "description": "cya",
+      "usage": [
+        "bye"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "cat",
+      "description": "Sends a random image of a cat cat cat!",
+      "usage": [
+        "cat"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "chunknorris",
+      "description": "Sends a stupid joke that Chuck Norris said",
+      "usage": [
+        "chucknorris"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "cointoss",
+      "description": "Toss a coin",
+      "usage": [
+        "cointoss"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "cya",
+      "description": "Bye!",
+      "usage": [
+        "cya"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "dadjoke",
+      "description": "Sends a random dad joke xd d",
+      "usage": [
+        "dadjoke"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "dog",
+      "description": "Sends a random image of a puppy dog",
+      "usage": [
+        "dog"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "duck",
+      "description": "Sends an image of duck oink oink",
+      "usage": [
+        "duck"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "emoji",
+      "description": "Sends a random ASCII emoji",
+      "usage": [
+        "emoji"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "fidgetspinner",
+      "description": "Spinning spin spin spin fidget",
+      "usage": [
+        "fidgetspinner"
+      ],
+      "category": "fun",
+      "aliases": [
+        "spin"
+      ]
+    },
+    {
+      "name": "fortune",
+      "description": "Gives you your fortune cookie",
+      "usage": [
+        "fortune"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "fox",
+      "description": "What does the fox says? ning ning ning ning",
+      "usage": [
+        "fox"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "gayrate",
+      "description": "Calculates your gayness",
+      "usage": [
+        "gayrate"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "hello",
+      "description": "hi!",
+      "usage": [
+        "hello"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "hi",
+      "description": "hello!",
+      "usage": [
+        "hi"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "lenny",
+      "description": "( ͡° ͜ʖ ͡°)",
+      "usage": [
+        "lenny"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "meme",
+      "description": "Sends a random meme from reddit",
+      "usage": [
+        "meme"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "no",
+      "description": "yes!",
+      "usage": [
+        "no"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "penis",
+      "description": "Calculates your penis size till it's smallest form",
+      "usage": [
+        "penis [user]"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "quote",
+      "description": "Using A.I. this will send the right quote for you",
+      "usage": [
+        "quote"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "slap",
+      "description": "Slappy slap slap slap",
+      "usage": [
+        "slap <user>"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "spam",
+      "description": "Spammy spam spam SPAM image",
+      "usage": [
+        "spam"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "yes",
+      "description": "no",
+      "usage": [
+        "yes"
+      ],
+      "category": "fun",
+      "aliases": []
+    },
+    {
+      "name": "leveling",
+      "description": "Setup the leveling system",
+      "usage": [
+        "leveling",
+        "leveling <...args>",
+        "leveling enable",
+        "leveling disable",
+        "leveling min <Number>",
+        "leveling max <Number>",
+        "leveling cooldown <Number>",
+        "leveling rewards",
+        "leveling reward add <Level> <Role>",
+        "leveling reward remove <Level>",
+        "leveling message <Message>",
+        "leveling channel <#channel|none>"
+      ],
+      "category": "leveling",
+      "aliases": []
+    },
+    {
+      "name": "levels",
+      "description": "Shows the Guild's XP Leaderboard",
+      "usage": [
+        "levels [page]"
+      ],
+      "category": "leveling",
+      "aliases": []
+    },
+    {
+      "name": "rank",
+      "description": "Shows the user's ranking in the Guild XP Leadeboard",
+      "usage": [
+        "rank [user]"
+      ],
+      "category": "leveling",
+      "aliases": []
+    },
+    {
+      "name": "github",
+      "description": "Shows information about a Public Github Repository",
+      "usage": [
+        "github <owner|organization> <repository>"
+      ],
+      "category": "search",
+      "aliases": []
+    },
+    {
+      "name": "mdn",
+      "description": "Searches MDN (JavaScript Documentation) for your query.",
+      "usage": [
+        "mdn <query>"
+      ],
+      "category": "search",
+      "aliases": []
+    },
+    {
+      "name": "npm",
+      "description": "Sends or Shows the information of a Public NPM (Node Package Manager) Package",
+      "usage": [
+        "npm <package>"
+      ],
+      "category": "search",
+      "aliases": []
+    },
+    {
+      "name": "stackexchange",
+      "description": "Searches Stack Exchange for your query",
+      "usage": [
+        "stackexchange <query>"
+      ],
+      "category": "search",
+      "aliases": []
+    },
+    {
+      "name": "steam",
+      "description": "Searches a Game on Steam for your query",
+      "usage": [
+        "steam <query>"
+      ],
+      "category": "search",
+      "aliases": []
+    },
+    {
+      "name": "permission",
+      "description": "Tells you your permission level for the current message guild location",
+      "usage": [
+        "permission"
+      ],
+      "category": "utility",
+      "aliases": [
+        "permissions"
+      ]
+    },
+    {
+      "name": "prefix",
+      "description": "Shows the Bot's Prefix",
+      "usage": [
+        "prefix"
+      ],
+      "category": "utility",
+      "aliases": []
+    },
+    {
+      "name": "shard",
+      "description": "Shows what shard your server is located on",
+      "usage": [
+        "shard [Guild ID]"
+      ],
+      "category": "utility",
+      "aliases": []
+    },
+    {
+      "name": "support",
+      "description": "Sends Xetha's Support Discord Server",
+      "usage": [
+        "support"
+      ],
+      "category": "utility",
+      "aliases": []
+    }
+  ]
+}
