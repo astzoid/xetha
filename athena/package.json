@@ -13,6 +13,14 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
+    "pretty-ms": "^7.0.1",
+    "querystring": "^0.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-helmet-async": "^1.0.9",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
     "@snowpack/plugin-dotenv": "^2.1.0",
     "@snowpack/plugin-react-refresh": "^2.4.2",
     "@snowpack/plugin-typescript": "^1.2.1",
@@ -25,19 +33,10 @@
     "@types/react-dom": "^17.0.3",
     "@types/react-router-dom": "^5.1.7",
     "http-proxy": "^1.18.1",
-    "pretty-ms": "^7.0.1",
-    "querystring": "^0.2.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-helmet-async": "^1.0.9",
-    "react-router-dom": "^5.2.0",
+    "prettier": "^2.2.1",
     "snowpack": "^3.3.3",
     "typescript": "^4.2.4",
-    "url-loader": "^4.1.1",
     "webpack": "^4.46.0",
     "webpack-subresource-integrity": "^1.5.2"
-  },
-  "devDependencies": {
-    "prettier": "^2.2.1"
   }
 }
