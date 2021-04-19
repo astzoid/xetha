@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/xetha-bot/xetha/compare/xanatha@1.5.0...xanatha@1.5.1) (2021-04-19)
+
+**Note:** Version bump only for package xanatha
+
+
+
+
+
 # 1.5.0 (2021-04-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/xetha-bot/xetha/compare/athena@1.5.0...athena@1.6.0) (2021-04-19)
+
+
+### Features
+
+* fake api ([a822189](https://github.com/xetha-bot/xetha/commit/a822189952420b03d037b5650bd79de894083a1a))
+
+
+
+
+
 # 1.5.0 (2021-04-18)
 
 
