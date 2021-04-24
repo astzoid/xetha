@@ -2,38 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
-
-import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-import { blue, grey } from '@material-ui/core/colors';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 import App from './App';
-import './App.css';
-
-import styles from './App.module.css';
-
-const Theme = createMuiTheme({
-  palette: {
-    type: 'dark',
-    primary: blue,
-    secondary: grey,
-  },
-});
-
-const mount = document.createElement('div');
-
-mount.id = styles['app-mount'];
-
-document.body.prepend(mount);
+import ScrollToTop from './shared/components/ScrollToTop';
+import Theme from './shared/styles/Theme';
+import './shared/styles/App.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <HelmetProvider>
         <ThemeProvider theme={Theme}>
+          <ScrollToTop />
           <App />
         </ThemeProvider>
       </HelmetProvider>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById(styles['app-mount']),
+  document.getElementById('app-mount'),
 );
