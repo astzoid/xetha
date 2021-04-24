@@ -6,6 +6,11 @@
     "compilerOptions": {
         "module": "esnext",
         "target": "esnext",
+        "lib": [
+            "ESNext",
+            "DOM",
+            "DOM.Iterable"
+        ],
         "moduleResolution": "node",
         "jsx": "preserve",
         "noEmit": true,
