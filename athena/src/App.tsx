@@ -1,13 +1,15 @@
 import React, { Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Authentication from './shared/components/Authentication';
-import ErrorBoundary from './shared/components/ErrorBoundary';
-import NotFound from './pages/NotFound';
-import WentWrong from './pages/WentWrong';
+import Authentication from '@shared/components/Authentication';
+import ErrorBoundary from '@shared/components/ErrorBoundary';
+import Navbar from '@shared/components/Navbar';
+import NotFound from '@pages/NotFound';
+import WentWrong from '@pages/WentWrong';
 
 export default function App() {
   return (
     <Authentication>
+      <Navbar />
       <Suspense fallback={null}>
         <Switch>
           <ErrorBoundary fallback={<WentWrong />}>
