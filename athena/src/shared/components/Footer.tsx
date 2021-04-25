@@ -76,7 +76,7 @@ function FooterContents() {
         <FooterLink href="/patreon">Patreon</FooterLink>
       </FooterSection>
       <FooterSection title="Support">
-        <FooterLink href="/discord">Support Discord</FooterLink>
+        <FooterLink href="/discord">Official Discord</FooterLink>
         <FooterLink href="/suggest">Suggest a Feature</FooterLink>
         <FooterLink href="/bug-report">Report a Bug</FooterLink>
         <FooterLink href="/report">Report a Guild or User</FooterLink>
