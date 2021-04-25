@@ -1,15 +1,14 @@
 import './App';
-import { GuildInfo } from 'passport-discord';
 
 declare global {
   namespace Express {
     interface User {
+      accessToken: string;
+      refreshToken: string;
       user_id: string;
       username: string;
       discriminator: string;
-      tag: string;
       avatar: string;
-      guilds: GuildInfo[];
     }
   }
 }
