@@ -86,7 +86,7 @@ function Animate(symbols: string[], signal: AbortSignal) {
     constructor(count = 100, spawnTimeout = 20) {
       this.particles = [];
 
-      let generator = () => {
+      const generator = () => {
         if (count != this.particles.length && !signal.aborted) {
           this.particles.push(
             new Particle({
