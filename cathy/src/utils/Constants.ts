@@ -1,5 +1,6 @@
 import session from 'express-session';
 import store from 'memorystore';
+import MongoStore from 'connect-mongo';
 import { CorsOptions } from 'cors';
 import { SessionOptions } from 'express-session';
 import { Options as RatelimitOptions } from 'express-rate-limit';
@@ -8,13 +9,14 @@ import { version as packageVersion } from '../../package.json';
 export const version = packageVersion;
 
 export const Config = {
+  production: process.env.NODE_ENV === 'production',
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   callbackURL: process.env.CALLBACK_URL,
   dashboardURL: process.env.DASHBOARD_URL,
   permissions: 1036381407,
   support: {
-    invite: 'https://discord.gg/cb8kVAvDbq',
+    invite: 'https://discord.gg/UMBem59yAm',
   },
 };
 
@@ -27,6 +29,7 @@ export const Redirects = {
 export const corsOptions: CorsOptions = {
   origin: Config.dashboardURL,
   credentials: true,
+  methods: ['GET', 'POST'],
 };
 
 export const sessionOptions: SessionOptions = {
@@ -36,9 +39,17 @@ export const sessionOptions: SessionOptions = {
   cookie: {
     maxAge: 86400000,
   },
-  store: new (store(session))({
-    checkPeriod: 86400000,
-  }),
+  store: Config.production
+    ? MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI + 'sessions',
+        ttl: 1 * 24 * 60 * 60,
+        crypto: {
+          secret: Config.clientSecret,
+        },
+      })
+    : new (store(session))({
+        checkPeriod: 86400000,
+      }),
 };
 
 export const rateLimitOptions: RatelimitOptions = {
