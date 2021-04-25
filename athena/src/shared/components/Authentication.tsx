@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import RequestHandler from '../../rest/RequestHandler';
-import { Provider } from '../auth';
-import Logger from '../functions/Logger';
-
 import type { ReactNode } from 'react';
-import type User from '../typings/User';
+
+import RequestHandler from '@rest/RequestHandler';
+import { Provider } from '@shared/auth';
+import Logger from '@shared/functions/Logger';
+
+import type User from '@shared/typings/User';
 
 export default function Authentication(props: { children: ReactNode }) {
   const [user, setUser] = useState<User>(null);

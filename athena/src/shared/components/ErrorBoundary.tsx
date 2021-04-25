@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Logger from '../functions/Logger';
+import Logger from '@shared/functions/Logger';
 import type { ReactNode } from 'react';
 
 interface Props {
