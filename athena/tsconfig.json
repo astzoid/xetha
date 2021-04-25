@@ -19,6 +19,21 @@
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,
         "allowSyntheticDefaultImports": true,
-        "importsNotUsedAsValues": "error"
+        "importsNotUsedAsValues": "error",
+        "baseUrl": "src",
+        "paths": {
+            "@pages/*": [
+                "pages/*"
+            ],
+            "@rest/*": [
+                "rest/*"
+            ],
+            "@routes/*": [
+                "routes/*"
+            ],
+            "@shared/*": [
+                "shared/*"
+            ],
+        }
     },
 }
