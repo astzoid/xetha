@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Canvas from '../shared/components/Canvas';
-import Content from '../shared/components/Content';
-import Meta from '../shared/components/Meta';
+import Canvas from '@shared/components/Canvas';
+import Content from '@shared/components/Content';
+import Meta from '@shared/components/Meta';
 
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import { Button, Container, Typography } from '@material-ui/core';
 
 export default function WentWrong() {
   return (
@@ -26,14 +24,16 @@ export default function WentWrong() {
         <Typography variant="body1" color="textSecondary">
           Oh oh, something went wrong in this airspace!
         </Typography>
-        <Container>
-          <Button variant="contained" color="primary" component={Link} to="/">
-            Go To Home
-          </Button>
-          <Button variant="contained" color="primary" onClick={() => window.location.reload()}>
-            Refresh This Page
-          </Button>
-        </Container>
+        <Button variant="contained" color="primary" component={Link} to="/">
+          Go To Home
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => window.location.reload()}
+        >
+          Refresh This Page
+        </Button>
       </Container>
     </Content>
   );

@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Canvas from '../shared/components/Canvas';
-import Content from '../shared/components/Content';
-import Meta from '../shared/components/Meta';
+import Canvas from '@shared/components/Canvas';
+import Content from '@shared/components/Content';
+import Meta from '@shared/components/Meta';
 
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import { Button, Container, Typography } from '@material-ui/core';
 
 export default function NotFound() {
   return (
@@ -26,11 +24,9 @@ export default function NotFound() {
         <Typography variant="body1" color="textSecondary">
           Oh oh, you entered an unknown airspace!
         </Typography>
-        <Container>
-          <Button variant="contained" color="primary" component={Link} to="/">
-            Go To Home
-          </Button>
-        </Container>
+        <Button variant="contained" color="primary" component={Link} to="/">
+          Go To Home
+        </Button>
       </Container>
     </Content>
   );
