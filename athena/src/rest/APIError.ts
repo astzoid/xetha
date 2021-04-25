@@ -1,6 +1,6 @@
-import type { Data, RequestMethod } from './RequestHandler';
+import type { RequestMethod } from '@rest/RequestHandler';
 
-function flattenErrors(obj: { [key: string]: any }, key: string = '') {
+function flattenErrors(obj: Record<string, any>, key: string = '') {
   let messages: string[] = [];
 
   for (const [k, v] of Object.entries(obj)) {
@@ -33,7 +33,7 @@ function flattenErrors(obj: { [key: string]: any }, key: string = '') {
 export default class APIError extends Error {
   constructor(
     path: string,
-    error: Data,
+    error: Record<string, any>,
     method: RequestMethod,
     status: number,
   ) {

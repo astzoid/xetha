@@ -1,4 +1,4 @@
-import type { RequestMethod } from './RequestHandler';
+import type { RequestMethod } from '@rest/RequestHandler';
 
 export default class HTTPError extends Error {
   constructor(

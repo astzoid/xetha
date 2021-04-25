@@ -1,4 +1,4 @@
-import type { RequestMethod, RequestOptions, Data } from './RequestHandler';
+import type { RequestMethod, RequestOptions } from '@rest/RequestHandler';
 
 export default class APIResponse<T = any> {
   constructor(
@@ -17,6 +17,6 @@ export default class APIResponse<T = any> {
   status: number;
   method: RequestMethod;
   options: RequestOptions;
-  headers: Data;
+  headers: Headers;
   body: T;
 }

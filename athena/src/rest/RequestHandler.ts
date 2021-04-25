@@ -1,7 +1,7 @@
-import APIRequest from './APIRequest';
-import APIResponse from './APIResponse';
-import HTTPError from './HTTPError';
-import APIError from './APIError';
+import APIRequest from '@rest/APIRequest';
+import APIResponse from '@rest/APIResponse';
+import HTTPError from '@rest/HTTPError';
+import APIError from '@rest/APIError';
 
 function parseResponse(res: Response) {
   let val;
@@ -16,13 +16,9 @@ function parseResponse(res: Response) {
 
 export interface RequestOptions {
   route: string;
-  data?: Data;
-  headers?: Data;
-  query?: Data;
-}
-
-export interface Data {
-  [key: string]: any;
+  data?: any;
+  headers?: Record<string, string>;
+  query?: Record<string, any>;
 }
 
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';

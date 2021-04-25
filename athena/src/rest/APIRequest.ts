@@ -1,9 +1,8 @@
 import type {
   RequestHandlerClass,
   RequestMethod,
-  Data,
   RequestOptions,
-} from './RequestHandler';
+} from '@rest/RequestHandler';
 import querystring from 'querystring';
 
 export default class APIRequest {
@@ -28,7 +27,7 @@ export default class APIRequest {
   retries: number;
 
   make(): Promise<Response> {
-    let headers = {} as Data;
+    let headers = {} as Record<string, string>;
     let body;
 
     if (this.options.headers) {
