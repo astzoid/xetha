@@ -4,10 +4,8 @@ function Log(type: LogType, message: any) {
   console[type](`[${type}]`, message);
 }
 
-const Logger = {
+export default {
   info: (message: any) => Log('info', message),
   warn: (message: any) => Log('warn', message),
   error: (message: any) => Log('error', message),
 };
-
-export default Logger;
