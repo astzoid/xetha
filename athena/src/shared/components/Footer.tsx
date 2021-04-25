@@ -105,15 +105,12 @@ function FooterCopyright() {
 }
 
 export default function Footer() {
-  const screenType = useScreenType();
-  const Mobile = screenType === '1-cols' || screenType === '2-cols';
-
   return (
     <AppBar component="footer" color="secondary" position="relative">
       <Grid
         container
-        direction={Mobile ? 'column' : 'row'}
-        justify={Mobile ? 'center' : 'space-around'}
+        direction="row"
+        justify="space-around"
         alignItems="center"
       >
         <FooterContents />
