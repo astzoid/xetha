@@ -4,7 +4,7 @@ import REST from '../rest/RequestHandler';
 import Serialize from './Serialize';
 
 export default class Manager {
-  public static async guild(guild_id: string): Promise<Guild | Blacklisted> {
+  static async guild(guild_id: string): Promise<Guild | Blacklisted> {
     const response = await REST.request<Guild>('GET', {
       route: `/api/guild/${guild_id}`,
     })
@@ -27,11 +27,11 @@ export default class Manager {
     throw response;
   }
 
-  public static updateGuild(guild_id: string, data: any) {
+  static updateGuild(guild_id: string, data: any) {
     return REST.request('POST', { route: `/api/guild/${guild_id}`, data });
   }
 
-  public static async member(
+  static async member(
     guild_id: string,
     member_id: string,
   ): Promise<Member | Blacklisted> {
@@ -58,14 +58,14 @@ export default class Manager {
     throw response;
   }
 
-  public static updateMember(guild_id: string, member_id: string, data: any) {
+  static updateMember(guild_id: string, member_id: string, data: any) {
     return REST.request('POST', {
       route: `/api/member/${guild_id}/${member_id}`,
       data,
     });
   }
 
-  public static async user(user_id: string): Promise<User | Blacklisted> {
+  static async user(user_id: string): Promise<User | Blacklisted> {
     const response = await REST.request<User>('GET', {
       route: `/api/user/${user_id}`,
     })
@@ -85,13 +85,13 @@ export default class Manager {
     throw response;
   }
 
-  public static async updateUser(user_id: string, data: any) {
+  static async updateUser(user_id: string, data: any) {
     return REST.request('POST', { route: `/api/user/${user_id}`, data });
   }
 }
 
 export class Guild {
-  public constructor(data: any) {
+  constructor(data: any) {
     this.id = data.id;
     this.name = data.name;
     this.iconURL = data.iconURL;
@@ -100,14 +100,14 @@ export class Guild {
     this.roles = data.roles;
   }
 
-  public id: string;
-  public name: string;
-  public iconURL: string;
-  public settings: GuildSettings;
-  public channels: Channel[];
-  public roles: Role[];
+  id: string;
+  name: string;
+  iconURL: string;
+  settings: GuildSettings;
+  channels: Channel[];
+  roles: Role[];
 
-  public toJSON() {
+  toJSON() {
     return {
       id: this.id,
       name: this.name,
@@ -120,7 +120,7 @@ export class Guild {
 }
 
 export class Member {
-  public constructor(data: any) {
+  constructor(data: any) {
     this.guild_id = data.guild_id;
     this.member_id = data.member_id;
     this.tag = data.tag;
@@ -129,14 +129,14 @@ export class Member {
     this.data = data.data;
   }
 
-  public guild_id: string;
-  public member_id: string;
-  public tag: string;
-  public avatarURL: string;
-  public dashboard: boolean;
-  public data: MemberData;
+  guild_id: string;
+  member_id: string;
+  tag: string;
+  avatarURL: string;
+  dashboard: boolean;
+  data: MemberData;
 
-  public toJSON() {
+  toJSON() {
     return {
       guild_id: this.guild_id,
       member_id: this.member_id,
@@ -149,7 +149,7 @@ export class Member {
 }
 
 export class User {
-  public constructor(data: any) {
+  constructor(data: any) {
     this.id = data.id;
     this.tag = data.tag;
     this.username = data.username;
@@ -158,14 +158,14 @@ export class User {
     this.data = data.data;
   }
 
-  public id: string;
-  public tag: string;
-  public username: string;
-  public discriminator: string;
-  public avatarURL: string;
-  public data: Profile;
+  id: string;
+  tag: string;
+  username: string;
+  discriminator: string;
+  avatarURL: string;
+  data: Profile;
 
-  public toJSON() {
+  toJSON() {
     return {
       id: this.id,
       tag: this.tag,
