@@ -73,7 +73,7 @@ function FooterContents() {
         <FooterLink href="/status">Service Status</FooterLink>
         <FooterLink href="/terms">Terms of Service</FooterLink>
         <FooterLink href="/privacy">Privacy Policy</FooterLink>
-        <FooterLink href="/discord">Official Discord</FooterLink>
+        <FooterLink href="/patreon">Patreon</FooterLink>
       </FooterSection>
       <FooterSection title="Support">
         <FooterLink href="/discord">Support Discord</FooterLink>
