@@ -22,17 +22,11 @@ commands.get(
 
     const response = await RequestHandler.request<Commands>('GET', {
       route: '/api/commands',
-    })
-      .then((res) => res)
-      .catch((err) => err);
+    }).then((res) => res);
 
-    if (response instanceof APIResponse) {
-      cmds = response.body;
+    cmds = response.body;
 
-      return res.status(200).json(cmds);
-    }
-
-    throw response;
+    return res.status(200).json(cmds);
   }),
 );
 

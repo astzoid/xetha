@@ -3,6 +3,7 @@ import APIRequest from './APIRequest';
 import APIResponse from './APIResponse';
 import HTTPError from './HTTPError';
 import APIError from './APIError';
+import { Config } from '../utils/Constants';
 
 function parseResponse(res: Response) {
   let val;
@@ -127,6 +128,6 @@ export class RequestHandlerClass {
 
 const RequestHandler = new RequestHandlerClass(
   'http://127.0.0.1:3002',
-  process.env.SECRET_KEY,
+  Config.clientSecret,
 );
 export default RequestHandler;
