@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/xetha-bot/xetha/compare/cathy@1.6.1...cathy@1.6.2) (2021-05-06)
+
+
+### Bug Fixes
+
+* **v1:** routes ([49abab7](https://github.com/xetha-bot/xetha/commit/49abab7ed084d6d5468ad58f9eb5dacc1040120e))
+
+
+
+
+
 ## [1.6.1](https://github.com/xetha-bot/xetha/compare/cathy@1.6.0...cathy@1.6.1) (2021-05-06)
 
 **Note:** Version bump only for package cathy
