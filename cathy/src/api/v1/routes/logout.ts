@@ -9,7 +9,7 @@ logout.get('/', (req, res) => {
     return res.redirect(Redirects.unAuthenticated(false));
   }
 
-  Logger.info(`[${req.user.tag}|${req.user.user_id}] logout`);
+  Logger.info(`[${req.user.user_id}] logout`);
 
   req.session.destroy(() => {
     req.logout();

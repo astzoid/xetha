@@ -1,7 +1,5 @@
 import { Router } from 'express';
 
-import gateway from '../../middlewares/gateway';
-
 import commands from './routes/commands';
 import guild from './routes/guild';
 import invite from './routes/invite';

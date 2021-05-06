@@ -11,7 +11,7 @@ redirect.get(
     failureRedirect: Redirects.failureRedirect,
   }),
   (req, res) => {
-    Logger.info(`[${req.user.tag}|${req.user.user_id}] authenticated`);
+    Logger.info(`[${req.user.user_id}] authenticated`);
 
     res.redirect(Redirects.authenticated);
   },
