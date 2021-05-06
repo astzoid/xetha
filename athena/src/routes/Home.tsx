@@ -162,7 +162,12 @@ export default function Home() {
           </Button>
         </Grid>
       </Container>
-      <Grid container direction="row" justify="space-around" alignItems="center">
+      <Grid
+        container
+        direction="row"
+        justify="space-around"
+        alignItems="center"
+      >
         <FeatureCard color="red" title="Heavy Moderation" Icon={GavelIcon}>
           Simple yet, cool moderation utilities with our warning system to
           punish those rule breakers with our simple moderation
