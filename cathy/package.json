@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/package",
   "private": true,
   "name": "cathy",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "main": "./dist/src/index.js",
   "scripts": {
     "start": "node .",
