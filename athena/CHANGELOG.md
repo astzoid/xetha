@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.2](https://github.com/xetha-bot/xetha/compare/athena@1.7.1...athena@1.7.2) (2021-05-06)
+
+
+### Bug Fixes
+
+* pages ([d917161](https://github.com/xetha-bot/xetha/commit/d9171610478c2ca11baec846cff64b6d445a24b9))
+* pages ([3d950ce](https://github.com/xetha-bot/xetha/commit/3d950ced968b5878c3635b0f2b65fd9ba74bb9a4))
+
+
+
+
+
 ## [1.7.1](https://github.com/xetha-bot/xetha/compare/athena@1.7.0...athena@1.7.1) (2021-05-06)
 
 **Note:** Version bump only for package athena
