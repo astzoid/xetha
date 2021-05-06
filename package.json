@@ -2,7 +2,7 @@
   "private": true,
   "name": "xetha",
   "scripts": {
-    "bump": "lerna version --conventional-commits --yes -m \"chore(release): publish %v\"",
+    "bump": "lerna version --conventional-commits --yes -m \"chore(release): publish\"",
     "diff": "lerna diff"
   },
   "workspaces": [

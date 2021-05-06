@@ -11,7 +11,10 @@
 ## Branches
 
 - main -> pr this branch for everything
-- production -> don't touch, this is what's running in production
+- production -> don't touch, this is what's running in production (Working Code)
+- athena -> don't touch, this is what's running in production (Build Files)
+- cathy -> don't touch, this is what's running in production (Build Files)
+- xanatha -> don't touch, this is what's running in production (Build Files)
 
 ## Contributions
 
