@@ -4,29 +4,14 @@
     "compilerOptions": {
         "module": "esnext",
         "target": "esnext",
+        "declaration": false,
         "lib": [
             "ESNext",
             "DOM",
             "DOM.Iterable"
         ],
         "moduleResolution": "node",
-        "jsx": "preserve",
-        "importsNotUsedAsValues": "error",
-        "baseUrl": "src",
-        "paths": {
-            "@pages/*": [
-                "pages/*"
-            ],
-            "@rest/*": [
-                "rest/*"
-            ],
-            "@routes/*": [
-                "routes/*"
-            ],
-            "@shared/*": [
-                "shared/*"
-            ]
-        }
+        "jsx": "preserve"
     },
     "include": [
         "src"

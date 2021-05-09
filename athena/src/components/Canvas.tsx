@@ -7,9 +7,8 @@ function Animate(symbols: string[], signal: AbortSignal) {
     const random = (min: any, max?: any) => {
         if (typeof max === 'undefined') {
             return Math.random() * (min[1] - min[0]) + min[0];
-        } else {
-            return Math.random() * (max - min) + min;
         }
+        return Math.random() * (max - min) + min;
     };
 
     interface ParticleConfig {
@@ -21,10 +20,6 @@ function Animate(symbols: string[], signal: AbortSignal) {
     }
 
     class Particle {
-        constructor(public config: ParticleConfig) {
-            this.spawn();
-        }
-
         public value!: string;
         public size!: number;
         public speed!: number;
@@ -32,7 +27,11 @@ function Animate(symbols: string[], signal: AbortSignal) {
         public y!: number;
         public offset!: number;
 
-        spawn() {
+        public constructor(public config: ParticleConfig) {
+            this.spawn();
+        }
+
+        public spawn() {
             this.value = this.config.values[Math.floor(random(0, 2))];
             this.size = random(this.config.size);
             this.speed = random(this.config.speed);
@@ -48,22 +47,22 @@ function Animate(symbols: string[], signal: AbortSignal) {
             this.setSpawnPosition();
         }
 
-        respawn() {
+        public respawn() {
             this.spawn();
         }
 
-        setSpawnPosition() {
+        public setSpawnPosition() {
             if (this.speed < 0) {
-                let key = ['x', 'y'][Math.floor(random(0, 2))];
-                let value = key === 'x' ? innerWidth : innerHeight;
+                const key = ['x', 'y'][Math.floor(random(0, 2))];
+                const value = key === 'x' ? innerWidth : innerHeight;
                 this[key as 'x' | 'y'] = value + this.size;
             } else {
-                let key = ['x', 'y'][Math.floor(random(0, 2))];
+                const key = ['x', 'y'][Math.floor(random(0, 2))];
                 this[key as 'x' | 'y'] = 0 - this.size;
             }
         }
 
-        viewport() {
+        public viewport() {
             if (
                 this.x < 0 - this.offset ||
                 this.y < 0 - this.offset ||
@@ -71,23 +70,24 @@ function Animate(symbols: string[], signal: AbortSignal) {
                 this.y > innerHeight + this.offset
             ) {
                 return false;
-            } else {
-                return true;
             }
+            return true;
         }
 
-        move() {
+        public move() {
             this.x += this.speed;
             this.y += this.speed;
         }
     }
 
     class ParticleCollector {
-        constructor(count = 100, spawnTimeout = 20) {
+        private particles: Particle[];
+
+        public constructor(count = 100, spawnTimeout = 20) {
             this.particles = [];
 
             const generator = () => {
-                if (count != this.particles.length && !signal.aborted) {
+                if (count !== this.particles.length && !signal.aborted) {
                     this.particles.push(
                         new Particle({
                             values: symbols,
@@ -103,13 +103,11 @@ function Animate(symbols: string[], signal: AbortSignal) {
             generator();
         }
 
-        private particles: Particle[];
-
-        get() {
+        public get() {
             return this.particles;
         }
 
-        move() {
+        public move() {
             for (const particle of this.particles) {
                 particle.move();
                 if (!particle.viewport()) {
@@ -124,8 +122,8 @@ function Animate(symbols: string[], signal: AbortSignal) {
     const draw = () => {
         ctx.beginPath();
         ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-        for (let particle of collector.get()) {
-            ctx.font = particle.size / 1.5 + 'px arial black';
+        for (const particle of collector.get()) {
+            ctx.font = `${particle.size / 1.5}px arial black`;
             ctx.textBaseline = 'bottom';
             ctx.textAlign = 'left';
             ctx.fillText(particle.value, particle.x, particle.y);
@@ -168,6 +166,5 @@ export default function Canvas(props: Props) {
             canvas.remove();
         };
     }, []);
-
     return null;
 }

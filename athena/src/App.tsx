@@ -1,10 +1,10 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Authentication from '@shared/components/Authentication';
-import ErrorBoundary from '@shared/components/ErrorBoundary';
-import Navbar from '@shared/components/Navbar';
-import NotFound from '@pages/NotFound';
-import WentWrong from '@pages/WentWrong';
+import Authentication from './components/Authentication';
+import ErrorBoundary from './components/ErrorBoundary';
+import Navbar from './components/Navbar';
+import NotFound from './pages/NotFound';
+import WentWrong from './pages/WentWrong';
 
 const Home = lazy(() => import('@routes/Home'));
 

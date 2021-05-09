@@ -18,7 +18,7 @@ module.exports = {
   plugins: [
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
-    //'@snowpack/plugin-typescript',
+    '@snowpack/plugin-typescript',
     ['@snowpack/plugin-webpack', {
       outputPattern: {
         assets: 'static/assets/[name].[contenthash:8].[ext]',
@@ -48,11 +48,5 @@ module.exports = {
       src: ".*",
       dest: "/index.html",
     },
-  ],
-  alias: {
-    "@pages": "./src/pages",
-    "@rest": "./src/rest",
-    "@routes": "./src/routes",
-    "@shared": "./src/shared",
-  }
+  ]
 };

@@ -1,6 +1,6 @@
-/// <reference types="node" />
-/// <reference types="react" />
-/// <reference types="react-dom" />
+// / <reference types="node" />
+// / <reference types="react" />
+// / <reference types="react-dom" />
 
 declare module '*.module.css' {
     const src: { [key: string]: string };

@@ -5,4 +5,4 @@ const Auth = createContext<User>(null);
 
 export const Context = Auth;
 
-export const Provider = Auth.Provider;
+export const { Provider } = Auth;

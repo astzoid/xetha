@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import Canvas from '@shared/components/Canvas';
-import Content from '@shared/components/Content';
-import Meta from '@shared/components/Meta';
-import Sensor from '@shared/components/Sensor';
+import Canvas from '../components/Canvas';
+import Content from '../components/Content';
+import Meta from '../components/Meta';
+import Sensor from '@oadpoaw/react-sensor';
 
 import { yellow, blue, red, green, pink } from '@material-ui/core/colors';
 import {
@@ -90,7 +90,7 @@ function FeatureCard({
     color: 'yellow' | 'blue' | 'red' | 'green' | 'pink';
     title: string;
     children: ReactNode;
-    Icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>>;
+    Icon: OverridableComponent<SvgIconTypeMap<unknown, 'svg'>>;
 }) {
     const [state, setState] = useState(false);
     const classes = useStyles();

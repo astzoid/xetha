@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 
-import RequestHandler from '@rest/RequestHandler';
-import { Provider } from '@shared/auth';
-import Logger from '@shared/functions/Logger';
+import { Provider } from '../auth';
+import rest from '../auth/rest';
+import Logger from '../functions/Logger';
 
-import type User from '@shared/typings/User';
+import type User from '../typings/User';
 
 export default function Authentication(props: { children: ReactNode }) {
     const [user, setUser] = useState<User>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        RequestHandler.request<User>('GET', { route: '/api/user' })
+        rest.get({ route: '/api/user' })
             .then((response) => {
                 setUser(response.body);
                 Logger.info(response);

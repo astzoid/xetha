@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import type { ReactNode } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import { Context } from '@shared/auth';
-import { avatar } from '@shared/functions/CDN';
-import useScreenType from '@shared/hooks/useScreenType';
-import type User from '@shared/typings/User';
+import { Context } from 'auth';
+import { avatar } from 'functions/CDN';
+import useScreenType from 'hooks/useScreenType';
+import type User from 'typings/User';
 import {
     makeStyles,
     AppBar,
