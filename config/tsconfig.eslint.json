@@ -2,10 +2,11 @@
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "../tsconfig.json",
     "include": [
-        "../athena/**/*.tsx",
-        "../athena/**/*.ts",
-        "../cathy/**/*.ts",
-        "../xanatha/**/*.ts",
-        "../shared/**/*.ts"
+        "../athena/src/**/*.tsx",
+        "../athena/src/**/*.ts",
+        "../cathy/src/**/*.ts",
+        "../xanatha/src/**/*.ts",
+        "../shared/**/src/**/*.ts",
+        "../shared/**/__tests__/*.ts"
     ]
 }

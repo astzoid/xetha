@@ -3,16 +3,32 @@
   "private": true,
   "name": "xetha",
   "scripts": {
-    "ci": "bash ./scripts/ci.sh",
-    "prepare": "bash ./scripts/husky.sh",
-    "bootstrap": "bash ./scripts/bootstrap.sh",
+    "build": "bash ./scripts/build.sh",
+    "build:athena": "bash ./scripts/athena/build.sh",
+    "build:cathy": "bash ./scripts/cathy/build.sh",
+    "build:xanatha": "bash ./scripts/xanatha/build.sh",
+    "build:shared": "bash ./scripts/shared/build.sh",
     "clean": "bash ./scripts/clean.sh",
-    "purge": "bash ./scripts/purge.sh",
+    "clean:athena": "bash ./scripts/athena/clean.sh",
+    "clean:cathy": "bash ./scripts/cathy/clean.sh",
+    "clean:xanatha": "bash ./scripts/xanatha/clean.sh",
+    "clean:shared": "bash ./scripts/shared/clean.sh",
     "format": "bash ./scripts/format.sh",
+    "format:athena": "bash ./scripts/athena/format.sh",
+    "format:cathy": "bash ./scripts/cathy/format.sh",
+    "format:xanatha": "bash ./scripts/xanatha/format.sh",
+    "format:shared": "bash ./scripts/shared/format.sh",
     "lint": "bash ./scripts/lint.sh",
-    "test": "bash ./scripts/test.sh",
-    "test:ci": "bash ./scripts/test-ci.sh",
-    "bump": "bash ./scripts/bump.sh"
+    "lint:athena": "bash ./scripts/athena/lint.sh",
+    "lint:cathy": "bash ./scripts/cathy/lint.sh",
+    "lint:xanatha": "bash ./scripts/xanatha/lint.sh",
+    "lint:shared": "bash ./scripts/shared/lint.sh",
+    "ci": "bash ./scripts/xetha/ci.sh",
+    "prepare": "bash ./scripts/husky/husky.sh",
+    "bootstrap": "bash ./scripts/xetha/bootstrap.sh",
+    "bump": "bash ./scripts/bump.sh",
+    "test": "bash ./scripts/xetha/test.sh",
+    "test:ci": "bash ./scripts/xetha/test-ci.sh"
   },
   "workspaces": [
     "athena",
@@ -50,7 +66,8 @@
     "singleQuote": true,
     "trailingComma": "all",
     "tabWidth": 4,
-    "semi": true
+    "semi": true,
+    "endOfLine": "auto"
   },
   "lint-staged": {
     "*.{ts, tsx}": "eslint --fix --ext ts,tsx"
