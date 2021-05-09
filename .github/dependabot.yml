@@ -43,3 +43,14 @@ updates:
       prefix: build
     reviewers:
       - oadpoaw
+
+  - package-ecosystem: npm
+    open-pull-requests-limit: 20
+    directory: shared/rest
+    schedule:
+      interval: daily
+    commit-message:
+      include: scope
+      prefix: build
+    reviewers:
+      - oadpoaw
