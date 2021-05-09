@@ -5,17 +5,17 @@ import Logger from '../../../utils/Logger';
 const logout = Router();
 
 logout.get('/', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect(Redirects.unAuthenticated(false));
-  }
+    if (!req.isAuthenticated()) {
+        return res.redirect(Redirects.unAuthenticated(false));
+    }
 
-  Logger.info(`[${req.user.user_id}] logout`);
+    Logger.info(`[${req.user.user_id}] logout`);
 
-  req.session.destroy(() => {
-    req.logout();
+    req.session.destroy(() => {
+        req.logout();
 
-    res.redirect(Redirects.unAuthenticated(true));
-  });
+        res.redirect(Redirects.unAuthenticated(true));
+    });
 });
 
 export default logout;

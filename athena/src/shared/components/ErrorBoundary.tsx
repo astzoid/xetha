@@ -3,32 +3,32 @@ import Logger from '@shared/functions/Logger';
 import type { ReactNode } from 'react';
 
 interface Props {
-  fallback: ReactNode;
-  children: ReactNode;
+    fallback: ReactNode;
+    children: ReactNode;
 }
 
 interface State {
-  error: boolean;
+    error: boolean;
 }
 
 export default class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props | Readonly<Props>) {
-    super(props);
-    this.state = {
-      error: false,
-    };
-  }
-
-  componentDidCatch(error: Error) {
-    Logger.error(error);
-    this.setState({ error: true });
-  }
-
-  render() {
-    if (this.state.error) {
-      return this.props.fallback;
+    constructor(props: Props | Readonly<Props>) {
+        super(props);
+        this.state = {
+            error: false,
+        };
     }
 
-    return this.props.children;
-  }
+    componentDidCatch(error: Error) {
+        Logger.error(error);
+        this.setState({ error: true });
+    }
+
+    render() {
+        if (this.state.error) {
+            return this.props.fallback;
+        }
+
+        return this.props.children;
+    }
 }

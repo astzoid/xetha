@@ -14,9 +14,9 @@ import Logger from './utils/Logger';
 import processor from '@xetha/processor';
 import { makeCatcher } from '@xetha/async-wrapper';
 import {
-  corsOptions,
-  rateLimitOptions,
-  sessionOptions,
+    corsOptions,
+    rateLimitOptions,
+    sessionOptions,
 } from './utils/Constants';
 
 processor(Logger);

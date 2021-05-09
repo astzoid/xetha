@@ -8,6 +8,7 @@
     "bootstrap": "bash ./scripts/bootstrap.sh",
     "clean": "bash ./scripts/clean.sh",
     "purge": "bash ./scripts/purge.sh",
+    "format": "bash ./scripts/format.sh",
     "lint": "bash ./scripts/lint.sh",
     "test": "bash ./scripts/test.sh",
     "test:ci": "bash ./scripts/test-ci.sh",

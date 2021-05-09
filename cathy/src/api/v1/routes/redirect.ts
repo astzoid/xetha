@@ -6,15 +6,15 @@ import Logger from '../../../utils/Logger';
 const redirect = Router();
 
 redirect.get(
-  '/',
-  passport.authenticate('discord', {
-    failureRedirect: Redirects.failureRedirect,
-  }),
-  (req, res) => {
-    Logger.info(`[${req.user.user_id}] authenticated`);
+    '/',
+    passport.authenticate('discord', {
+        failureRedirect: Redirects.failureRedirect,
+    }),
+    (req, res) => {
+        Logger.info(`[${req.user.user_id}] authenticated`);
 
-    res.redirect(Redirects.authenticated);
-  },
+        res.redirect(Redirects.authenticated);
+    },
 );
 
 export default redirect;

@@ -14,33 +14,33 @@ const Patreon = lazy(() => import('@routes/Redirects/Patreon'));
 const Discord = lazy(() => import('@routes/Redirects/Discord'));
 
 export default function App() {
-  return (
-    <Authentication>
-      <Navbar />
-      <Suspense fallback={null}>
-        <ErrorBoundary fallback={<WentWrong />}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/servers" />
-            <Route path="/commands" />
-            <Route path="/dashboard" />
+    return (
+        <Authentication>
+            <Navbar />
+            <Suspense fallback={null}>
+                <ErrorBoundary fallback={<WentWrong />}>
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/servers" />
+                        <Route path="/commands" />
+                        <Route path="/dashboard" />
 
-            <Route path="/invite" component={Invite} />
-            <Route path="/status" />
-            <Route path="/terms" />
-            <Route path="/privacy" />
-            <Route path="/patreon" component={Patreon} />
+                        <Route path="/invite" component={Invite} />
+                        <Route path="/status" />
+                        <Route path="/terms" />
+                        <Route path="/privacy" />
+                        <Route path="/patreon" component={Patreon} />
 
-            <Route path="/discord" component={Discord} />
-            <Route path="/suggest" />
-            <Route path="/bug-report" />
-            <Route path="/report" />
-            <Route path="/appeal" />
+                        <Route path="/discord" component={Discord} />
+                        <Route path="/suggest" />
+                        <Route path="/bug-report" />
+                        <Route path="/report" />
+                        <Route path="/appeal" />
 
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </ErrorBoundary>
-      </Suspense>
-    </Authentication>
-  );
+                        <Route path="*" component={NotFound} />
+                    </Switch>
+                </ErrorBoundary>
+            </Suspense>
+        </Authentication>
+    );
 }

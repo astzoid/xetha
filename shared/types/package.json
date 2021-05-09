@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json.schemastore.org/package",
+    "name": "@shared/types",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "tsc --project tsconfig.json"
+    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "private": "true"
+}
