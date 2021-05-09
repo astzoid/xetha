@@ -1,19 +1,10 @@
 {
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "../tsconfig.json",
     "compilerOptions": {
-        "moduleResolution": "Node",
-        "module": "commonjs",
-        "target": "esnext",
-        "noImplicitAny": true,
-        "sourceMap": false,
-        "pretty": true,
-        "outDir": "./dist",
-        "declaration": false,
-        "esModuleInterop": true,
-        "resolveJsonModule": true,
-        "allowUnreachableCode": false,
-        "allowUnusedLabels": false,
+        "outDir": "dist"
     },
     "include": [
-        "src/**/*",
+        "src"
     ]
 }
