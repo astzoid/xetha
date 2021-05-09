@@ -1,5 +1,5 @@
 #!/bin/sh
-yarn prettier --write "./athena/src/**/*.{ts,tsx}"
-yarn prettier --write "./cathy/src/**/*.ts"
-yarn prettier --write "./xanatha/src/**/*.ts"
-yarn prettier --write "./shared/**/*.{ts,tsx}"
+. "$(dirname "$0")/athena/format.sh"
+. "$(dirname "$0")/cathy/format.sh"
+. "$(dirname "$0")/xanatha/format.sh"
+. "$(dirname "$0")/shared/format.sh"

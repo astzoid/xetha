@@ -1,5 +1,5 @@
 #!/bin/sh
-yarn eslint athena --ext ts,tsx --fix
-yarn eslint cathy --ext ts --fix
-yarn eslint xanatha --ext ts --fix
-yarn eslint shared --ext ts --fix
+. "$(dirname "$0")/athena/lint.sh"
+. "$(dirname "$0")/cathy/lint.sh"
+. "$(dirname "$0")/xanatha/lint.sh"
+. "$(dirname "$0")/shared/lint.sh"
