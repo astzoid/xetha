@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json.schemastore.org/package",
+    "name": "@shared/rest",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "tsc --project tsconfig.json"
+    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "private": "true",
+    "dependencies": {
+        "@oadpoaw/merge": "^1.3.1",
+        "abort-controller": "^3.0.0",
+        "node-fetch": "^2.6.1"
+    },
+    "devDependencies": {
+        "@types/node-fetch": "^2.5.10"
+    }
+}
