@@ -1,0 +1,10 @@
+{
+	"$schema": "https://json.schemastore.org/eslintrc",
+	"extends": "@sapphire",
+	"parserOptions": {
+		"project": "./config/tsconfig.eslint.json"
+	},
+	"rules": {
+		"no-duplicate-imports": "off"
+	}
+}

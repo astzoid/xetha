@@ -3,7 +3,17 @@
   "packages": [
     "athena",
     "cathy",
-    "xanatha"
+    "xanatha",
+    "shared/*"
   ],
-  "version": "independent"
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "conventionalCommits": true,
+      "push": true,
+      "message": "chore(release): publish"
+    }
+  }
 }

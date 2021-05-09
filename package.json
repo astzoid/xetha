@@ -3,14 +3,122 @@
   "private": true,
   "name": "xetha",
   "scripts": {
-    "bump": "lerna version --conventional-commits --yes -m \"chore(release): publish\""
+    "ci": "bash ./scripts/ci.sh",
+    "prepare": "bash ./scripts/husky.sh",
+    "bootstrap": "bash ./scripts/bootstrap.sh",
+    "clean": "bash ./scripts/clean.sh",
+    "purge": "bash ./scripts/purge.sh",
+    "lint": "bash ./scripts/lint.sh",
+    "test": "bash ./scripts/test.sh",
+    "test:ci": "bash ./scripts/test-ci.sh",
+    "bump": "bash ./scripts/bump.sh"
   },
   "workspaces": [
     "athena",
     "cathy",
-    "xanatha"
+    "xanatha",
+    "shared/*"
   ],
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "@babel/core": "^7.14.0",
+    "@babel/plugin-proposal-decorators": "^7.13.15",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-angular": "^12.1.1",
+    "@sapphire/eslint-config": "^3.1.2",
+    "@sapphire/ts-config": "^2.2.1",
+    "@types/jest": "^26.0.23",
+    "babel-jest": "^26.6.3",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
+    "jest": "^26.6.3",
+    "lerna": "^4.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.6",
+    "typescript": "^4.2.4"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "tabWidth": 4,
+    "semi": true
+  },
+  "lint-staged": {
+    "*.{ts, tsx}": "eslint --fix --ext ts,tsx"
+  },
+  "babel": {
+    "parserOpts": {
+      "strictMode": true
+    },
+    "sourceMaps": "inline",
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          },
+          "modules": "commonjs"
+        }
+      ],
+      "@babel/preset-react",
+      "@babel/preset-typescript"
+    ],
+    "plugins": [
+      "babel-plugin-transform-typescript-metadata",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "module-resolver",
+        {
+          "alias": {
+            "^@shared/(.+)": "./shared/\\1/src"
+          }
+        }
+      ]
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-angular"
+    ],
+    "rules": {
+      "type-enum": [
+        2,
+        "always",
+        [
+          "chore",
+          "build",
+          "ci",
+          "docs",
+          "feat",
+          "fix",
+          "perf",
+          "refactor",
+          "revert",
+          "style",
+          "test",
+          "types",
+          "wip"
+        ]
+      ],
+      "scope-case": [
+        1,
+        "always",
+        "camel-case"
+      ]
+    }
   }
 }
