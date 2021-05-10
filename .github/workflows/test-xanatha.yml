@@ -6,6 +6,9 @@ on:
     paths:
       - xanatha/**
       - shared/types/**
+      - .github/workflows/test-xanatha.yml
+      - scripts/bootstrap.sh
+      - scripts/xanatha/**
 
 jobs:
   pre_ci:

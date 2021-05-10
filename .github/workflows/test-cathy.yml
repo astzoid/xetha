@@ -6,6 +6,9 @@ on:
     paths:
       - cathy/**
       - shared/**
+      - .github/workflows/test-cathy.yml
+      - scripts/bootstrap.sh
+      - scripts/cathy/**
 
 jobs:
   pre_ci:

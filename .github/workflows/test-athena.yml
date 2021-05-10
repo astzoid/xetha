@@ -6,6 +6,9 @@ on:
     paths:
       - athena/**
       - shared/**
+      - .github/workflows/test-athena.yml
+      - scripts/bootstrap.sh
+      - scripts/athena/**
 
 jobs:
   pre_ci:
