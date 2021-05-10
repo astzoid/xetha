@@ -40,7 +40,6 @@
     "memorystore": "^1.6.6",
     "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
-    "passport-discord": "^0.1.4",
-    "tslib": "^2.2.0"
+    "passport-discord": "^0.1.4"
   }
 }
