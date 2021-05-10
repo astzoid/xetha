@@ -7,6 +7,7 @@ const path = require('path');
 
 /** @type {import('snowpack').SnowpackUserConfig} */
 module.exports = {
+  workspaceRoot: '..',
   mount: {
     public: {
       url: '/',
@@ -19,7 +20,7 @@ module.exports = {
     [path.resolve(__dirname, '../shared/types')]: '/shared/types',
   },
   alias: {
-    '@shared/rest': '../shared/rest/dist',
+    '@shared/rest': '../shared/rest/src',
     '@shared/types': '../shared/types/src',
   },
   plugins: [
