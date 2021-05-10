@@ -3,32 +3,36 @@
   "private": true,
   "name": "xetha",
   "scripts": {
-    "build": "bash ./scripts/build.sh",
+    "start": "run-s start:*",
+    "start:athena": "bash ./scripts/athena/start.sh",
+    "start:cathy": "bash ./scripts/cathy/start.sh",
+    "start:xanatha": "bash ./scripts/xanatha/start.sh",
+    "build": "run-s build:*",
     "build:athena": "bash ./scripts/athena/build.sh",
     "build:cathy": "bash ./scripts/cathy/build.sh",
     "build:xanatha": "bash ./scripts/xanatha/build.sh",
     "build:shared": "bash ./scripts/shared/build.sh",
-    "clean": "bash ./scripts/clean.sh",
+    "clean": "run-s clean:*",
     "clean:athena": "bash ./scripts/athena/clean.sh",
     "clean:cathy": "bash ./scripts/cathy/clean.sh",
     "clean:xanatha": "bash ./scripts/xanatha/clean.sh",
     "clean:shared": "bash ./scripts/shared/clean.sh",
-    "format": "bash ./scripts/format.sh",
+    "format": "run-s format:*",
     "format:athena": "bash ./scripts/athena/format.sh",
     "format:cathy": "bash ./scripts/cathy/format.sh",
     "format:xanatha": "bash ./scripts/xanatha/format.sh",
     "format:shared": "bash ./scripts/shared/format.sh",
-    "lint": "bash ./scripts/lint.sh",
+    "lint": "run-s lint:*",
     "lint:athena": "bash ./scripts/athena/lint.sh",
     "lint:cathy": "bash ./scripts/cathy/lint.sh",
     "lint:xanatha": "bash ./scripts/xanatha/lint.sh",
     "lint:shared": "bash ./scripts/shared/lint.sh",
-    "ci": "bash ./scripts/xetha/ci.sh",
+    "ci": "bash ./scripts/ci.sh",
     "prepare": "bash ./scripts/husky/husky.sh",
-    "bootstrap": "bash ./scripts/xetha/bootstrap.sh",
+    "bootstrap": "bash ./scripts/bootstrap.sh",
     "bump": "bash ./scripts/bump.sh",
-    "test": "bash ./scripts/xetha/test.sh",
-    "test:ci": "bash ./scripts/xetha/test-ci.sh"
+    "test": "bash ./scripts/test.sh",
+    "test:ci": "bash ./scripts/test-ci.sh"
   },
   "workspaces": [
     "athena",
@@ -57,9 +61,12 @@
     "jest": "^26.6.3",
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
+    "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.5.6",
+    "tslib": "^2.2.0",
     "typescript": "^4.2.4"
   },
   "prettier": {
@@ -135,7 +142,7 @@
       "scope-case": [
         1,
         "always",
-        "camel-case"
+        "pascal-case"
       ]
     }
   }

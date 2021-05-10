@@ -7,6 +7,7 @@
 | [athena](athena)   | React App Frontend |
 | [cathy](cathy)     |  Node.js Backend   |
 | [xanatha](xanatha) |     Xetha Bot      |
+| [shared](shared)   |  Shared Libraries  |
 
 ## Branches
 
