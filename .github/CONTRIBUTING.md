@@ -31,14 +31,9 @@ There are a number of guidelines considered when reviewing Pull Requests to be m
 
 ### Local Development
 
-<!-- Link Dump -->
-
-<!-- Guides -->
+Todo...
 
 [vscode]: https://code.visualstudio.com
-
-<!-- Code -->
-
 [commitizen]: https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen
 [commit convention]: https://www.conventionalcommits.org/en/v1.0.0/
 [discord server]: https://discord.gg/YeJs5w7XAH
