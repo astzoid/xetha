@@ -3,6 +3,10 @@
   "private": true,
   "name": "xetha",
   "scripts": {
+    "ci": "bash ./scripts/ci.sh",
+    "prepare": "bash ./scripts/husky/husky.sh",
+    "bootstrap": "bash ./scripts/bootstrap.sh",
+    "bump": "bash ./scripts/bump.sh",
     "start": "run-s start:*",
     "start:athena": "bash ./scripts/athena/start.sh",
     "start:cathy": "bash ./scripts/cathy/start.sh",
@@ -26,13 +30,7 @@
     "lint:athena": "bash ./scripts/athena/lint.sh",
     "lint:cathy": "bash ./scripts/cathy/lint.sh",
     "lint:xanatha": "bash ./scripts/xanatha/lint.sh",
-    "lint:shared": "bash ./scripts/shared/lint.sh",
-    "ci": "bash ./scripts/ci.sh",
-    "prepare": "bash ./scripts/husky/husky.sh",
-    "bootstrap": "bash ./scripts/bootstrap.sh",
-    "bump": "bash ./scripts/bump.sh",
-    "test": "bash ./scripts/test.sh",
-    "test:ci": "bash ./scripts/test-ci.sh"
+    "lint:shared": "bash ./scripts/shared/lint.sh"
   },
   "workspaces": [
     "athena",
@@ -41,31 +39,17 @@
     "shared/*"
   ],
   "devDependencies": {
-    "@babel/core": "^7.14.0",
-    "@babel/plugin-proposal-decorators": "^7.13.15",
-    "@babel/preset-env": "^7.14.1",
-    "@babel/preset-react": "^7.13.13",
-    "@babel/preset-typescript": "^7.13.0",
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-angular": "^12.1.1",
     "@sapphire/eslint-config": "^3.1.2",
     "@sapphire/ts-config": "^2.2.1",
-    "@types/jest": "^26.0.23",
-    "babel-jest": "^26.6.3",
-    "babel-plugin-module-resolver": "^4.1.0",
-    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "eslint": "^7.26.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
     "husky": "^6.0.0",
-    "jest": "^26.6.3",
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
-    "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2",
-    "ts-jest": "^26.5.6",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
   },
@@ -78,42 +62,6 @@
   },
   "lint-staged": {
     "*.{ts, tsx}": "eslint --fix --ext ts,tsx"
-  },
-  "babel": {
-    "parserOpts": {
-      "strictMode": true
-    },
-    "sourceMaps": "inline",
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          },
-          "modules": "commonjs"
-        }
-      ],
-      "@babel/preset-react",
-      "@babel/preset-typescript"
-    ],
-    "plugins": [
-      "babel-plugin-transform-typescript-metadata",
-      [
-        "@babel/plugin-proposal-decorators",
-        {
-          "legacy": true
-        }
-      ],
-      [
-        "module-resolver",
-        {
-          "alias": {
-            "^@shared/(.+)": "./shared/\\1/src"
-          }
-        }
-      ]
-    ]
   },
   "commitlint": {
     "extends": [
