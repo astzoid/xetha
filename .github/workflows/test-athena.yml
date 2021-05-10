@@ -4,10 +4,11 @@ on:
   push:
     branches: [main]
     paths:
+      - scripts/bootstrap.sh
+      - tsconfig.json
       - athena/**
       - shared/**
       - .github/workflows/test-athena.yml
-      - scripts/bootstrap.sh
       - scripts/athena/**
 
 jobs:

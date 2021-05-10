@@ -4,10 +4,11 @@ on:
   push:
     branches: [main]
     paths:
+      - scripts/bootstrap.sh
+      - tsconfig.json
       - xanatha/**
       - shared/types/**
       - .github/workflows/test-xanatha.yml
-      - scripts/bootstrap.sh
       - scripts/xanatha/**
 
 jobs:

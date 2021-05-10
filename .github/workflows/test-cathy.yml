@@ -4,10 +4,11 @@ on:
   push:
     branches: [main]
     paths:
+      - scripts/bootstrap.sh
+      - tsconfig.json
       - cathy/**
       - shared/**
       - .github/workflows/test-cathy.yml
-      - scripts/bootstrap.sh
       - scripts/cathy/**
 
 jobs:

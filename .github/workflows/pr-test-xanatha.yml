@@ -4,6 +4,8 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - scripts/bootstrap.sh
+      - tsconfig.json
       - xanatha/**
       - shared/types/**
 

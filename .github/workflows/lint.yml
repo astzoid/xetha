@@ -5,10 +5,12 @@ on:
     paths:
       - "**/*.ts"
       - "**/*.tsx"
+      - .github/workflows/lint.yml
   pull_request:
     paths:
       - "**/*.ts"
       - "**/*.tsx"
+      - .github/workflows/lint.yml
 
 jobs:
   pre_ci:
