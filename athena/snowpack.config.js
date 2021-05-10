@@ -19,7 +19,7 @@ module.exports = {
     [path.resolve(__dirname, '../shared/types')]: '/shared/types',
   },
   alias: {
-    '@shared/rest': '../shared/rest/src',
+    '@shared/rest': '../shared/rest/dist',
     '@shared/types': '../shared/types/src',
   },
   plugins: [
