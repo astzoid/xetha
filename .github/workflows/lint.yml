@@ -3,12 +3,12 @@ name: Lint
 on:
   push:
     paths:
-      - "*.ts"
-      - "*.tsx"
+      - "**/*.ts"
+      - "**/*.tsx"
   pull_request:
     paths:
-      - "*.ts"
-      - "*.tsx"
+      - "**/*.ts"
+      - "**/*.tsx"
 
 jobs:
   pre_ci:
