@@ -1,0 +1,37 @@
+name: pr-test-xanatha
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - xanatha/**
+      - shared/types/**
+
+jobs:
+  pre_ci:
+    runs-on: ubuntu-latest
+    steps:
+      - id: commit_message
+        run: echo ::set-output name=commit_message::$(git log --format=%B -n 1 HEAD^2)
+
+    outputs:
+      commit_message: $( echo "${{ steps.commit_message.outputs.commit_message }}" )
+
+  test:
+    needs: pre_ci
+    runs-on: ubuntu-latest
+    if: "!contains(needs.pre_ci.outputs.commit_message, '[skip ci]')"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install Dependencies
+        run: yarn ci
+
+      - name: Bootstrap
+        run: yarn bootstrap
+
+      - name: Build
+        run: yarn build:xanatha

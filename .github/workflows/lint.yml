@@ -1,0 +1,37 @@
+name: Lint
+
+on:
+  push:
+    paths:
+      - "*.ts"
+      - "*.tsx"
+  pull_request:
+    paths:
+      - "*.ts"
+      - "*.tsx"
+
+jobs:
+  pre_ci:
+    runs-on: ubuntu-latest
+    steps:
+      - id: files
+        run: echo ::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep '\w+\.tsx?$')
+
+    outputs:
+      files: $( echo "${{ steps.files.outputs.files }}" )
+
+  lint:
+    needs: pre_ci
+    runs-on: ubuntu-latest
+    if: ${{ needs.pre_ci.outputs.files != '' }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install Dependencies
+        run: yarn ci
+
+      - name: Lint
+        run: yarn eslint ${{ needs.pre_ci.outputs.files }} --fix
