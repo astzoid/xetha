@@ -1,5 +1,5 @@
 import { Disclosure, Command, Arguments } from 'disclosure-discord';
-import { Message } from 'discord.js';
+import type { Message } from 'discord.js';
 
 const answers = [
     'yes',
@@ -21,7 +21,7 @@ const answers = [
 ];
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: '8ball',
             description: 'The 8ball command to answer you lame questions',
@@ -37,8 +37,8 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, _argv: Arguments) {
-        message.channel.send(
+    public async execute(message: Message, _argv: Arguments) {
+        await message.channel.send(
             answers[Math.floor(Math.random() * answers.length)],
         );
     }

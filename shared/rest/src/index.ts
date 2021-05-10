@@ -1,5 +1,7 @@
-export * from './lib/APIError';
-export * from './lib/APIRequest';
-export * from './lib/APIResponse';
-export * from './lib/HTTPError';
-export * from './lib/RequestHandler';
+import { APIError } from './lib/APIError';
+import { APIRequest } from './lib/APIRequest';
+import { APIResponse } from './lib/APIResponse';
+import { HTTPError } from './lib/HTTPError';
+import { RequestHandler } from './lib/RequestHandler';
+
+export { APIError, APIRequest, APIResponse, HTTPError, RequestHandler };

@@ -5,26 +5,20 @@ import {
     TextChannel,
     Guild as DiscordGuild,
 } from 'discord.js';
+import Random from '@oadpoaw/random';
 import { Colors } from '../utils/Constants';
 import WebhookUtil from '../utils/WebhookUtil';
 import Leveling from '../modules/Leveling';
-import { GuildAttributes } from '../database/models/Guild';
-import Random from '@xetha/random';
-import { Disclosure } from 'disclosure-discord';
+import type { GuildAttributes } from '../database/models/Guild';
+import type { Disclosure } from 'disclosure-discord';
 
 const LevelingCooldown: Collection<
     string,
     Collection<string, number>
 > = new Collection();
 
-export default class Handlers {
-    constructor() {
-        throw new Error(
-            `The ${this.constructor.name} class cannot be instantiated`,
-        );
-    }
-
-    static async logging(
+const Handlers = {
+    async logging(
         client: Disclosure,
         embed: MessageEmbed | string,
         guild: DiscordGuild,
@@ -37,12 +31,10 @@ export default class Handlers {
                   ) as TextChannel)
                 : null;
 
-        if (channel) {
-            await WebhookUtil.send(client, guild, channel.id, embed);
-        }
-    }
+        if (channel) await WebhookUtil.send(client, guild, channel.id, embed);
+    },
 
-    static async levelingModule(message: Message, guild: GuildAttributes) {
+    async levelingModule(message: Message, guild: GuildAttributes) {
         if (!guild.leveling_enabled) {
             return message.channel.send(
                 new MessageEmbed()
@@ -55,24 +47,23 @@ export default class Handlers {
                         `\`${guild.prefix}leveling enable\``,
                     ),
             );
-        } else {
-            return false;
         }
-    }
+        return false;
+    },
 
-    static async leveling(
+    async leveling(
         client: Disclosure,
         message: Message,
         guild: GuildAttributes,
     ) {
+        if (!message.guild || !message.guild.me) return;
         if (guild.leveling_enabled) {
-            if (!LevelingCooldown.has(guild.guild_id)) {
+            if (!LevelingCooldown.has(guild.guild_id))
                 LevelingCooldown.set(guild.guild_id, new Collection());
-            }
 
             const cooldowns = LevelingCooldown.get(guild.guild_id);
 
-            if (!cooldowns.has(message.author.id)) {
+            if (!cooldowns?.has(message.author.id)) {
                 const member = await client.managers.members.fetch(
                     guild.guild_id,
                     message.author.id,
@@ -88,9 +79,9 @@ export default class Handlers {
 
                 await member.save();
 
-                cooldowns.set(message.author.id, 0);
+                cooldowns?.set(message.author.id, 0);
                 client.setTimeout(
-                    () => cooldowns.delete(message.author.id),
+                    () => cooldowns?.delete(message.author.id),
                     guild.leveling_cooldown * 1000,
                 );
 
@@ -114,7 +105,7 @@ export default class Handlers {
                             log_channel.type === 'text' &&
                             log_channel
                                 .permissionsFor(message.guild.me)
-                                .has(['VIEW_CHANNEL', 'SEND_MESSAGES'])
+                                ?.has(['VIEW_CHANNEL', 'SEND_MESSAGES'])
                         ) {
                             await log_channel.send(msg);
                         } else {
@@ -151,11 +142,11 @@ export default class Handlers {
                                 role,
                             ) > 0
                         ) {
-                            await message.member.roles
+                            await message.member?.roles
                                 .add(role, `[Leveling] role reward`)
-                                .catch((error) => {
-                                    if (guild.logging_errors) {
-                                        return Handlers.logging(
+                                .catch(async (error) => {
+                                    if (message.guild && guild.logging_errors) {
+                                        await Handlers.logging(
                                             client,
                                             new MessageEmbed()
                                                 .setColor(Colors.red)
@@ -179,5 +170,6 @@ export default class Handlers {
                 }
             }
         }
-    }
-}
+    },
+};
+export default Handlers;

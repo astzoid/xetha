@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { User } from 'discord.js';
+import type { User } from 'discord.js';
 import Profile from '../../database/models/Profile';
-import { BlacklistedAttributes } from '../../database/models/Blacklisted';
-import AsyncWrapper from '@xetha/async-wrapper';
-import { DisclosureSharder } from 'disclosure-discord';
+import type { BlacklistedAttributes } from '../../database/models/Blacklisted';
+import AsyncWrapper from '@oadpoaw/async-wrapper';
+import type { DisclosureSharder } from 'disclosure-discord';
 
 export default function UserRoute(manager: DisclosureSharder) {
     const route = Router();
@@ -12,7 +12,6 @@ export default function UserRoute(manager: DisclosureSharder) {
         '/:user_id',
         AsyncWrapper(async (req, res) => {
             const user_id = req.params.user_id as string;
-
             const blacklisted = (await manager.broadcastEval(
                 `this.managers.blacklist.getUser('${user_id}')`,
                 0,
@@ -32,19 +31,18 @@ export default function UserRoute(manager: DisclosureSharder) {
                 0,
             )) as User;
 
-            if (!user) {
+            if (!user)
                 return res.status(404).json({ message: 'User Not Found' });
-            }
 
             let profile = await Profile.findOne({ user_id });
-
             if (!profile) profile = new Profile({ user_id, tag: user.tag });
 
-            res.status(200).json({
+            return res.status(200).json({
                 id: user.id,
                 tag: user.tag,
                 username: user.username,
                 discriminator: user.discriminator,
+                // eslint-disable-next-line @typescript-eslint/unbound-method
                 avatarURL: user.displayAvatarURL,
                 data: profile.toJSON(),
             });
@@ -55,16 +53,14 @@ export default function UserRoute(manager: DisclosureSharder) {
         '/:user_id',
         AsyncWrapper(async (req, res) => {
             const user_id = req.params.user_id as string;
-
             const profile = await Profile.findOne({ user_id });
 
-            if (!profile) {
+            if (!profile)
                 return res.status(404).json({ message: 'Profile Not Found' });
-            }
 
             await profile.update(req.body);
 
-            res.status(200).json(profile.toJSON());
+            return res.status(200).json(profile.toJSON());
         }),
     );
 

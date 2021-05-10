@@ -1,11 +1,11 @@
 import { Disclosure, Command, Arguments } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 import fetch from 'node-fetch';
-import Utils from '../../utils/Utils';
 import { Colors } from '../../utils/Constants';
+import HumanReadable from '@oadpoaw/human-readable';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'steam',
             description: 'Searches a Game on Steam for your query',
@@ -21,14 +21,12 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message, argv: Arguments) {
         const query = argv._.join(' ');
 
         const id = await this.search(query);
 
-        if (!id) {
-            return message.channel.send('Could not find any results.');
-        }
+        if (!id) return message.channel.send('Could not find any results.');
 
         const data = await this.fetchGame(id);
         const current = data.price_overview
@@ -54,7 +52,7 @@ export default class extends Command {
             }
         }
 
-        message.channel.send(
+        return message.channel.send(
             new MessageEmbed()
                 .setColor(Colors.navy)
                 .setAuthor(
@@ -74,7 +72,7 @@ export default class extends Command {
                 .addField(
                     '❯ Recommendations',
                     data.recommendations
-                        ? Utils.toHumanReadable(data.recommendations.total)
+                        ? HumanReadable(data.recommendations.total)
                         : '???',
                     true,
                 )
@@ -86,7 +84,7 @@ export default class extends Command {
                 )
                 .addField(
                     '❯ DLC Count',
-                    data.dlc ? Utils.toHumanReadable(data.dlc.length) : 0,
+                    data.dlc ? HumanReadable(data.dlc.length) : 0,
                     true,
                 )
                 .addField(
@@ -112,9 +110,7 @@ export default class extends Command {
         );
         const body = await response.json();
 
-        if (!body.items.length) {
-            return null;
-        }
+        if (!body.items.length) return null;
 
         return body.items[0].id;
     }

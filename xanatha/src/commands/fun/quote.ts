@@ -1,9 +1,9 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
+import { Disclosure, Command } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 import quotes from '../../assets/quotes';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'quote',
             description: 'Using A.I. this will send the right quote for you',
@@ -19,10 +19,10 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
         const index = quotes[Math.floor(Math.random() * quotes.length)];
 
-        message.channel.send(
+        await message.channel.send(
             new MessageEmbed()
                 .setColor('RANDOM')
                 .setDescription(`${index.quote}`)

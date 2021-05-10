@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import {
+import type {
     Guild as DiscordGuild,
     GuildChannelManager,
     RoleManager,
 } from 'discord.js';
 import Guild from '../../database/models/Guild';
-import { BlacklistedAttributes } from '../../database/models/Blacklisted';
-import AsyncWrapper from '@xetha/async-wrapper';
-import { DisclosureSharder } from 'disclosure-discord';
+import type { BlacklistedAttributes } from '../../database/models/Blacklisted';
+import AsyncWrapper from '@oadpoaw/async-wrapper';
+import type { DisclosureSharder } from 'disclosure-discord';
 
 export default function GuildRoute(manager: DisclosureSharder) {
     const route = Router();
@@ -56,11 +56,11 @@ export default function GuildRoute(manager: DisclosureSharder) {
             if (!settings)
                 settings = await Guild.create({ guild_id, name: guild.name });
 
-            res.status(200).json({
+            return res.status(200).json({
                 id: guild.id,
                 name: guild.name,
                 settings: settings.toJSON(),
-                channels: channels.cache
+                channels: channels?.cache
                     .sort((a, b) => b.rawPosition - a.rawPosition)
                     .map((c) => {
                         return {
@@ -70,7 +70,7 @@ export default function GuildRoute(manager: DisclosureSharder) {
                             parent: c.parentID,
                         };
                     }),
-                roles: roles.cache
+                roles: roles?.cache
                     .filter((r) => !r.managed && r.name !== '@everyone')
                     .sort((a, b) => b.rawPosition - a.rawPosition)
                     .map((r) => {
@@ -88,20 +88,17 @@ export default function GuildRoute(manager: DisclosureSharder) {
         '/:guild_id',
         AsyncWrapper(async (req, res) => {
             const guild_id = req.params.guild_id as string;
-
             const guild = await Guild.findOne({ guild_id });
 
-            if (!guild) {
+            if (!guild)
                 return res.status(404).json({ message: 'Guild Not Found' });
-            }
 
             await guild.update(req.body);
-
-            manager.broadcastEval(
+            await manager.broadcastEval(
                 `this.emit('guildDataUpdate', '${guild_id}')`,
             );
 
-            res.status(200).json(guild.toJSON());
+            return res.status(200).json(guild.toJSON());
         }),
     );
 

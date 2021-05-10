@@ -1,8 +1,8 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
+import { Disclosure, Command } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'prefix',
             description: "Shows the Bot's Prefix",
@@ -18,10 +18,10 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
         const prefix = await this.client.dispatcher.generators.prefix(message);
 
-        message.channel.send(
+        await message.channel.send(
             new MessageEmbed()
                 .setColor(0x00ffff)
                 .setTitle('Xetha Bot')

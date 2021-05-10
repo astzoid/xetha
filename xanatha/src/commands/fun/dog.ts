@@ -1,10 +1,10 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
+import { Disclosure, Command } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 import fetch from 'node-fetch';
 import { Colors } from '../../utils/Constants';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'dog',
             description: 'Sends a random image of a puppy dog',
@@ -20,11 +20,11 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
         const response = await fetch('https://dog.ceo/api/breeds/image/random');
         const body = await response.json();
 
-        message.channel.send(
+        await message.channel.send(
             new MessageEmbed()
                 .setColor(Colors.random)
                 .setURL('https://dog.ceo/')

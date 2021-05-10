@@ -1,8 +1,8 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
+import { Disclosure, Command } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'support',
             description: "Sends Xetha's Support Discord Server",
@@ -18,7 +18,7 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
         const OWNER = await this.client.users.fetch(
             this.client.config.ownerID[0],
         );

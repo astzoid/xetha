@@ -3,6 +3,7 @@
 
 const httpProxy = require('http-proxy');
 const proxy = httpProxy.createServer({ target: 'http://localhost:3001' });
+const path = require('path');
 
 /** @type {import('snowpack').SnowpackUserConfig} */
 module.exports = {
@@ -14,6 +15,12 @@ module.exports = {
     src: {
       url: '/dist',
     },
+    [path.resolve(__dirname, '../shared/rest')]: '/shared/rest',
+    [path.resolve(__dirname, '../shared/types')]: '/shared/types',
+  },
+  alias: {
+    '@shared/rest': '../shared/rest/src',
+    '@shared/types': '../shared/types/src',
   },
   plugins: [
     '@snowpack/plugin-react-refresh',

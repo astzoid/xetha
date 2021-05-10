@@ -1,10 +1,7 @@
-import { ClientOptions } from 'discord.js';
-import fs from 'fs';
-import path from 'path';
+import type { ClientOptions } from 'discord.js';
 
-export const version = JSON.parse(
-    fs.readFileSync(path.join(process.cwd(), 'package.json')).toString(),
-).version;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+export const { version } = require('../../package.json');
 
 export const DiscordClientOptions: ClientOptions = {
     partials: ['USER', 'MESSAGE', 'REACTION'],

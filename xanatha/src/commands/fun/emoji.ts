@@ -1,5 +1,5 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
-import { Message } from 'discord.js';
+import { Disclosure, Command } from 'disclosure-discord';
+import type { Message } from 'discord.js';
 
 const emojis = [
     '( ͡° ͜ʖ ͡°)',
@@ -71,7 +71,7 @@ const emojis = [
 ];
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'emoji',
             description: 'Sends a random ASCII emoji',
@@ -87,7 +87,9 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
-        message.channel.send(emojis[Math.floor(Math.random() * emojis.length)]);
+    public async execute(message: Message) {
+        await message.channel.send(
+            emojis[Math.floor(Math.random() * emojis.length)],
+        );
     }
 }

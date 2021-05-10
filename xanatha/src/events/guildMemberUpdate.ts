@@ -4,30 +4,25 @@ import { Colors } from '../utils/Constants';
 import Handlers from '../functions/Handlers';
 
 export default class extends DiscordEvent {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, 'guildMemberUpdate');
     }
 
-    async exec(oldMember: GuildMember, newMember: GuildMember) {
+    public async exec(oldMember: GuildMember, newMember: GuildMember) {
         if (
             this.client.managers.blacklist.getServer(newMember.guild.id) ||
             this.client.managers.blacklist.getUser(newMember.guild.ownerID)
-        ) {
+        )
             return;
-        }
 
         const guild = await this.client.managers.guilds.fetch(
             newMember.guild.id,
             newMember.guild.name,
         );
 
-        if (!guild.logging_enabled || !guild.logging_member_update) {
-            return;
-        }
+        if (!guild.logging_enabled || !guild.logging_member_update) return;
 
-        if (newMember.partial) {
-            await newMember.fetch();
-        }
+        if (newMember.partial) await newMember.fetch();
 
         const embed = new MessageEmbed()
             .setColor(Colors.gray)
@@ -59,9 +54,7 @@ export default class extends DiscordEvent {
                 .map((r) => r),
         ];
 
-        if (added.length || removed.length) {
-            type = 'MEMBER_ROLE_UPDATE';
-        }
+        if (added.length || removed.length) type = 'MEMBER_ROLE_UPDATE';
 
         if (added.length) {
             embed.addField(
@@ -77,7 +70,7 @@ export default class extends DiscordEvent {
             );
         }
 
-        if (newMember.guild.me.hasPermission('VIEW_AUDIT_LOG')) {
+        if (newMember.guild.me?.hasPermission('VIEW_AUDIT_LOG')) {
             const logs = await newMember.guild.fetchAuditLogs({
                 limit: 5,
                 type,
@@ -88,16 +81,14 @@ export default class extends DiscordEvent {
                     l.target.id === newMember.user.id,
             );
 
-            if (log && log.executor.id !== this.client.user.id) {
+            if (log && log.executor.id !== this.client.user?.id) {
                 embed.setAuthor(
                     `${log.executor.tag} / ${log.executor.id}`,
                     log.executor.displayAvatarURL({ dynamic: true }),
                 );
             }
 
-            if (log.reason) {
-                embed.addField('Reason', log.reason, true);
-            }
+            if (log?.reason) embed.addField('Reason', log?.reason, true);
         }
 
         await Handlers.logging(this.client, embed, newMember.guild, guild);

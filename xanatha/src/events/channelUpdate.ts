@@ -8,28 +8,31 @@ import {
 } from 'discord.js';
 import { Colors } from '../utils/Constants';
 import Handlers from '../functions/Handlers';
-import Escapes from '@xetha/escapes';
-import differentiate from '@xetha/differentiate';
+import Escapes from '@oadpoaw/escapes';
+import differentiate from '@oadpoaw/differentiate';
 
 export default class extends DiscordEvent {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, 'channelUpdate');
     }
 
-    async exec(
+    public async exec(
         oldChannel: DMChannel | GuildChannel,
         newChannel: DMChannel | GuildChannel,
     ) {
-        if (oldChannel.type === 'dm' || newChannel.type === 'dm') {
+        if (
+            oldChannel.type === 'dm' ||
+            newChannel.type === 'dm' ||
+            !oldChannel.guild ||
+            !newChannel.guild
+        )
             return;
-        }
 
         if (
             this.client.managers.blacklist.getServer(newChannel.guild.id) ||
             this.client.managers.blacklist.getUser(newChannel.guild.ownerID)
-        ) {
+        )
             return;
-        }
 
         const guild = await this.client.managers.guilds.fetch(
             newChannel.guild.id,
@@ -76,8 +79,8 @@ export default class extends DiscordEvent {
                 embed.addField(
                     'Topic',
                     `Before: \`${Escapes.backticks(
-                        oC.topic,
-                    )}\`\nAfter: \`${Escapes.backticks(nC.topic)}\``,
+                        oC?.topic ?? '',
+                    )}\`\nAfter: \`${Escapes.backticks(nC?.topic ?? '')}\``,
                 );
             }
         }
@@ -139,33 +142,29 @@ export default class extends DiscordEvent {
             const newPerms = Object.keys(permJsonNew);
             const oldPerms = Object.keys(permJsonOld);
 
-            let differentPerms = differentiate(newPerms, oldPerms);
+            const differentPerms = differentiate(newPerms, oldPerms);
 
             if (
-                newChannel.permissionOverwrites
-                    .map((o) => `${o.allow}|${o.deny}`)
-                    .toString() ===
-                oldChannel.permissionOverwrites
-                    .map((o) => `${o.allow}|${o.deny}`)
-                    .toString()
+                newChannel.permissionOverwrites.equals(
+                    oldChannel.permissionOverwrites,
+                )
             ) {
                 continue;
             }
 
-            let overwriteName = overwrite.type + ' ';
+            let overwriteName = `${overwrite.type} `;
 
             if (overwrite.type === 'member') {
                 const member = newChannel.guild.members.cache.get(overwrite.id);
 
-                if (member) {
+                if (member)
                     overwriteName += member.nickname ? `(${member.user})` : '';
-                }
             } else {
                 const role = newChannel.guild.roles.cache.find(
                     (r) => r.id === overwrite.id,
                 );
 
-                overwriteName += role.name;
+                overwriteName += role?.name;
             }
 
             const field = { name: overwriteName, value: '', inline: true };
@@ -175,15 +174,9 @@ export default class extends DiscordEvent {
                     permJsonNew.hasOwnProperty(perm) &&
                     permJsonOld.hasOwnProperty(perm)
                 ) {
-                    if (
-                        permJsonNew[perm] === true &&
-                        permJsonOld[perm] === false
-                    ) {
+                    if (permJsonNew[perm] && !permJsonOld[perm]) {
                         field.value += `\n${`<:yes:800415381340684330>`} ${perm}`;
-                    } else if (
-                        permJsonNew[perm] === false &&
-                        permJsonOld[perm] === true
-                    ) {
+                    } else if (!permJsonNew[perm] && permJsonOld[perm]) {
                         field.value += `\n${`<:no:800415449488556053>`} ${perm}`;
                     }
                 } else if (
@@ -205,34 +198,32 @@ export default class extends DiscordEvent {
 
             if (field.value) {
                 if (overwrite.type === 'member') {
-                    field.value = `<@${overwrite.id}>` + field.value;
+                    field.value = `<@${overwrite.id}>${field.value}`;
                 }
 
                 embed.fields.push(field);
             }
         }
 
-        if (newChannel.guild.me.hasPermission('VIEW_AUDIT_LOG')) {
+        if (newChannel.guild.me?.hasPermission('VIEW_AUDIT_LOG')) {
             const logs = await newChannel.guild.fetchAuditLogs({
                 limit: 5,
                 type,
             });
-            const log = logs.entries.find(
+            const log = logs?.entries.find(
                 (l) =>
                     l.target instanceof GuildChannel &&
                     l.target.id === newChannel.id,
             );
 
-            if (log && log.executor.id !== this.client.user.id) {
+            if (log && log.executor.id !== this.client.user?.id) {
                 embed.setAuthor(
                     `${log.executor.tag} / ${log.executor.id}`,
                     log.executor.displayAvatarURL({ dynamic: true }),
                 );
             }
 
-            if (log.reason) {
-                embed.addField('Reason', log.reason, true);
-            }
+            if (log?.reason) embed.addField('Reason', log?.reason, true);
         }
 
         await Handlers.logging(this.client, embed, newChannel.guild, guild);

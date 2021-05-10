@@ -1,11 +1,12 @@
 import { Disclosure, DiscordEvent } from 'disclosure-discord';
 
 export default class extends DiscordEvent {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, 'error');
     }
 
-    async exec(error: Error) {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    public async exec(error: Error) {
         this.client.logger.error(error);
     }
 }

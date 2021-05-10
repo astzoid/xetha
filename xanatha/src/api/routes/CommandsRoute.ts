@@ -1,5 +1,5 @@
-import AsyncWrapper from '@xetha/async-wrapper';
-import { DisclosureSharder } from 'disclosure-discord';
+import AsyncWrapper from '@oadpoaw/async-wrapper';
+import type { DisclosureSharder } from 'disclosure-discord';
 import { Router } from 'express';
 
 interface Config {

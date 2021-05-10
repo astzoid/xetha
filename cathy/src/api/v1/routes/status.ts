@@ -1,15 +1,15 @@
 import { Router } from 'express';
-import RequestHandler from '../../../rest/RequestHandler';
-import APIResponse from '../../../rest/APIResponse';
+import AsyncWrapper from '@oadpoaw/async-wrapper';
+import { APIResponse } from '@shared/rest';
+import REST from '../../../functions/REST';
 import { version } from '../../../utils/Constants';
-import AsyncWrapper from '@xetha/async-wrapper';
 
 const status = Router();
 
 status.get(
     '/',
     AsyncWrapper(async (_req, res) => {
-        const response = await RequestHandler.request('GET', {
+        const response = await REST.get({
             route: '/api/status',
         })
             .then((res) => res)

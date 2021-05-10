@@ -1,4 +1,4 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
+import { Disclosure, Command } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 import { Colors } from '../../utils/Constants';
 
@@ -9,7 +9,7 @@ const gateway = [
 ];
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'fidgetspinner',
             description: 'Spinning spin spin spin fidget',
@@ -25,7 +25,7 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
         const spinning = await message.channel.send(
             new MessageEmbed()
                 .setColor(Colors.random)

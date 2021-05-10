@@ -6,12 +6,11 @@ import Navbar from './components/Navbar';
 import NotFound from './pages/NotFound';
 import WentWrong from './pages/WentWrong';
 
-const Home = lazy(() => import('@routes/Home'));
+const Home = lazy(() => import('./routes/Home'));
 
-const Invite = lazy(() => import('@routes/Redirects/Invite'));
-const Patreon = lazy(() => import('@routes/Redirects/Patreon'));
-
-const Discord = lazy(() => import('@routes/Redirects/Discord'));
+const Invite = lazy(() => import('./routes/Redirects/Invite'));
+const Patreon = lazy(() => import('./routes/Redirects/Patreon'));
+const Discord = lazy(() => import('./routes/Redirects/Discord'));
 
 export default function App() {
     return (

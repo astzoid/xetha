@@ -1,4 +1,4 @@
-import AsyncWrapper from '@xetha/async-wrapper';
+import AsyncWrapper from '@oadpoaw/async-wrapper';
 import { Router } from 'express';
 import Manager, { Guild, Member } from '../../../functions/Manager';
 
@@ -11,7 +11,7 @@ guild.use(
 
         const [guild, member] = await Promise.all([
             Manager.guild(guild_id),
-            Manager.member(guild_id, req.user.user_id),
+            Manager.member(guild_id, req.user?.user_id as string),
         ]);
 
         if (guild instanceof Guild) {

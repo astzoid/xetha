@@ -1,4 +1,4 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
+import { Disclosure, Command } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 
 const slaps = [
@@ -15,7 +15,7 @@ const slaps = [
 ];
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'slap',
             description: 'Slappy slap slap slap',
@@ -31,7 +31,7 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
         const user = message.mentions.users.first();
 
         if (!user) {

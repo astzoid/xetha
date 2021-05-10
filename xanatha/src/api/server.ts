@@ -1,5 +1,5 @@
-import { makeCatcher } from '@xetha/async-wrapper';
-import { DisclosureSharder } from 'disclosure-discord';
+import { makeCatcher } from '@oadpoaw/async-wrapper';
+import type { DisclosureSharder } from 'disclosure-discord';
 import express from 'express';
 import Logger from '../utils/Logger';
 import CommandsRoute from './routes/CommandsRoute';

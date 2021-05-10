@@ -4,17 +4,16 @@ import { Colors } from '../utils/Constants';
 import Handlers from '../functions/Handlers';
 
 export default class extends DiscordEvent {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, 'voiceStateUpdate');
     }
 
-    async exec(oldState: VoiceState, newState: VoiceState) {
+    public async exec(oldState: VoiceState, newState: VoiceState) {
         if (
             this.client.managers.blacklist.getServer(newState.guild.id) ||
             this.client.managers.blacklist.getUser(newState.guild.ownerID)
-        ) {
+        )
             return;
-        }
 
         const guild = await this.client.managers.guilds.fetch(
             newState.guild.id,
@@ -33,15 +32,15 @@ export default class extends DiscordEvent {
                 guild.logging_member_voice_move
             ) {
                 embed.setDescription(
-                    `<@${newState.member.id}> moved to \`${newState.channel.name}\` from \`${oldState.channel.name}\``,
+                    `<@${newState.member?.id}> moved to \`${newState.channel.name}\` from \`${oldState.channel.name}\``,
                 );
             } else if (newState.channel && guild.logging_member_voice_join) {
                 embed.setDescription(
-                    `<@${newState.member.id}> joined \`${newState.channel.name}\``,
+                    `<@${newState.member?.id}> joined \`${newState.channel.name}\``,
                 );
             } else if (oldState.channel && guild.logging_member_voice_leave) {
                 embed.setDescription(
-                    `<@${newState.member.id}> left \`${newState.channel.name}\``,
+                    `<@${newState.member?.id}> left \`${oldState.channel.name}\``,
                 );
             }
 
@@ -70,11 +69,9 @@ export default class extends DiscordEvent {
             ) {
                 value = newState.serverMute ? 'Server Muted' : 'Server Unmuted';
             }
-
             if (value.length) {
                 embed.addField('Status', value, true);
             }
-
             if (
                 guild.logging_member_voice_move ||
                 guild.logging_member_voice_join ||

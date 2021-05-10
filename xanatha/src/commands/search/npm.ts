@@ -1,12 +1,12 @@
+import TrimArray from '@oadpoaw/trim-array';
 import { Disclosure, Command, Arguments } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 import moment from 'moment';
 import fetch from 'node-fetch';
-import Utils from '../../utils/Utils';
 import { Colors } from '../../utils/Constants';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'npm',
             description:
@@ -23,7 +23,7 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message, argv: Arguments) {
         const args = argv._;
         const pkg = encodeURIComponent(args.join(' ').replace(/ +/g, '-'));
 
@@ -31,16 +31,15 @@ export default class extends Command {
             const response = await fetch(`https://registry.npmjs.com/${pkg}`);
             const body = await response.json();
 
-            if (response.status === 404 || body.time.unpublished) {
+            if (response.status === 404 || body.time.unpublished)
                 return message.channel.send('This package no longer exists.');
-            }
 
             const version = body.versions[body['dist-tags'].latest];
-            const maintainers = Utils.trimArray(
-                body.maintainers.map((user: any) => user.name),
+            const maintainers = TrimArray(
+                body.maintainers.map(({ name }: { name: string }) => name),
             );
             const dependencies = version.dependencies
-                ? Utils.trimArray(Object.keys(version.dependencies))
+                ? TrimArray(Object.keys(version.dependencies))
                 : null;
 
             return message.channel.send(

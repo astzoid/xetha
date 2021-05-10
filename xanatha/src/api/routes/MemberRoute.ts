@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import Member from '../../database/models/Member';
-import { BlacklistedAttributes } from '../../database/models/Blacklisted';
+import type { BlacklistedAttributes } from '../../database/models/Blacklisted';
 import { Permissions } from 'discord.js';
-import AsyncWrapper from '@xetha/async-wrapper';
-import { DisclosureSharder } from 'disclosure-discord';
+import AsyncWrapper from '@oadpoaw/async-wrapper';
+import type { DisclosureSharder } from 'disclosure-discord';
 
 export default function MemberRoute(manager: DisclosureSharder) {
     const route = Router();
@@ -11,8 +11,8 @@ export default function MemberRoute(manager: DisclosureSharder) {
     route.get(
         '/:guild_id/:member_id',
         AsyncWrapper(async (req, res) => {
-            const guild_id = req.params.guild_id;
-            const member_id = req.params.member_id;
+            const { guild_id } = req.params;
+            const { member_id } = req.params;
 
             const blacklisted = (await manager.broadcastEval(
                 `this.managers.blacklist.getUser('${member_id}')`,
@@ -47,11 +47,10 @@ export default function MemberRoute(manager: DisclosureSharder) {
 
             const member = shards.find((s) => s);
 
-            if (!member) {
+            if (!member)
                 return res
                     .status(404)
                     .json({ message: 'Guild Member Not Found' });
-            }
 
             let data = await Member.findOne({ guild_id, member_id });
 
@@ -64,8 +63,8 @@ export default function MemberRoute(manager: DisclosureSharder) {
 
             const permissions = new Permissions(member.permissions);
 
-            res.status(200).json({
-                guild_id: guild_id,
+            return res.status(200).json({
+                guild_id,
                 member_id: member.id,
                 tag: member.user.tag,
                 username: member.user.username,
@@ -80,20 +79,18 @@ export default function MemberRoute(manager: DisclosureSharder) {
     route.post(
         '/:guild_id/:member_id',
         AsyncWrapper(async (req, res) => {
-            const guild_id = req.params.guild_id;
-            const member_id = req.params.member_id;
-
+            const { guild_id } = req.params;
+            const { member_id } = req.params;
             const data = await Member.findOne({ guild_id, member_id });
 
-            if (!data) {
+            if (!data)
                 return res
                     .status(404)
                     .json({ message: 'Guild Member Data Not Found' });
-            }
 
             await data.update(req.body);
 
-            res.status(200).json(data.toJSON());
+            return res.status(200).json(data.toJSON());
         }),
     );
 

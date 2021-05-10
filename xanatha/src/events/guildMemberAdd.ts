@@ -4,17 +4,16 @@ import { Colors } from '../utils/Constants';
 import Handlers from '../functions/Handlers';
 
 export default class extends DiscordEvent {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, 'guildMemberAdd');
     }
 
-    async exec(member: GuildMember) {
+    public async exec(member: GuildMember) {
         if (
             this.client.managers.blacklist.getServer(member.guild.id) ||
             this.client.managers.blacklist.getUser(member.guild.ownerID)
-        ) {
+        )
             return;
-        }
 
         const guild = await this.client.managers.guilds.fetch(
             member.guild.id,

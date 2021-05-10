@@ -1,8 +1,8 @@
 import Manager from '../structures/Manager';
-import { Message } from 'discord.js';
-import { GuildAttributes } from '../database/models/Guild';
-import { ProfileAttributes } from '../database/models/Profile';
-import { Disclosure } from 'disclosure-discord';
+import type { Message } from 'discord.js';
+import type { GuildAttributes } from '../database/models/Guild';
+import type { ProfileAttributes } from '../database/models/Profile';
+import type { Disclosure } from 'disclosure-discord';
 
 export const Levels: Level[] = [
     {
@@ -18,8 +18,8 @@ export const Levels: Level[] = [
             message: Message,
             guild: GuildAttributes,
         ) => {
-            return (
-                guild && message.member.roles.cache.has(guild.moderator_role)
+            return Boolean(
+                guild && message.member?.roles.cache.has(guild.moderator_role),
             );
         },
     },
@@ -31,9 +31,9 @@ export const Levels: Level[] = [
             message: Message,
             guild: GuildAttributes,
         ) => {
-            return (
+            return Boolean(
                 guild &&
-                message.member.roles.cache.has(guild.administrator_role)
+                    message.member?.roles.cache.has(guild.administrator_role),
             );
         },
     },
@@ -45,7 +45,7 @@ export const Levels: Level[] = [
             message: Message,
             guild: GuildAttributes,
         ) => {
-            return guild && message.author.id === message.guild.ownerID;
+            return guild && message.author.id === message.guild?.ownerID;
         },
     },
     {
@@ -64,15 +64,17 @@ export const Levels: Level[] = [
         name: 'Bot Owner',
         level: 10,
         check: (client: Disclosure, message: Message) => {
+            // @ts-ignore Never say never
             return client.config.ownerID.includes(message.author.id);
         },
     },
 ];
 
 export default class PermissionManager extends Manager<Level> {
-    constructor(client: Disclosure) {
-        super(client);
+    public levels: string[];
 
+    public constructor(client: Disclosure) {
+        super(client);
         this.levels = [];
 
         for (const l of Levels) {
@@ -81,9 +83,7 @@ export default class PermissionManager extends Manager<Level> {
         }
     }
 
-    levels: string[];
-
-    level(
+    public level(
         message: Message,
         guild: GuildAttributes,
         profile: ProfileAttributes,

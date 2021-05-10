@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 import { Colors } from '../../utils/Constants';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'mdn',
             description:
@@ -21,7 +21,7 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message, argv: Arguments) {
         const args = argv._;
 
         const query = encodeURIComponent(args[0].replace(/#/g, '.prototype.'));
@@ -30,13 +30,12 @@ export default class extends Command {
         );
         const body = await response.json();
 
-        if (!body.documents.length) {
+        if (!body.documents.length)
             return message.channel.send('Could not find any results.');
-        }
 
         const data = body.documents[0];
 
-        message.channel.send(
+        return message.channel.send(
             new MessageEmbed()
                 .setColor(Colors.blue)
                 .setAuthor(

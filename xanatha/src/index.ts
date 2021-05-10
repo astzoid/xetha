@@ -6,7 +6,7 @@ import './database/database';
 import { DisclosureSharder } from 'disclosure-discord';
 import server from './api/server';
 import Logger from './utils/Logger';
-import processor from '@xetha/processor';
+import processor from '@oadpoaw/processor';
 
 processor(Logger);
 
@@ -19,8 +19,10 @@ const manager = new DisclosureSharder(
     Logger,
 );
 
-(async function () {
+(async function Start() {
     await manager.initialize().spawn();
-
     server(manager);
-})();
+})().catch((err) => {
+    Logger.error(err);
+    process.exit(1);
+});

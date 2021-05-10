@@ -1,9 +1,9 @@
-import Random from '@xetha/random';
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
+import { Disclosure, Command } from 'disclosure-discord';
+import Random from '@oadpoaw/random';
 import { Message, MessageEmbed } from 'discord.js';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'gayrate',
             description: 'Calculates your gayness',
@@ -19,11 +19,11 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
         const stat = Random.number(101, 0);
-        const target = message.mentions.users.first() || message.author;
+        const target = message.mentions.users.first() ?? message.author;
 
-        message.channel.send(
+        await message.channel.send(
             new MessageEmbed()
                 .setColor('RANDOM')
                 .setAuthor(`Gay Rate 3000 go brrr`)

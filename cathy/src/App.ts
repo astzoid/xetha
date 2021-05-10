@@ -11,8 +11,8 @@ import rateLimit from 'express-rate-limit';
 import session from 'express-session';
 import API from './api/v1';
 import Logger from './utils/Logger';
-import processor from '@xetha/processor';
-import { makeCatcher } from '@xetha/async-wrapper';
+import processor from '@oadpoaw/processor';
+import { makeCatcher } from '@oadpoaw/async-wrapper';
 import {
     corsOptions,
     rateLimitOptions,

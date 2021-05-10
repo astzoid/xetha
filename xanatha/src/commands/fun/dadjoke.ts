@@ -1,9 +1,9 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
-import { Message } from 'discord.js';
+import { Disclosure, Command } from 'disclosure-discord';
+import type { Message } from 'discord.js';
 import fetch from 'node-fetch';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'dadjoke',
             description: 'Sends a random dad joke xd d',
@@ -19,16 +19,15 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
         const response = await fetch(`https://icanhazdadjoke.com/`, {
             headers: {
                 Accept: 'application/json',
                 'User-Agent': 'xetha discord bot',
             },
         });
-
         const body = await response.json();
 
-        message.channel.send(body.joke);
+        await message.channel.send(body.joke);
     }
 }

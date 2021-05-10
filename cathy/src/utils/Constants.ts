@@ -1,19 +1,19 @@
 import session from 'express-session';
 import store from 'memorystore';
 import MongoStore from 'connect-mongo';
-import { CorsOptions } from 'cors';
-import { SessionOptions } from 'express-session';
-import { Options as RatelimitOptions } from 'express-rate-limit';
-import { version as packageVersion } from '../../package.json';
+import type { CorsOptions } from 'cors';
+import type { SessionOptions } from 'express-session';
+import type { Options as RatelimitOptions } from 'express-rate-limit';
 
-export const version = packageVersion;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+export const { version } = require('../../package.json');
 
 export const Config = {
     production: process.env.NODE_ENV === 'production',
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK_URL,
-    dashboardURL: process.env.DASHBOARD_URL,
+    clientID: process.env.CLIENT_ID as string,
+    clientSecret: process.env.CLIENT_SECRET as string,
+    callbackURL: process.env.CALLBACK_URL as string,
+    dashboardURL: process.env.DASHBOARD_URL as string,
     permissions: 1036381407,
     support: {
         invite: 'https://discord.gg/UMBem59yAm',
@@ -21,10 +21,10 @@ export const Config = {
 };
 
 export const Redirects = {
-    authenticated: Config.dashboardURL + '/dashboard',
+    authenticated: `${Config.dashboardURL}/dashboard`,
     unAuthenticated: (stat: boolean) =>
-        Config.dashboardURL + `/?logout=${stat}`,
-    failureRedirect: Config.dashboardURL + '/?auth_error=true',
+        `${Config.dashboardURL}/?logout=${stat}`,
+    failureRedirect: `${Config.dashboardURL}/?auth_error=true`,
 };
 
 export const corsOptions: CorsOptions = {
@@ -42,7 +42,7 @@ export const sessionOptions: SessionOptions = {
     },
     store: Config.production
         ? MongoStore.create({
-              mongoUrl: process.env.MONGODB_URI + 'sessions',
+              mongoUrl: `${process.env.MONGODB_URI}sessions`,
               ttl: 1 * 24 * 60 * 60,
               crypto: {
                   secret: Config.clientSecret,

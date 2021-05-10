@@ -4,7 +4,10 @@
     "compilerOptions": {
         "module": "esnext",
         "target": "esnext",
+        "noEmit": true,
+        "composite": false,
         "declaration": false,
+        "declarationMap": false,
         "lib": [
             "ESNext",
             "DOM",

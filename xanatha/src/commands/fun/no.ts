@@ -1,8 +1,8 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
-import { Message } from 'discord.js';
+import { Disclosure, Command } from 'disclosure-discord';
+import type { Message } from 'discord.js';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'no',
             description: 'yes!',
@@ -18,7 +18,7 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
-        message.reply('yes!');
+    public async execute(message: Message) {
+        await message.reply('yes!');
     }
 }

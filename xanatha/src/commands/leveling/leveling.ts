@@ -1,9 +1,9 @@
 import { Disclosure, Command, Arguments } from 'disclosure-discord';
 import { Message, MessageEmbed, TextChannel } from 'discord.js';
-import Escapes from '@xetha/escapes';
+import Escapes from '@oadpoaw/escapes';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'leveling',
             description: 'Setup the leveling system',
@@ -32,7 +32,9 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message, argv: Arguments) {
+        if (!message.guild) return;
+
         const args = argv._;
         const guild = await this.client.managers.guilds.fetch(
             message.guild.id,
@@ -132,7 +134,7 @@ export default class extends Command {
                         return message.channel.send(
                             `<:no:800415449488556053> Error:\n\`\`\`xl\n${guild.prefix}leveling reward <A> <B> [C]\n\`\`\`Incorrect argument for A, it should be either \`add\` \`remove\`, please try again`,
                         );
-                    const action = args.shift().toLowerCase() as
+                    const action = args.shift()?.toLowerCase() as
                         | 'add'
                         | 'remove';
                     if (action === 'add') {
@@ -170,8 +172,9 @@ export default class extends Command {
                             );
                         if (role.managed)
                             return message.channel.send(
-                                `<:no:800415449488556053> Sorry, that role cannot be assigned to anyone else`,
+                                `<:no:800415449488556053> Sorry, that role is not assignable to anyone`,
                             );
+                        if (!message.guild.me) return;
                         if (
                             message.guild.me.roles.highest.comparePositionTo(
                                 role,
@@ -226,6 +229,7 @@ export default class extends Command {
                             }\` has been unassigned to level \`${level}\``,
                         );
                     }
+                    break;
                 }
                 case 'rewards': {
                     return message.channel.send(
@@ -267,14 +271,17 @@ export default class extends Command {
                         args.join(' '),
                         message.guild,
                     ) as TextChannel;
+                    channel;
                     if (!channel || channel.type !== 'text')
                         return message.channel.send(
                             `<:no:800415449488556053> That is not a valid text channel, please try again`,
                         );
+
+                    if (!message.guild.me) return;
                     if (
                         !channel
                             .permissionsFor(message.guild.me)
-                            .has(['SEND_MESSAGES'])
+                            ?.has('SEND_MESSAGES')
                     )
                         return message.channel.send(
                             `<:no:800415449488556053> Oh oh, it seems i don't have permission to send messages to that channel\nPlease make sure i have the permissions to send messages to that channel and try again!`,
@@ -295,7 +302,7 @@ export default class extends Command {
             ? message.guild.roles.cache.get(guild.leveling_log_channel)
             : null;
 
-        message.channel.send(
+        return message.channel.send(
             new MessageEmbed()
                 .setColor(0x66ff00)
                 .setTitle(`Leveling Module`)

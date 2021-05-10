@@ -1,9 +1,9 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
-import { Message } from 'discord.js';
+import { Disclosure, Command } from 'disclosure-discord';
+import type { Message } from 'discord.js';
 import path from 'path';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'spam',
             description: 'Spammy spam spam SPAM image',
@@ -19,8 +19,8 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
-        message.channel.send({
+    public async execute(message: Message) {
+        await message.channel.send({
             files: [
                 path.join(path.resolve(process.cwd()), 'assets', 'spam.png'),
             ],

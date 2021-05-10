@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { version } from '../../utils/Constants';
-import AsyncWrapper from '@xetha/async-wrapper';
-import { DisclosureSharder } from 'disclosure-discord';
+import AsyncWrapper from '@oadpoaw/async-wrapper';
+import type { DisclosureSharder } from 'disclosure-discord';
 
 export default function Status(manager: DisclosureSharder) {
     const route = Router();

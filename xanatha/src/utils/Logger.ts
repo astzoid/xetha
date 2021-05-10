@@ -1,4 +1,4 @@
-import createLogger from '@xetha/logger';
+import createLogger from '@oadpoaw/logger';
 
 const Logger = createLogger();
 

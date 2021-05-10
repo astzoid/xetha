@@ -1,8 +1,8 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
+import { Disclosure, Command } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'permission',
             description:
@@ -19,7 +19,9 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
+        if (!message.guild) return;
+
         const guild = await this.client.managers.guilds.fetch(
             message.guild.id,
             message.guild.name,
@@ -33,7 +35,7 @@ export default class extends Command {
             this.client.managers.permissions.level(message, guild, profile)
         ];
 
-        message.channel.send(
+        await message.channel.send(
             new MessageEmbed()
                 .setColor('RANDOM')
                 .setAuthor(

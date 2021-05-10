@@ -1,45 +1,17 @@
-import ArrayShuffle from '@xetha/array-shuffle';
-import Escapes from '@xetha/escapes';
-import { createHash } from 'crypto';
+import ArrayShuffle from '@oadpoaw/array-shuffle';
+import Escapes from '@oadpoaw/escapes';
+import shorten from '@oadpoaw/shorten';
 
-export default class Utils {
-    constructor() {
-        throw new Error(
-            `The ${this.constructor.name} class cannot be instantiated`,
-        );
-    }
+const Utils = {
+    cleanMessage(content: string, length = 2000) {
+        return Escapes.addressSign(Escapes.backticks(shorten(content, length)));
+    },
 
-    static trimArray(array: any[], maxLen: number = 10): any[] {
-        if (array.length < maxLen) {
-            return array;
-        }
+    booleanEmoji(bool: boolean) {
+        return bool ? '<:yes:800415381340684330>' : '<:no:800415449488556053>';
+    },
 
-        array = array.slice(0, maxLen);
-
-        array.push(`${array.length - maxLen} more...`);
-
-        return array;
-    }
-
-    static shorten(text: string, maxLen: number = 2000) {
-        return text.length > maxLen ? `${text.substr(0, maxLen - 3)}...` : text;
-    }
-
-    static toHumanReadable(n: number, separator: string = ',') {
-        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
-    }
-
-    static hash(algorithm: 'sha256' | 'md5' | 'sha1' | 'sha512', text: string) {
-        return createHash(algorithm).update(text).digest('hex');
-    }
-
-    static cleanMessage(content: string, length: number = 2000) {
-        return Escapes.addressSign(
-            Escapes.backticks(Utils.shorten(content, length)),
-        );
-    }
-
-    static chunkString(str: string, size: number = 0): string[] {
+    chunkString(str: string, size = 0): string[] {
         const len = Math.ceil(str.length / size);
         let offset = 0;
 
@@ -47,9 +19,11 @@ export default class Utils {
             offset += len;
             return str.substr(offset, len);
         });
-    }
+    },
 
-    static shuffleString(str: string): string {
+    shuffleString(str: string): string {
         return ArrayShuffle(str.split('')).join('');
-    }
-}
+    },
+};
+
+export default Utils;

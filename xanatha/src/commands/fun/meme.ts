@@ -1,4 +1,4 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
+import { Disclosure, Command } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 import { Colors } from '../../utils/Constants';
 import fetch from 'node-fetch';
@@ -9,7 +9,7 @@ const url = [
 ];
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'meme',
             description: 'Sends a random meme from reddit',
@@ -25,7 +25,7 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
         const response = await fetch(
             url[Math.floor(Math.random() * url.length)],
         );
@@ -33,7 +33,7 @@ export default class extends Command {
 
         const index =
             body.data.children[Math.floor(Math.random() * 99) + 1].data;
-        const title = index.title;
+        const { title } = index;
 
         if (index.post_hint !== 'image') {
             return message.channel.send(
@@ -48,7 +48,7 @@ export default class extends Command {
 
         const image = index.url;
 
-        message.channel.send(
+        return message.channel.send(
             new MessageEmbed()
                 .setAuthor('r/dankmemes or r/memes')
                 .setImage(image)

@@ -1,7 +1,7 @@
 import Manager from '../structures/Manager';
-import { Collection } from 'discord.js';
 import Member, { MemberAttributes } from '../database/models/Member';
-import { Disclosure } from 'disclosure-discord';
+import type { Disclosure } from 'disclosure-discord';
+import type { Collection } from 'discord.js';
 
 export default class MemberManager extends Manager<
     Collection<string, MemberAttributes>
@@ -13,13 +13,8 @@ export default class MemberManager extends Manager<
     public async fetch(guild_id: string, member_id: string, tag: string) {
         let member = await Member.findOne({ guild_id, member_id });
 
-        if (!member) {
-            member = new Member({ guild_id, member_id, tag });
-        }
-
-        if (member.tag !== tag) {
-            member.tag = tag;
-        }
+        if (!member) member = new Member({ guild_id, member_id, tag });
+        if (member.tag !== tag) member.tag = tag;
 
         return member;
     }

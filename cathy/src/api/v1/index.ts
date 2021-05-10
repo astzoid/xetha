@@ -28,8 +28,7 @@ app.use('/user', user);
 app.use((req, res, next) => {
     if (!req.isAuthenticated())
         return res.status(401).json({ message: 'Not Authorized' });
-
-    next();
+    return next();
 });
 
 app.use('/guild', guild);

@@ -2,11 +2,11 @@ import { Disclosure, Command, Arguments } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 import moment from 'moment';
 import fetch from 'node-fetch';
-import Utils from '../../utils/Utils';
+import HumanReadable from '@oadpoaw/human-readable';
 import { Colors } from '../../utils/Constants';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'stackexchange',
             description: 'Searches Stack Exchange for your query',
@@ -22,7 +22,7 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message, argv: Arguments) {
         const args = argv._;
         const query = encodeURIComponent(args.join(' '));
         const queries = `?q=${query}&page=1&pagesize=1&order=asc&sort=relevance&answers=1&site=stackoverflow`;
@@ -33,13 +33,12 @@ export default class extends Command {
             );
             const body = await response.json();
 
-            if (!body.items.length) {
+            if (!body.items.length)
                 return message.channel.send('Could not find any results.');
-            }
 
             const data = body.items[0];
 
-            message.channel.send(
+            return message.channel.send(
                 new MessageEmbed()
                     .setColor(Colors.silver)
                     .setAuthor(
@@ -55,16 +54,8 @@ export default class extends Command {
                         `[${data.owner.display_name}](${data.owner.link})`,
                         true,
                     )
-                    .addField(
-                        '❯ Views',
-                        Utils.toHumanReadable(data.view_count),
-                        true,
-                    )
-                    .addField(
-                        '❯ Score',
-                        Utils.toHumanReadable(data.score),
-                        true,
-                    )
+                    .addField('❯ Views', HumanReadable(data.view_count), true)
+                    .addField('❯ Score', HumanReadable(data.score), true)
                     .addField(
                         '❯ Creation Date',
                         moment

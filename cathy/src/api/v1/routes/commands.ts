@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import RequestHandler from '../../../rest/RequestHandler';
-import APIResponse from '../../../rest/APIResponse';
-import AsyncWrapper from '@xetha/async-wrapper';
+import AsyncWrapper from '@oadpoaw/async-wrapper';
+import REST from '../../../functions/REST';
 
 const commands = Router();
 
@@ -20,7 +19,7 @@ commands.get(
     AsyncWrapper(async (_req, res) => {
         if (cmds.length) return res.status(200).json(cmds);
 
-        const response = await RequestHandler.request<Commands>('GET', {
+        const response = await REST.get({
             route: '/api/commands',
         }).then((res) => res);
 

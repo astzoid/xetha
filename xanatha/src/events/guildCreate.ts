@@ -3,17 +3,16 @@ import { Guild, TextChannel, Webhook, MessageEmbed } from 'discord.js';
 import { Colors } from '../utils/Constants';
 
 export default class extends DiscordEvent {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, 'guildCreate');
     }
 
-    async exec(guild: Guild) {
+    public async exec(guild: Guild) {
         if (
             this.client.managers.blacklist.getServer(guild.id) ||
             this.client.managers.blacklist.getUser(guild.ownerID)
-        ) {
+        )
             return guild.leave();
-        }
 
         const channel = (await this.client.channels.fetch(
             this.client.xetha.channels.guildCreate,
@@ -24,7 +23,7 @@ export default class extends DiscordEvent {
             ? webhooks.first()
             : await channel
                   .createWebhook('Xetha', {
-                      avatar: this.client.user.avatar,
+                      avatar: this.client.user?.avatar ?? '',
                       reason: 'Logging',
                   })
                   .catch((error) => this.client.logger.error(error) && null);
@@ -33,13 +32,12 @@ export default class extends DiscordEvent {
             .setColor(Colors.lime)
             .setTimestamp()
             .setTitle(`${guild.name} / ${guild.id}`)
-            .setImage(guild.splash ? guild.splashURL() : null)
+            .setImage(guild.splashURL() ?? '')
             .setThumbnail(
-                guild.icon
-                    ? guild.iconURL({ dynamic: true })
-                    : `https://dummyimage.com/128/7289DA/FFFFFF/&text=${encodeURIComponent(
-                          guild.nameAcronym,
-                      )}`,
+                guild.iconURL({ dynamic: true }) ??
+                    `https://dummyimage.com/128/7289DA/FFFFFF/&text=${encodeURIComponent(
+                        guild.nameAcronym,
+                    )}`,
             )
             .addField('Created At', guild.createdAt.toUTCString())
             .addField('Region', guild.region.toUpperCase(), true)
@@ -70,19 +68,18 @@ export default class extends DiscordEvent {
                 `Xetha is now at ${await this.client.getCount(
                     'guilds',
                 )} guilds`,
-                this.client.user.displayAvatarURL({ dynamic: true }),
+                this.client.user?.displayAvatarURL({ dynamic: true }),
             );
 
         const owner = await this.client.users
             .fetch(guild.ownerID)
-            .catch(() => {});
+            .catch((err) => this.client.logger.error(err));
 
-        if (owner) {
+        if (owner)
             embed.setAuthor(
                 `${owner.tag} / ${owner.id}`,
                 owner.displayAvatarURL({ dynamic: true }),
             );
-        }
 
         if (guild.features.length) {
             embed.addField(
@@ -91,6 +88,6 @@ export default class extends DiscordEvent {
             );
         }
 
-        webhook ? webhook.send(embed) : channel.send(embed);
+        return webhook ? webhook.send(embed) : channel.send(embed);
     }
 }

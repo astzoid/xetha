@@ -1,9 +1,9 @@
-import { Disclosure, Command, Arguments } from 'disclosure-discord';
+import { Disclosure, Command } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 import fetch from 'node-fetch';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'cat',
             description: 'Sends a random image of a cat cat cat!',
@@ -19,11 +19,11 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message) {
         const response = await fetch('http://placekitten.com/200/300');
         const body = await response.json();
 
-        message.channel.send(
+        await message.channel.send(
             new MessageEmbed()
                 .setColor('RANDOM')
                 .setImage(body)

@@ -4,7 +4,7 @@ import ms from 'pretty-ms';
 import { Colors } from '../utils/Constants';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'help',
             description: "Shows the list of the Bot's Commands",
@@ -20,7 +20,7 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message, argv: Arguments) {
         // Filter out guild only commands if not in a guild
         const commands = this.client.commands
             .filter((command) => !(!message.guild && command.config.guildOnly))
@@ -28,6 +28,7 @@ export default class extends Command {
                 (command) =>
                     !(
                         !command.config.ownerOnly &&
+                        // @ts-ignore String Array
                         this.client.config.ownerID.includes(message.author.id)
                     ),
             );
@@ -133,32 +134,28 @@ export default class extends Command {
                 }
 
                 return message.channel.send(embed);
-            } else {
-                const cmds = commands.filter(
-                    (cmd) =>
-                        cmd.config.category &&
-                        cmd.config.category === name.toLowerCase(),
-                );
+            }
+            const cmds = commands.filter((cmd) =>
+                cmd.config.category
+                    ? cmd.config.category === name.toLowerCase()
+                    : false,
+            );
 
-                if (cmds.size) {
-                    return message.channel.send(
-                        new MessageEmbed()
-                            .setTimestamp()
-                            .setTitle(
-                                name.replace(/(^\w{1})|(\s{1}\w{1})/g, (m) =>
-                                    m.toUpperCase(),
-                                ),
-                            )
-                            .setDescription(
-                                `${cmds
-                                    .map(
-                                        (command) =>
-                                            `\`${command.config.name}\``,
-                                    )
-                                    .join(', ')}`,
+            if (cmds.size) {
+                return message.channel.send(
+                    new MessageEmbed()
+                        .setTimestamp()
+                        .setTitle(
+                            name.replace(/(^\w{1})|(\s{1}\w{1})/g, (m) =>
+                                m.toUpperCase(),
                             ),
-                    );
-                }
+                        )
+                        .setDescription(
+                            `${cmds
+                                .map((command) => `\`${command.config.name}\``)
+                                .join(', ')}`,
+                        ),
+                );
             }
         }
 
@@ -173,7 +170,7 @@ export default class extends Command {
 
         const prefix = await this.client.dispatcher.generators.prefix(message);
 
-        message.channel.send(
+        return message.channel.send(
             new MessageEmbed()
                 .setTimestamp()
                 .setColor(Colors.aqua)

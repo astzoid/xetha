@@ -1,4 +1,6 @@
 import { Disclosure } from 'disclosure-discord';
+import processor from '@oadpoaw/processor';
+
 import './database/database';
 
 import BlacklistManager from './managers/BlacklistManager';
@@ -9,8 +11,11 @@ import PermissionManager, {
 } from './managers/PermissionManager';
 import ProfileManager from './managers/ProfileManager';
 import { Config } from './utils/Constants';
+import Logger from './utils/Logger';
 
-const client = new Disclosure(process.env.MONGODB_URI);
+const client = new Disclosure(process.env.MONGODB_URI, {}, Logger);
+
+processor(client.logger);
 
 client.managers = {
     blacklist: new BlacklistManager(client),
@@ -22,14 +27,13 @@ client.managers = {
 
 client.xetha = Config;
 
-client.init = async function () {
+client.init = async function init() {
     await this.managers.blacklist.synchronize();
-
     return this;
 };
 
 client.dispatcher.generators.prefix = async (message) => {
-    let prefix = client.config.prefix;
+    let { prefix } = client.config;
 
     if (message.guild) {
         prefix = (
@@ -40,23 +44,16 @@ client.dispatcher.generators.prefix = async (message) => {
         ).prefix;
     }
 
-    if (typeof prefix !== 'string') {
-        prefix = client.config.prefix;
-    }
+    if (typeof prefix !== 'string') prefix = client.config.prefix;
 
     return prefix;
 };
 
 client.dispatcher.beforeExecute = (message) => {
-    if (message.guild) {
-        if (client.managers.blacklist.getServer(message.guild.id)) {
-            return false;
-        }
-    }
-
-    if (client.managers.blacklist.getUser(message.author.id)) {
+    if (message.guild && client.managers.blacklist.getServer(message.guild.id))
         return false;
-    }
+
+    if (client.managers.blacklist.getUser(message.author.id)) return false;
 
     return true;
 };
@@ -73,29 +70,41 @@ client.dispatcher.addInhibitor(async (message, command) => {
         message.author.tag,
     );
 
-    if (
-        client.managers.permissions.level(message, guild, profile) <
-        client.managers.permissions.cache.get(
+    if (guild) {
+        const permission = client.managers.permissions.cache.get(
             command.config.permission ?? 'Bot Owner',
-        ).level
-    ) {
-        await message.channel.send(
-            `<:no:800415449488556053> You do not have permission to use this command.\nYour permission level is \`${
-                client.managers.permissions.levels[
-                    client.managers.permissions.level(message, guild, profile)
-                ]
-            }\`\nThis command requires \`${command.config.permission}\``,
         );
-        return false;
-    }
 
+        if (
+            permission &&
+            client.managers.permissions.level(message, guild, profile) <
+                permission.level
+        ) {
+            await message.channel.send(
+                `<:no:800415449488556053> You do not have permission to use this command.\nYour permission level is \`${
+                    client.managers.permissions.levels[
+                        client.managers.permissions.level(
+                            message,
+                            guild,
+                            profile,
+                        )
+                    ]
+                }\`\nThis command requires \`${command.config.permission}\``,
+            );
+            return false;
+        }
+    }
     return true;
 }, 2);
 
 client
     .init()
     .then(() => client.initialize())
-    .then(() => client.login());
+    .then(() => client.login())
+    .catch((err) => {
+        client.logger.error(err);
+        process.exit(1);
+    });
 
 declare module 'disclosure-discord/dist/src/Disclosure' {
     export interface Disclosure {

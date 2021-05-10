@@ -1,12 +1,13 @@
 import { Disclosure, DiscordEvent } from 'disclosure-discord';
-import { RateLimitData } from 'discord.js';
+import type { RateLimitData } from 'discord.js';
 
 export default class extends DiscordEvent {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, 'rateLimit');
     }
 
-    async exec(rateLimit: RateLimitData) {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    public async exec(rateLimit: RateLimitData) {
         this.client.logger.warn(rateLimit);
     }
 }

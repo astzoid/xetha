@@ -1,23 +1,15 @@
-import { ProfileAttributes } from '../database/models/Profile';
+import type { ProfileAttributes } from '../database/models/Profile';
 
-export default class Wrapper {
-    constructor() {
-        throw new Error(
-            `The ${this.constructor.name} class cannot be instantiated`,
-        );
-    }
-
-    static addItem(user: ProfileAttributes, id: string, amount: number = 1) {
+const Wrapper = {
+    addItem(user: ProfileAttributes, id: string, amount = 1) {
         const cur = user.inventory.find((i) => i.id === id);
 
-        if (cur) {
-            return (cur.amount += amount);
-        }
+        if (cur) return (cur.amount += amount);
 
-        user.inventory.push({ id, amount });
-    }
+        return user.inventory.push({ id, amount });
+    },
 
-    static removeItem(user: ProfileAttributes, id: string, amount: number = 1) {
+    removeItem(user: ProfileAttributes, id: string, amount = 1) {
         const cur = user.inventory.find((i) => i.id === id);
 
         if (
@@ -29,10 +21,11 @@ export default class Wrapper {
             return (cur.amount -= amount);
         }
 
-        user.inventory = user.inventory.filter((i) => i.id !== id);
-    }
+        return (user.inventory = user.inventory.filter((i) => i.id !== id));
+    },
 
-    static hasItem(user: ProfileAttributes, id: string) {
-        return !!user.inventory.find((c) => c.id === id);
-    }
-}
+    hasItem(user: ProfileAttributes, id: string) {
+        return Boolean(user.inventory.find((c) => c.id === id));
+    },
+};
+export default Wrapper;

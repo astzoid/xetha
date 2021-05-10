@@ -1,10 +1,10 @@
-import Random from '@xetha/random';
+import Random from '@oadpoaw/random';
 import { Disclosure, Command, Arguments } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
 import { Colors } from '../../utils/Constants';
 
 export default class extends Command {
-    constructor(client: Disclosure) {
+    public constructor(client: Disclosure) {
         super(client, {
             name: 'penis',
             description: "Calculates your penis size till it's smallest form",
@@ -20,19 +20,17 @@ export default class extends Command {
         });
     }
 
-    async execute(message: Message, argv: Arguments) {
+    public async execute(message: Message, argv: Arguments) {
         let target =
-            (await this.client.resolveUser(argv._[0])) || message.author;
+            (await this.client.resolveUser(argv._[0])) ?? message.author;
 
-        if (!target) {
-            target = message.author;
-        }
+        if (!target) target = message.author;
 
-        let embed = new MessageEmbed()
+        const embed = new MessageEmbed()
             .setColor(Colors.random)
             .setTitle(`${target.tag}\'s penis`);
 
-        let max = Random.number(30, 0);
+        const max = Random.number(30, 0);
         let gland = '';
 
         for (let i = 0; i < max; i++) {
