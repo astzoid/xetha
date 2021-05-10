@@ -41,7 +41,7 @@ There are a number of guidelines considered when reviewing Pull Requests to be m
 
 [commitizen]: https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen
 [commit convention]: https://www.conventionalcommits.org/en/v1.0.0/
-[discord server]: https://discord.gg/Ttu5fN65Ed
+[discord server]: https://discord.gg/YeJs5w7XAH
 [node.js]: https://nodejs.org/en/download/
 [here]: https://github.com/xetha-bot/xetha/pulls
 [oop paradigms]: https://en.wikipedia.org/wiki/Object-oriented_programming
