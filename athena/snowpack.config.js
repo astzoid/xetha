@@ -7,7 +7,7 @@ const path = require('path');
 
 /** @type {import('snowpack').SnowpackUserConfig} */
 module.exports = {
-  workspaceRoot: '..',
+  workspaceRoot: path.join(__dirname, '..'),
   mount: {
     public: {
       url: '/',
