@@ -27,4 +27,5 @@ jobs:
           node-version: 14.x
 
       - run: yarn ci
-      - run: yarn commitlint --edit ${{ needs.pre_ci.outputs.commit_message }}
+      - run: echo "${{ needs.pre_ci.outputs.commit_message }}" >> COMMIT_MESSAGE
+      - run: yarn commitlint --edit COMMIT_MESSAGE

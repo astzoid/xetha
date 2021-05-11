@@ -91,7 +91,7 @@
       "scope-case": [
         1,
         "always",
-        "camel-case"
+        "lower-case"
       ]
     }
   }
