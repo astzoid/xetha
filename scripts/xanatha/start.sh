@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-cd xanatha
-yarn start
+echo "Starting Xanatha Backend Server..."
+
+yarn workspace xanatha start

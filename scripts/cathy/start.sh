@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-cd cathy
-yarn start
+echo "Starting Cathy Backend Server..."
+
+yarn workspace cathy start

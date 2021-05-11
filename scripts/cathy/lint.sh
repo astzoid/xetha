@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-yarn eslint cathy --ext ts --fix
+PROJECT="cathy"
+
+echo "$PROJECT: linting..."
+yarn eslint $PROJECT --ext ts --fix
+echo "$PROJECT: linted."

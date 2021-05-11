@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-yarn eslint athena --ext ts,tsx --fix
+PROJECT="athena"
+
+echo "$PROJECT: linting..."
+yarn eslint $PROJECT --ext ts,tsx --fix
+echo "$PROJECT: linted."

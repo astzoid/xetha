@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-if [ "$1" == "clean" ]; then
-    . "$(dirname "$0")/clean.sh"
-fi
+PROJECT="athena"
 
-yarn lerna run build --scope "athena"
+echo "$PROJECT: compiling production build..."
+yarn lerna run build --scope "$PROJECT"
+echo "$PROJECT: production build done."

@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-yarn eslint xanatha --ext ts --fix
+PROJECT="xanatha"
+
+echo "$PROJECT: linting..."
+yarn eslint $PROJECT --ext ts --fix
+echo "$PROJECT: lint completed."

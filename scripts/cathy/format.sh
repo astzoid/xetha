@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-yarn prettier --write "./cathy/src/**/*.ts"
+PROJECT="cathy"
+
+echo "$PROJECT: formatting..."
+yarn prettier --write "./$PROJECT/src/**/*.ts"
+echo "$PROJECT: formatted..."

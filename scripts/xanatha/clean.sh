@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-yarn rimraf ./xanatha/dist ./xanatha/node_modules/.cache
+PROJECT="xanatha"
+
+echo "$PROJECT: cleaning..."
+yarn rimraf ./$PROJECT/dist ./$PROJECT/node_modules/.cache

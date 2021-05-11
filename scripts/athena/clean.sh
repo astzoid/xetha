@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-yarn rimraf ./athena/dist ./athena/node_modules/.cache
+PROJECT="athena"
+
+echo "$PROJECT: cleaning..."
+yarn rimraf ./$PROJECT/dist ./$PROJECT/node_modules/.cache
+echo "$PROJECT: cleaned."

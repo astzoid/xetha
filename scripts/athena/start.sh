@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-cd athena
+echo "Starting Athena Development Server..."
 
 if [ "$1" == "mock" ]; then
-    yarn start &
-    yarn mock
+    yarn workspace athena start &
+    yarn workspace athena mock
 else
-    yarn start
+    yarn workspace start
 fi
