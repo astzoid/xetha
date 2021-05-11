@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json.schemastore.org/package",
+    "name": "@shared/database",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc --project tsconfig.json"
+    },
+    "dependencies": {
+        "dotenv": "^9.0.2",
+        "mongoose": "^5.12.8"
+    }
+}
