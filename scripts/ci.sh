@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-yarn install --immutable
+yarn install --frozen-lockfile
