@@ -9,4 +9,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - run: yarn ci
+
       - uses: wagoid/commitlint-github-action@v3
+        env:
+          NODE_PATH: ${{ github.workspace }}/node_modules
