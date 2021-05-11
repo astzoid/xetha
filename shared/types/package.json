@@ -5,6 +5,5 @@
     "scripts": {
         "build": "exit 0"
     },
-    "types": "src/index.ts",
-    "private": "true"
+    "types": "src/index.ts"
 }
