@@ -7,7 +7,7 @@ updates:
       interval: daily
     commit-message:
       include: scope
-      prefix: build
+      prefix: chore
     reviewers:
       - oadpoaw
 
@@ -18,7 +18,7 @@ updates:
       interval: daily
     commit-message:
       include: scope
-      prefix: build
+      prefix: chore
     reviewers:
       - oadpoaw
 
@@ -29,7 +29,7 @@ updates:
       interval: daily
     commit-message:
       include: scope
-      prefix: build
+      prefix: chore
     reviewers:
       - oadpoaw
 
@@ -40,7 +40,7 @@ updates:
       interval: daily
     commit-message:
       include: scope
-      prefix: build
+      prefix: chore
     reviewers:
       - oadpoaw
 
@@ -51,6 +51,6 @@ updates:
       interval: daily
     commit-message:
       include: scope
-      prefix: build
+      prefix: chore
     reviewers:
       - oadpoaw
