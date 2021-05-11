@@ -6,7 +6,6 @@
         "../athena/src/**/*.ts",
         "../cathy/src/**/*.ts",
         "../xanatha/src/**/*.ts",
-        "../shared/**/src/**/*.ts",
-        "../shared/**/__tests__/*.ts"
+        "../shared/**/src/**/*.ts"
     ]
 }
