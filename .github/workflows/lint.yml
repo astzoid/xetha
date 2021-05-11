@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 0
       - id: files
-        run: echo ::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep '\w+\.tsx?$')
+        run: echo ::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep '\.ts$\|\.tsx$')
 
     outputs:
       files: ${{ steps.files.outputs.files }}
