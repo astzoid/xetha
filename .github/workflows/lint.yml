@@ -5,12 +5,10 @@ on:
     paths:
       - "**/*.ts"
       - "**/*.tsx"
-      - .github/workflows/lint.yml
   pull_request:
     paths:
       - "**/*.ts"
       - "**/*.tsx"
-      - .github/workflows/lint.yml
 
 jobs:
   pre_ci:
@@ -23,7 +21,7 @@ jobs:
         run: echo ::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep '\w+\.tsx?$')
 
     outputs:
-      files: $( echo "${{ steps.files.outputs.files }}" )
+      files: ${{ steps.files.outputs.files }}
 
   lint:
     needs: pre_ci
