@@ -32,12 +32,6 @@
     "lint:xanatha": "bash ./scripts/xanatha/lint.sh",
     "lint:shared": "bash ./scripts/shared/lint.sh"
   },
-  "workspaces": [
-    "athena",
-    "cathy",
-    "xanatha",
-    "shared/*"
-  ],
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-angular": "^12.1.1",
