@@ -1,7 +1,7 @@
 import { Disclosure, Command, Arguments } from 'disclosure-discord';
 import { Message, MessageEmbed } from 'discord.js';
+import { Member } from '@shared/database';
 import HumanReadable from '@oadpoaw/human-readable';
-import Member from '../../database/models/Member';
 import Handlers from '../../functions/Handlers';
 import Leveling from '../../modules/Leveling';
 

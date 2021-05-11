@@ -1,5 +1,6 @@
 import Manager from '../structures/Manager';
-import Member, { MemberAttributes } from '../database/models/Member';
+import { Member } from '@shared/database';
+import type { MemberAttributes } from '@shared/database';
 import type { Disclosure } from 'disclosure-discord';
 import type { Collection } from 'discord.js';
 

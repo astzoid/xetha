@@ -9,7 +9,7 @@ import Random from '@oadpoaw/random';
 import { Colors } from '../utils/Constants';
 import WebhookUtil from '../utils/WebhookUtil';
 import Leveling from '../modules/Leveling';
-import type { GuildAttributes } from '../database/models/Guild';
+import type { GuildAttributes } from '@shared/database';
 import type { Disclosure } from 'disclosure-discord';
 
 const LevelingCooldown: Collection<
@@ -143,7 +143,7 @@ const Handlers = {
                             ) > 0
                         ) {
                             await message.member?.roles
-                                .add(role, `[Leveling] role reward`)
+                                .add(role, `[Leveling] Role Reward`)
                                 .catch(async (error) => {
                                     if (message.guild && guild.logging_errors) {
                                         await Handlers.logging(

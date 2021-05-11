@@ -1,6 +1,5 @@
 import ProgressBar from '@oadpoaw/progressbar';
-import type { MemberAttributes } from '../database/models/Member';
-import type { ProfileAttributes } from '../database/models/Profile';
+import type { ProfileAttributes, MemberAttributes } from '@shared/database';
 
 const LvlChart: number[] = [];
 const ReqLvlChart: number[] = [];

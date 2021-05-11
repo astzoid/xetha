@@ -1,5 +1,6 @@
 import Manager from '../structures/Manager';
-import Guild, { GuildAttributes } from '../database/models/Guild';
+import { Guild } from '@shared/database';
+import type { GuildAttributes } from '@shared/database';
 import type { Disclosure } from 'disclosure-discord';
 
 export default class GuildManager extends Manager<GuildAttributes> {

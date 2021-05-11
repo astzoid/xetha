@@ -1,8 +1,8 @@
+import '@shared/env';
+import '@shared/database';
+
 import { Disclosure } from 'disclosure-discord';
 import processor from '@oadpoaw/processor';
-
-import './database/database';
-
 import BlacklistManager from './managers/BlacklistManager';
 import GuildManager from './managers/GuildManager';
 import MemberManager from './managers/MemberManager';

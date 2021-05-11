@@ -1,5 +1,6 @@
 import { Disclosure, DiscordEvent } from 'disclosure-discord';
-import Guild, { GuildAttributes } from '../database/models/Guild';
+import { Guild } from '@shared/database';
+import type { GuildAttributes } from '@shared/database';
 
 export default class extends DiscordEvent<'guildDataUpdate'> {
     public constructor(client: Disclosure) {

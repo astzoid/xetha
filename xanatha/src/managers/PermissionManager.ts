@@ -1,7 +1,6 @@
 import Manager from '../structures/Manager';
 import type { Message } from 'discord.js';
-import type { GuildAttributes } from '../database/models/Guild';
-import type { ProfileAttributes } from '../database/models/Profile';
+import type { GuildAttributes, ProfileAttributes } from '@shared/database';
 import type { Disclosure } from 'disclosure-discord';
 
 export const Levels: Level[] = [

@@ -1,11 +1,8 @@
 import Manager from '../structures/Manager';
-import {
-    BlacklistedServer,
-    BlacklistedUser,
-    BlacklistedAttributes,
-} from '../database/models/Blacklisted';
 import { Collection, User } from 'discord.js';
+import { BlacklistedServer, BlacklistedUser } from '@shared/database';
 import type { Disclosure } from 'disclosure-discord';
+import type { BlacklistedAttributes } from '@shared/database';
 
 export default class BlacklistManager extends Manager<
     Collection<string, BlacklistedAttributes>

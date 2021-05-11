@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { version } from '../../utils/Constants';
 import AsyncWrapper from '@oadpoaw/async-wrapper';
 import type { DisclosureSharder } from 'disclosure-discord';
+import type { Shard } from '@shared/types';
 
 export default function Status(manager: DisclosureSharder) {
     const route = Router();
@@ -9,20 +9,10 @@ export default function Status(manager: DisclosureSharder) {
     route.get(
         '/',
         AsyncWrapper(async (_req, res) => {
-            const shards = (await manager.broadcastEval(
-                `const info = { id: this.shard.id, guilds: this.guilds.cache.size, ping: this.ws.ping, uptime: this.uptime }; info;`,
-            )) as Array<{
-                id: number;
-                guilds: number;
-                ping: number;
-                uptime: number;
-            }>;
-            res.status(200).json({
-                version,
-                uptime: process.uptime(),
-                guilds: await manager.getCount('guilds'),
-                shards,
-            });
+            const payload = (await manager.broadcastEval(
+                `({ id: this.shard.id, guilds: this.guilds.cache.size, ping: this.ws.ping, uptime: this.uptime });`,
+            )) as Array<Shard>;
+            res.status(200).json(payload);
         }),
     );
 

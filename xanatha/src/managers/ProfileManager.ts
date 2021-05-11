@@ -1,5 +1,6 @@
 import Manager from '../structures/Manager';
-import Profile, { ProfileAttributes } from '../database/models/Profile';
+import { Profile } from '@shared/database';
+import type { ProfileAttributes } from '@shared/database';
 import type { Disclosure } from 'disclosure-discord';
 
 export default class ProfileManager extends Manager<ProfileAttributes> {

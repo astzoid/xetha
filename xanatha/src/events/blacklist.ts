@@ -1,9 +1,6 @@
 import { Disclosure, DiscordEvent } from 'disclosure-discord';
-import {
-    BlacklistedServer,
-    BlacklistedUser,
-} from '../database/models/Blacklisted';
-import type { BlacklistedAttributes } from '../database/models/Blacklisted';
+import { BlacklistedServer, BlacklistedUser } from '@shared/database';
+import type { BlacklistedAttributes } from '@shared/database';
 
 export default class extends DiscordEvent<'blacklist'> {
     public constructor(client: Disclosure) {

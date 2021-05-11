@@ -1,14 +1,7 @@
 import AsyncWrapper from '@oadpoaw/async-wrapper';
-import type { DisclosureSharder } from 'disclosure-discord';
 import { Router } from 'express';
-
-interface Config {
-    name: string;
-    description: string;
-    usage: string[];
-    category: string;
-    aliases: string[];
-}
+import type { DisclosureSharder } from 'disclosure-discord';
+import type { Command } from '@shared/types';
 
 export default function Commands(manager: DisclosureSharder) {
     const route = Router();
@@ -19,10 +12,8 @@ export default function Commands(manager: DisclosureSharder) {
             const shards = (await manager.broadcastEval(
                 `this.commands
                 .filter((command) => {
-                    if (command.config.category) {
-                        if (command.config.category === 'staff') {
-                            return false;
-                        }
+                    if (command.config.category && command.config.category === 'staff') {
+                        return false;
                     }
                     if (command.config.ownerOnly) {
                         return false;
@@ -39,7 +30,7 @@ export default function Commands(manager: DisclosureSharder) {
                     }
                 });`,
                 0,
-            )) as Array<Config>;
+            )) as Array<Command>;
 
             res.status(200).json(shards);
         }),

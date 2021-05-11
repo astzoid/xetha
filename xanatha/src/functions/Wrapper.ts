@@ -1,4 +1,4 @@
-import type { ProfileAttributes } from '../database/models/Profile';
+import type { ProfileAttributes } from '@shared/database';
 
 const Wrapper = {
     addItem(user: ProfileAttributes, id: string, amount = 1) {

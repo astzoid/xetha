@@ -1,7 +1,5 @@
-import { config } from 'dotenv';
-config();
-
-import './database/database';
+import '@shared/env';
+import '@shared/database';
 
 import { DisclosureSharder } from 'disclosure-discord';
 import server from './api/server';

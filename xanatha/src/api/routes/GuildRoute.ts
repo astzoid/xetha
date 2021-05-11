@@ -1,13 +1,8 @@
 import { Router } from 'express';
-import type {
-    Guild as DiscordGuild,
-    GuildChannelManager,
-    RoleManager,
-} from 'discord.js';
-import Guild from '../../database/models/Guild';
-import type { BlacklistedAttributes } from '../../database/models/Blacklisted';
+import type { Guild, GuildChannelManager, RoleManager } from 'discord.js';
 import AsyncWrapper from '@oadpoaw/async-wrapper';
 import type { DisclosureSharder } from 'disclosure-discord';
+import type { DiscordGuild } from '@shared/types';
 
 export default function GuildRoute(manager: DisclosureSharder) {
     const route = Router();
@@ -16,30 +11,14 @@ export default function GuildRoute(manager: DisclosureSharder) {
         '/:guild_id',
         AsyncWrapper(async (req, res) => {
             const guild_id = req.params.guild_id as string;
-
-            const blacklisted = (await manager.broadcastEval(
-                `this.managers.blacklist.getServer('${guild_id}')`,
-                0,
-            )) as BlacklistedAttributes;
-
-            if (blacklisted) {
-                return res.status(403).json({
-                    message: 'Guild is Blacklisted',
-                    reason: blacklisted.reason,
-                    issued_by: blacklisted.moderator,
-                    issued_at: blacklisted.date,
-                });
-            }
-
             const shards = await manager.broadcastEval(
                 `this.guilds.cache.get('${guild_id}')`,
             );
 
-            const guild = shards.find((s) => s) as DiscordGuild;
+            const guild = shards.find((s) => s) as Guild;
 
-            if (!guild) {
+            if (!guild)
                 return res.status(404).json({ message: 'Guild Not Found' });
-            }
 
             const channelShards: GuildChannelManager[] = await manager.broadcastEval(
                 `this.guilds.cache.get('${guild_id}').channels`,
@@ -51,36 +30,35 @@ export default function GuildRoute(manager: DisclosureSharder) {
             const channels = channelShards.find((s) => s);
             const roles = roleShards.find((s) => s);
 
-            let settings = await Guild.findOne({ guild_id });
-
-            if (!settings)
-                settings = await Guild.create({ guild_id, name: guild.name });
-
-            return res.status(200).json({
+            const payload: DiscordGuild = {
                 id: guild.id,
                 name: guild.name,
-                settings: settings.toJSON(),
-                channels: channels?.cache
-                    .sort((a, b) => b.rawPosition - a.rawPosition)
-                    .map((c) => {
-                        return {
-                            id: c.id,
-                            name: c.name,
-                            type: c.type,
-                            parent: c.parentID,
-                        };
-                    }),
-                roles: roles?.cache
-                    .filter((r) => !r.managed && r.name !== '@everyone')
-                    .sort((a, b) => b.rawPosition - a.rawPosition)
-                    .map((r) => {
-                        return {
-                            id: r.id,
-                            name: r.name,
-                            color: r.hexColor,
-                        };
-                    }),
-            });
+                icon: guild.icon,
+                channels:
+                    channels?.cache
+                        .sort((a, b) => b.rawPosition - a.rawPosition)
+                        .map((c) => {
+                            return {
+                                id: c.id,
+                                name: c.name,
+                                type: c.type,
+                                parent: c.parentID,
+                            };
+                        }) ?? [],
+                roles:
+                    roles?.cache
+                        .filter((r) => !r.managed && r.name !== '@everyone')
+                        .sort((a, b) => b.rawPosition - a.rawPosition)
+                        .map((r) => {
+                            return {
+                                id: r.id,
+                                name: r.name,
+                                color: r.hexColor,
+                            };
+                        }) ?? [],
+            };
+
+            return res.status(200).json(payload);
         }),
     );
 
@@ -88,17 +66,10 @@ export default function GuildRoute(manager: DisclosureSharder) {
         '/:guild_id',
         AsyncWrapper(async (req, res) => {
             const guild_id = req.params.guild_id as string;
-            const guild = await Guild.findOne({ guild_id });
-
-            if (!guild)
-                return res.status(404).json({ message: 'Guild Not Found' });
-
-            await guild.update(req.body);
             await manager.broadcastEval(
                 `this.emit('guildDataUpdate', '${guild_id}')`,
             );
-
-            return res.status(200).json(guild.toJSON());
+            return res.status(200).json({ message: 'Guild Updated.' });
         }),
     );
 
