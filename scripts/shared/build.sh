@@ -5,4 +5,3 @@ fi
 
 echo "shared: compiling packages..."
 yarn lerna run build --scope "@shared/+(**)"
-echo "shared: compiled."
