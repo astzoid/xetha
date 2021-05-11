@@ -3,7 +3,6 @@
   "private": true,
   "name": "xetha",
   "scripts": {
-    "ci": "bash ./scripts/ci.sh",
     "prepare": "bash ./scripts/husky/husky.sh",
     "bootstrap": "bash ./scripts/bootstrap.sh",
     "bump": "bash ./scripts/bump.sh",
