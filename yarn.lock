@@ -2738,7 +2738,73 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shared/rest@*, @shared/rest@workspace:shared/rest":
+"@shared/database@file:../shared/database::locator=cathy%40workspace%3Acathy":
+  version: 1.0.0
+  resolution: "@shared/database@file:../shared/database#../shared/database::hash=665fd2&locator=cathy%40workspace%3Acathy"
+  dependencies:
+    dotenv: ^9.0.2
+    mongoose: ^5.12.8
+  checksum: 2e8b77d37efdd00bd3eec741e75fa88192a2b6b50ddae824853397264909ec711939e6c5ab509f15a96af9ee1027a0b92f1b90162d426db3abd500552898fedb
+  languageName: node
+  linkType: hard
+
+"@shared/database@file:../shared/database::locator=xanatha%40workspace%3Axanatha":
+  version: 1.0.0
+  resolution: "@shared/database@file:../shared/database#../shared/database::hash=665fd2&locator=xanatha%40workspace%3Axanatha"
+  dependencies:
+    dotenv: ^9.0.2
+    mongoose: ^5.12.8
+  checksum: 2e8b77d37efdd00bd3eec741e75fa88192a2b6b50ddae824853397264909ec711939e6c5ab509f15a96af9ee1027a0b92f1b90162d426db3abd500552898fedb
+  languageName: node
+  linkType: hard
+
+"@shared/database@workspace:shared/database":
+  version: 0.0.0-use.local
+  resolution: "@shared/database@workspace:shared/database"
+  dependencies:
+    dotenv: ^9.0.2
+    mongoose: ^5.12.8
+  languageName: unknown
+  linkType: soft
+
+"@shared/env@file:../shared/env::locator=cathy%40workspace%3Acathy":
+  version: 1.0.0
+  resolution: "@shared/env@file:../shared/env#../shared/env::hash=7b6a76&locator=cathy%40workspace%3Acathy"
+  dependencies:
+    dotenv: ^9.0.2
+  checksum: df3c36c980744597928cf95d672b7b88bd99b4186096c4300ae626e7fed74a837895ae5552f63406a58360873a6ac8d4fa49b65bbf5e870d8d285b81c75c7a70
+  languageName: node
+  linkType: hard
+
+"@shared/env@file:../shared/env::locator=xanatha%40workspace%3Axanatha":
+  version: 1.0.0
+  resolution: "@shared/env@file:../shared/env#../shared/env::hash=7b6a76&locator=xanatha%40workspace%3Axanatha"
+  dependencies:
+    dotenv: ^9.0.2
+  checksum: df3c36c980744597928cf95d672b7b88bd99b4186096c4300ae626e7fed74a837895ae5552f63406a58360873a6ac8d4fa49b65bbf5e870d8d285b81c75c7a70
+  languageName: node
+  linkType: hard
+
+"@shared/env@workspace:shared/env":
+  version: 0.0.0-use.local
+  resolution: "@shared/env@workspace:shared/env"
+  dependencies:
+    dotenv: ^9.0.2
+  languageName: unknown
+  linkType: soft
+
+"@shared/rest@file:../shared/rest::locator=cathy%40workspace%3Acathy":
+  version: 1.0.0
+  resolution: "@shared/rest@file:../shared/rest#../shared/rest::hash=6b9ab3&locator=cathy%40workspace%3Acathy"
+  dependencies:
+    "@oadpoaw/merge": ^1.3.1
+    abort-controller: ^3.0.0
+    node-fetch: ^2.6.1
+  checksum: 27a28026c40f8173a9e7b9362bf3f948d99fd25d043701fbf47faadd08eb5bdce05d0ab7fc2c87da4693019d8c17894baa28089ee1a68f5908fb53d9cb61b123
+  languageName: node
+  linkType: hard
+
+"@shared/rest@workspace:shared/rest":
   version: 0.0.0-use.local
   resolution: "@shared/rest@workspace:shared/rest"
   dependencies:
@@ -2749,7 +2815,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@shared/types@*, @shared/types@workspace:shared/types":
+"@shared/types@file:../shared/types::locator=cathy%40workspace%3Acathy":
+  version: 1.0.0
+  resolution: "@shared/types@file:../shared/types#../shared/types::hash=f78770&locator=cathy%40workspace%3Acathy"
+  checksum: d4e2f96ce4bca861e39774908682d71e94bd858e2a0f3a67b54fc0172f280acd57ae1100234c1feaf2612de69e712ce3532a56c28c0deda180501f18370a98e9
+  languageName: node
+  linkType: hard
+
+"@shared/types@file:../shared/types::locator=xanatha%40workspace%3Axanatha":
+  version: 1.0.0
+  resolution: "@shared/types@file:../shared/types#../shared/types::hash=f78770&locator=xanatha%40workspace%3Axanatha"
+  checksum: d4e2f96ce4bca861e39774908682d71e94bd858e2a0f3a67b54fc0172f280acd57ae1100234c1feaf2612de69e712ce3532a56c28c0deda180501f18370a98e9
+  languageName: node
+  linkType: hard
+
+"@shared/types@workspace:shared/types":
   version: 0.0.0-use.local
   resolution: "@shared/types@workspace:shared/types"
   languageName: unknown
@@ -3974,6 +4054,7 @@ __metadata:
     react-helmet-async: ^1.0.9
     react-router-dom: ^5.2.0
     snowpack: ^3.3.5
+    typescript: ^4.2.4
   languageName: unknown
   linkType: soft
 
@@ -4676,8 +4757,10 @@ __metadata:
     "@oadpoaw/async-wrapper": ^1.3.1
     "@oadpoaw/logger": ^1.3.1
     "@oadpoaw/processor": ^1.4.1
-    "@shared/rest": "*"
-    "@shared/types": "*"
+    "@shared/database": "file:../shared/database"
+    "@shared/env": "file:../shared/env"
+    "@shared/rest": "file:../shared/rest"
+    "@shared/types": "file:../shared/types"
     "@types/cookie-parser": ^1.4.2
     "@types/cors": ^2.8.10
     "@types/express": ^4.17.11
@@ -4699,6 +4782,7 @@ __metadata:
     memorystore: ^1.6.6
     passport: ^0.4.1
     passport-discord: ^0.1.4
+    rate-limit-mongo: "git+https://github.com/oadpoaw/rate-limit-mongo.git"
   languageName: unknown
   linkType: soft
 
@@ -6223,7 +6307,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^9.0.0":
+"dotenv@npm:^9.0.0, dotenv@npm:^9.0.2":
   version: 9.0.2
   resolution: "dotenv@npm:9.0.2"
   checksum: 062a31a2fd024a8a7efee4f2d3972d488a1485e0545b97ab3c338f59f17689a2ae84b6e8ddb9ebca2902cc9b4926e7b672a476f5e326c6902648312fc3da54d9
@@ -10345,7 +10429,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"mongodb@npm:3.6.6":
+"mongodb@npm:3.6.6, mongodb@npm:>= 3.3.4 < 4.0.0":
   version: 3.6.6
   resolution: "mongodb@npm:3.6.6"
   dependencies:
@@ -10384,7 +10468,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"mongoose@npm:5.12.8, mongoose@npm:^5.12.7":
+"mongoose@npm:5.12.8, mongoose@npm:^5.12.8":
   version: 5.12.8
   resolution: "mongoose@npm:5.12.8"
   dependencies:
@@ -12535,6 +12619,17 @@ fsevents@~2.1.2:
   version: 1.2.1
   resolution: "range-parser@npm:1.2.1"
   checksum: 05074f5b23dbdc24acdae9821dd684fbc9c0d770cdaa4469ab529d8e0fc1338aa33561a4c7c14a1f9bdcb3b5e9a3770e5a80318258a72289a7ef05fcda72a707
+  languageName: node
+  linkType: hard
+
+"rate-limit-mongo@git+https://github.com/oadpoaw/rate-limit-mongo.git":
+  version: 2.3.1
+  resolution: "rate-limit-mongo@https://github.com/oadpoaw/rate-limit-mongo.git#commit=ef5a7cc5fe9dcbdfbac07fe27e57e7bdc38ccf0e"
+  dependencies:
+    mongodb: ">= 3.3.4 < 4.0.0"
+    twostep: 0.4.2
+    underscore: 1.12.1
+  checksum: 459e13e57d6c6ddf640ac333d4626f0ad86d6267739f5fa00a150bd43eece6f7eefc215e202e2240c29f3f8777e3007580bbb8de1adcade4ea69f26220aa002a
   languageName: node
   linkType: hard
 
@@ -14823,6 +14918,13 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"twostep@npm:0.4.2":
+  version: 0.4.2
+  resolution: "twostep@npm:0.4.2"
+  checksum: cff984259bee11e50cff9781ba20ba6e9539fe552e72f9bf529fec2c997e504ee2f18c65ab80faeb6d31657feae204e83b5ff5ee8a1bd77f3e132f08517a15c8
+  languageName: node
+  linkType: hard
+
 "type-check@npm:^0.4.0, type-check@npm:~0.4.0":
   version: 0.4.0
   resolution: "type-check@npm:0.4.0"
@@ -14986,6 +15088,13 @@ fsevents@~2.1.2:
     has-symbols: ^1.0.2
     which-boxed-primitive: ^1.0.2
   checksum: aa944f1ecfec638b841b331383d0b80edc40855271ecc213c1aa736096d8d0b39ba25b64d102f56c597521db9cd3f0ddbcb97a0f760c240ab584e94e457518c1
+  languageName: node
+  linkType: hard
+
+"underscore@npm:1.12.1":
+  version: 1.12.1
+  resolution: "underscore@npm:1.12.1"
+  checksum: b53ae924fe3608ac7875a0eec20988611a02dc174bad40680dbb9fe994c40fc457b6d4f618f8b9af930c31549809c27f70dddccd83957a32bab27b1eea858c1b
   languageName: node
   linkType: hard
 
@@ -15739,6 +15848,9 @@ fsevents@~2.1.2:
     "@oadpoaw/shorten": ^1.3.1
     "@oadpoaw/trim-array": ^1.3.1
     "@oadpoaw/wait": ^1.3.1
+    "@shared/database": "file:../shared/database"
+    "@shared/env": "file:../shared/env"
+    "@shared/types": "file:../shared/types"
     "@types/express": ^4.17.11
     "@types/ms": ^0.7.31
     "@types/node-fetch": ^2.5.9
@@ -15749,7 +15861,6 @@ fsevents@~2.1.2:
     dotenv: ^9.0.0
     express: ^4.17.1
     moment: ^2.29.1
-    mongoose: ^5.12.7
     ms: ^2.1.3
     node-fetch: ^2.6.1
     utf-8-validate: ^5.0.5
