@@ -14,7 +14,4 @@ jobs:
           node-version: 14.x
 
       - run: yarn ci
-
-      - uses: wagoid/commitlint-github-action@v3
-        env:
-          NODE_PATH: ${{ github.workspace }}/node_modules
+      - run: yarn commitlint --edit $1
