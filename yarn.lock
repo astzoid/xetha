@@ -2740,21 +2740,21 @@ __metadata:
 
 "@shared/database@file:../shared/database::locator=cathy%40workspace%3Acathy":
   version: 1.0.0
-  resolution: "@shared/database@file:../shared/database#../shared/database::hash=665fd2&locator=cathy%40workspace%3Acathy"
+  resolution: "@shared/database@file:../shared/database#../shared/database::hash=e6ea4f&locator=cathy%40workspace%3Acathy"
   dependencies:
     dotenv: ^9.0.2
     mongoose: ^5.12.8
-  checksum: 2e8b77d37efdd00bd3eec741e75fa88192a2b6b50ddae824853397264909ec711939e6c5ab509f15a96af9ee1027a0b92f1b90162d426db3abd500552898fedb
+  checksum: afa3af9fd6080e584db0416a3b3e0bce8d7b6c9e8664f152e29e53fcc796be96a7b340b0fc03b13063c9a1adb389772dba1b261e3ede9e87de043fcd6d9b89dc
   languageName: node
   linkType: hard
 
 "@shared/database@file:../shared/database::locator=xanatha%40workspace%3Axanatha":
   version: 1.0.0
-  resolution: "@shared/database@file:../shared/database#../shared/database::hash=665fd2&locator=xanatha%40workspace%3Axanatha"
+  resolution: "@shared/database@file:../shared/database#../shared/database::hash=e6ea4f&locator=xanatha%40workspace%3Axanatha"
   dependencies:
     dotenv: ^9.0.2
     mongoose: ^5.12.8
-  checksum: 2e8b77d37efdd00bd3eec741e75fa88192a2b6b50ddae824853397264909ec711939e6c5ab509f15a96af9ee1027a0b92f1b90162d426db3abd500552898fedb
+  checksum: afa3af9fd6080e584db0416a3b3e0bce8d7b6c9e8664f152e29e53fcc796be96a7b340b0fc03b13063c9a1adb389772dba1b261e3ede9e87de043fcd6d9b89dc
   languageName: node
   linkType: hard
 
@@ -2795,12 +2795,12 @@ __metadata:
 
 "@shared/rest@file:../shared/rest::locator=cathy%40workspace%3Acathy":
   version: 1.0.0
-  resolution: "@shared/rest@file:../shared/rest#../shared/rest::hash=6b9ab3&locator=cathy%40workspace%3Acathy"
+  resolution: "@shared/rest@file:../shared/rest#../shared/rest::hash=64540d&locator=cathy%40workspace%3Acathy"
   dependencies:
     "@oadpoaw/merge": ^1.3.1
     abort-controller: ^3.0.0
     node-fetch: ^2.6.1
-  checksum: 27a28026c40f8173a9e7b9362bf3f948d99fd25d043701fbf47faadd08eb5bdce05d0ab7fc2c87da4693019d8c17894baa28089ee1a68f5908fb53d9cb61b123
+  checksum: 293a8fa9d4882ef38495b67faf3f018dbf04d321c7d0c090d37f2f06028fc87d5363887958e456a5aa30efbb6d88143bb05fcf36558d3af5df0da41fb3f003ac
   languageName: node
   linkType: hard
 
@@ -2817,21 +2817,23 @@ __metadata:
 
 "@shared/types@file:../shared/types::locator=cathy%40workspace%3Acathy":
   version: 1.0.0
-  resolution: "@shared/types@file:../shared/types#../shared/types::hash=f78770&locator=cathy%40workspace%3Acathy"
-  checksum: d4e2f96ce4bca861e39774908682d71e94bd858e2a0f3a67b54fc0172f280acd57ae1100234c1feaf2612de69e712ce3532a56c28c0deda180501f18370a98e9
+  resolution: "@shared/types@file:../shared/types#../shared/types::hash=60902f&locator=cathy%40workspace%3Acathy"
+  checksum: f0ff88a2a7d78db9a6911f932bc424079eb9b026627bc6b8f8754dbf238caa21f61941584725337ce12a92884743f5cca12a0e8215835581358746825ca9f7ac
   languageName: node
   linkType: hard
 
 "@shared/types@file:../shared/types::locator=xanatha%40workspace%3Axanatha":
   version: 1.0.0
-  resolution: "@shared/types@file:../shared/types#../shared/types::hash=f78770&locator=xanatha%40workspace%3Axanatha"
-  checksum: d4e2f96ce4bca861e39774908682d71e94bd858e2a0f3a67b54fc0172f280acd57ae1100234c1feaf2612de69e712ce3532a56c28c0deda180501f18370a98e9
+  resolution: "@shared/types@file:../shared/types#../shared/types::hash=60902f&locator=xanatha%40workspace%3Axanatha"
+  checksum: f0ff88a2a7d78db9a6911f932bc424079eb9b026627bc6b8f8754dbf238caa21f61941584725337ce12a92884743f5cca12a0e8215835581358746825ca9f7ac
   languageName: node
   linkType: hard
 
 "@shared/types@workspace:shared/types":
   version: 0.0.0-use.local
   resolution: "@shared/types@workspace:shared/types"
+  dependencies:
+    discord.js: ^12.5.3
   languageName: unknown
   linkType: soft
 
