@@ -16,6 +16,7 @@ mongoose.connect(
     },
 );
 
+export default mongoose;
 export * from './lib/Blacklisted';
 export * from './lib/Guild';
 export * from './lib/Member';

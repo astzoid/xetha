@@ -1,3 +1,5 @@
+import type { GuildChannel } from 'discord.js';
+
 export interface Command {
     name: string;
     description: string;
@@ -24,6 +26,7 @@ export interface DiscordGuild {
     id: string;
     name: string;
     icon: string | null;
+    memberCount: number;
     channels: Channel[];
     roles: Role[];
 }
@@ -40,6 +43,7 @@ export interface DiscordGuildMember {
 export interface Channel {
     id: string;
     name: string;
+    type: GuildChannel['type'];
 }
 
 export interface Role {

@@ -42,23 +42,23 @@ export class RequestHandler {
         return this.execute(new APIRequest(this, method, options));
     }
 
-    public get(options: RequestOptions) {
+    public get<T>(options: RequestOptions): Promise<APIResponse<T>> {
         return this.execute(new APIRequest(this, 'GET', options));
     }
 
-    public post(options: RequestOptions) {
+    public post<T>(options: RequestOptions): Promise<APIResponse<T>> {
         return this.execute(new APIRequest(this, 'POST', options));
     }
 
-    public patch(options: RequestOptions) {
+    public patch<T>(options: RequestOptions): Promise<APIResponse<T>> {
         return this.execute(new APIRequest(this, 'PATCH', options));
     }
 
-    public put(options: RequestOptions) {
+    public put<T>(options: RequestOptions): Promise<APIResponse<T>> {
         return this.execute(new APIRequest(this, 'PUT', options));
     }
 
-    public delete(options: RequestOptions) {
+    public delete<T>(options: RequestOptions): Promise<APIResponse<T>> {
         return this.execute(new APIRequest(this, 'DELETE', options));
     }
 
