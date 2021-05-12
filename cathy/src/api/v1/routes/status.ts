@@ -1,29 +1,18 @@
 import { Router } from 'express';
 import AsyncWrapper from '@oadpoaw/async-wrapper';
-import { APIResponse } from '@shared/rest';
 import REST from '../../../functions/REST';
-import { version } from '../../../utils/Constants';
+import type { Shard } from '@shared/types';
 
 const status = Router();
 
 status.get(
     '/',
     AsyncWrapper(async (_req, res) => {
-        const response = await REST.get({
+        const response = await REST.get<Shard[]>({
             route: '/api/status',
-        })
-            .then((res) => res)
-            .catch((err) => err);
+        });
 
-        if (response instanceof APIResponse) {
-            return res.status(200).json({
-                version,
-                uptime: process.uptime(),
-                status: response.body,
-            });
-        }
-
-        throw response;
+        return res.status(200).json(response.body);
     }),
 );
 

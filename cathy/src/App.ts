@@ -1,5 +1,4 @@
-import { config } from 'dotenv';
-config();
+import '@shared/env';
 
 import './auth/OAuth2';
 import passport from 'passport';

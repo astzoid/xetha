@@ -1,15 +1,9 @@
 import './App';
+import type { UserAttributes } from '@shared/database';
 
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace Express {
-        interface User {
-            accessToken: string;
-            refreshToken: string;
-            user_id: string;
-            username: string;
-            discriminator: string;
-            avatar: string;
-        }
+        interface User extends UserAttributes {}
     }
 }

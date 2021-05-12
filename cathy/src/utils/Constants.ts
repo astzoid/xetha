@@ -1,15 +1,12 @@
-import session from 'express-session';
-import store from 'memorystore';
+import { production } from '@shared/env';
 import MongoStore from 'connect-mongo';
 import type { CorsOptions } from 'cors';
 import type { SessionOptions } from 'express-session';
 import type { Options as RatelimitOptions } from 'express-rate-limit';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-export const { version } = require('../../package.json');
+import rateLimitMongo from 'rate-limit-mongo';
 
 export const Config = {
-    production: process.env.NODE_ENV === 'production',
+    production,
     clientID: process.env.CLIENT_ID as string,
     clientSecret: process.env.CLIENT_SECRET as string,
     callbackURL: process.env.CALLBACK_URL as string,
@@ -40,21 +37,22 @@ export const sessionOptions: SessionOptions = {
     cookie: {
         maxAge: 86400000,
     },
-    store: Config.production
-        ? MongoStore.create({
-              mongoUrl: `${process.env.MONGODB_URI}sessions`,
-              ttl: 1 * 24 * 60 * 60,
-              crypto: {
-                  secret: Config.clientSecret,
-              },
-          })
-        : new (store(session))({
-              checkPeriod: 86400000,
-          }),
+    store: MongoStore.create({
+        mongoUrl: `${process.env.MONGODB_URI ?? 'mongodb://localhost/xetha'}`,
+        ttl: 1 * 24 * 60 * 60,
+        crypto: {
+            secret: Config.clientSecret,
+        },
+    }),
 };
 
 export const rateLimitOptions: RatelimitOptions = {
     max: 100,
+    windowMs: 60000,
+    store: new rateLimitMongo({
+        uri: process.env.MONGODB_URI ?? 'mongodb://localhost/xetha',
+        expireTimeMs: 60000,
+    }),
     handler: (_req, res, _next) =>
         res.status(429).json({ message: 'You are being rate limited.' }),
 };

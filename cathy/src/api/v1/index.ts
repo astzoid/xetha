@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import commands from './routes/commands';
 import guild from './routes/guild';
 import invite from './routes/invite';

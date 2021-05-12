@@ -7,10 +7,7 @@ const login = Router();
 login.get(
     '/',
     (req, res, next) => {
-        if (req.isAuthenticated()) {
-            return res.redirect(Redirects.authenticated);
-        }
-
+        if (req.isAuthenticated()) return res.redirect(Redirects.authenticated);
         next();
     },
     passport.authenticate('discord', {
