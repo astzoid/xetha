@@ -1,9 +1,8 @@
 import Manager from '../structures/Manager';
 import { Profile } from '@shared/database';
-import type { ProfileAttributes } from '@shared/database';
 import type { Disclosure } from 'disclosure-discord';
 
-export default class ProfileManager extends Manager<ProfileAttributes> {
+export default class ProfileManager extends Manager<any> {
     public constructor(client: Disclosure) {
         super(client);
     }

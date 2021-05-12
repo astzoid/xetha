@@ -1,12 +1,8 @@
 import Manager from '../structures/Manager';
 import { Member } from '@shared/database';
-import type { MemberAttributes } from '@shared/database';
 import type { Disclosure } from 'disclosure-discord';
-import type { Collection } from 'discord.js';
 
-export default class MemberManager extends Manager<
-    Collection<string, MemberAttributes>
-> {
+export default class MemberManager extends Manager<any> {
     public constructor(client: Disclosure) {
         super(client);
     }

@@ -34,6 +34,7 @@ export default function GuildRoute(manager: DisclosureSharder) {
                 id: guild.id,
                 name: guild.name,
                 icon: guild.icon,
+                memberCount: guild.memberCount,
                 channels:
                     channels?.cache
                         .sort((a, b) => b.rawPosition - a.rawPosition)
