@@ -17,7 +17,7 @@ submit a pull request.
 
 ### Commit Guidelines
 
-- Follow the [Commit Convention][commit convention].
+- Follow the [Commit Convention](commit convention).
 
 ### Xetha Project Concept Guidelines
 
