@@ -1,27 +1,16 @@
-# xetha
+<div align="center">
 
-## Structure
+[![banner](assets/xetha_banner.jpg)](https://xetha-bot.me/)
 
-| Codebase           |    Description     |
-| :----------------- | :----------------: |
-| [athena](athena)   | React App Frontend |
-| [cathy](cathy)     |  Node.js Backend   |
+[![Staging - athena](https://github.com/oadpoaw/xetha/actions/workflows/test-athena.yml/badge.svg)](https://github.com/oadpoaw/xetha/actions/workflows/test-athena.yml)
+[![Staging - cathy](https://github.com/oadpoaw/xetha/actions/workflows/test-cathy.yml/badge.svg)](https://github.com/oadpoaw/xetha/actions/workflows/test-cathy.yml)
+[![Staging - xanatha](https://github.com/oadpoaw/xetha/actions/workflows/test-xanatha.yml/badge.svg)](https://github.com/oadpoaw/xetha/actions/workflows/test-xanatha.yml)
+
+|      Codebase      |    Description     |
+| :----------------: | :----------------: |
+|  [athena](athena)  | React App Frontend |
+|   [cathy](cathy)   |  Express Backend   |
 | [xanatha](xanatha) |     Xetha Bot      |
-| [shared](shared)   |  Shared Libraries  |
+|  [shared](shared)  |  Shared Libraries  |
 
-## Branches
-
-- main -> pr this branch for everything
-- athena -> don't touch, this is what's running in production
-- cathy -> don't touch, this is what's running in production
-- xanatha -> don't touch, this is what's running in production
-
-## Contributions
-
-I recommend creating an issue or replying in a comment to let me know what you are working on first that way we don't overwrite each other.
-
-Please read [CONTRIBUTING.md](./.github/CONTRIBUTING.md) for details on this project.
-
-## Code of Conduct
-
-Please read [CODE_OF_CONDUCT.md](./.github/CODE_OF_CONDUCT.md) for details on our code of conduct.
+</div>
