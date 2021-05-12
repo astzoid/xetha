@@ -7,7 +7,6 @@ on:
       - scripts/bootstrap.sh
       - tsconfig.json
       - athena/**
-      - shared/**
       - .github/workflows/test-athena.yml
       - scripts/athena/**
 

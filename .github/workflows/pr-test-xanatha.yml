@@ -7,8 +7,11 @@ on:
       - scripts/bootstrap.sh
       - tsconfig.json
       - xanatha/**
+      - shared/database/**
+      - shared/env/**
       - shared/types/**
-
+      - scripts/xanatha/**
+  
 jobs:
   pre_ci:
     runs-on: ubuntu-latest

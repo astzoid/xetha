@@ -7,6 +7,8 @@ on:
       - scripts/bootstrap.sh
       - tsconfig.json
       - xanatha/**
+      - shared/database/**
+      - shared/env/**
       - shared/types/**
       - .github/workflows/test-xanatha.yml
       - scripts/xanatha/**
