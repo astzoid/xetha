@@ -4,5 +4,5 @@ if [ "$1" == "mock" ]; then
     yarn workspace athena start &
     yarn workspace athena mock
 else
-    yarn workspace start
+    yarn workspace athena start
 fi
