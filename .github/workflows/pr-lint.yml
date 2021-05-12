@@ -17,7 +17,7 @@ jobs:
         run: echo ::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} HEAD^2 | grep '\.ts$\|\.tsx$')
 
     outputs:
-      files: ${{ steps.files.outputs.files }}
+      files: $( echo "${{ steps.files.outputs.files }}" )
 
   lint:
     needs: pre_ci
