@@ -12,7 +12,7 @@ export default function Authentication(props: { children: ReactNode }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        rest.get({ route: '/api/user' })
+        rest.get<User>({ route: '/api/user' })
             .then((response) => {
                 setUser(response.body);
                 Logger.info(response);

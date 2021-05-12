@@ -7,7 +7,6 @@ const path = require('path');
 
 /** @type {import('snowpack').SnowpackUserConfig} */
 module.exports = {
-  workspaceRoot: path.join(__dirname, '..'),
   mount: {
     public: {
       url: '/',
@@ -16,12 +15,6 @@ module.exports = {
     src: {
       url: '/dist',
     },
-    [path.resolve(__dirname, '../shared/rest')]: '/shared/rest',
-    [path.resolve(__dirname, '../shared/types')]: '/shared/types',
-  },
-  alias: {
-    '@shared/rest': '../shared/rest/src',
-    '@shared/types': '../shared/types/src',
   },
   plugins: [
     '@snowpack/plugin-react-refresh',
