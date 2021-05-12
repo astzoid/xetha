@@ -17,7 +17,7 @@ submit a pull request.
 
 ### Commit Guidelines
 
-- Follow the [Commit Convention](commit convention).
+- Follow the [Commit Convention][commit convention].
 
 ### Xetha Project Concept Guidelines
 
@@ -151,7 +151,7 @@ yarn clean:<workspace>
 Replace `<workspace>` with `athena`, `cathy`, `xanatha` or `shared` 
 
 [vscode]: https://code.visualstudio.com
-[commitizen]: https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen
+[commit convention]: https://www.conventionalcommits.org/en/v1.0.0/
 [eslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 [markdown]: https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one
 [shell-format]: https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format
