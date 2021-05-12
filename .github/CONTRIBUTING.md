@@ -17,7 +17,7 @@ submit a pull request.
 
 ### Commit Guidelines
 
-- Follow the [Commit Convention](commit convention).
+- Follow the [Commit Convention](https://www.conventionalcommits.org/en/v1.0.0/).
 
 ### Xetha Project Concept Guidelines
 
