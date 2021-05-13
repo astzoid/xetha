@@ -24,7 +24,7 @@ export default function Meta(iprops: Partial<Props>) {
         : 'Xetha - Discord Bot';
 
     props.description =
-        iprops.description ??
+        iprops.description ||
         'Xetha is an advanced multi-purpose discord bot to enhance your discord experience with ease and to enhance your awesome community';
 
     props.image = iprops.image || 'favicon.ico';
