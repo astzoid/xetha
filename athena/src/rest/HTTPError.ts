@@ -15,7 +15,7 @@ export class HTTPError extends Error {
         super(message);
 
         this.name = name;
-        this.code = code ?? 500;
+        this.code = code || 500;
         this.method = method;
         this.path = path;
     }
