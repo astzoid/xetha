@@ -47,7 +47,7 @@ jobs:
 
       - name: Install Dependencies
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
-        run: yarn --frozen-lockfile
+        run: yarn --immutable --immutable-cache
 
       - name: Lint
         run: yarn lint:xanatha
@@ -74,7 +74,7 @@ jobs:
 
       - name: Install Dependencies
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
-        run: yarn --frozen-lockfile
+        run: yarn --immutable --immutable-cache
 
       - name: Bootstrap
         run: yarn bootstrap
