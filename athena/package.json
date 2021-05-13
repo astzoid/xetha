@@ -35,6 +35,6 @@
     "@types/react-router-dom": "^5.1.7",
     "http-proxy": "^1.18.1",
     "json-server": "^0.16.3",
-    "snowpack": "^3.3.5"
+    "snowpack": "latest"
   }
 }
