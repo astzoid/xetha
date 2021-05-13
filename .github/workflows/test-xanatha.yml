@@ -51,7 +51,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install Dependencies
-        if: ${{ !steps.cache-restore.outputs.cache-hit }}
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         run: yarn
 
       - name: Lint
@@ -81,7 +81,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install Dependencies
-        if: ${{ !steps.cache-restore.outputs.cache-hit }}
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         run: yarn
 
       - name: Bootstrap
