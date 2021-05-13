@@ -36,14 +36,17 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Restore CI Cache
-        uses: actions/cache@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - uses: actions/cache@v2
         id: cache-restore
         with:
-          path: |
-            node_modules
-            .yarn/cache
-          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install Dependencies
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
@@ -62,14 +65,17 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Restore CI Cache
-        uses: actions/cache@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - uses: actions/cache@v2
         id: cache-restore
         with:
-          path: |
-            node_modules
-            .yarn/cache
-          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install Dependencies
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
