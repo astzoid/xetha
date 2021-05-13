@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
+set -e
 echo "shared: cleaning shared packages..."
 yarn rimraf ./shared/**/dist ./shared/**/node_modules/.cache

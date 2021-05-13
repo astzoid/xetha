@@ -52,10 +52,6 @@ $ yarn install
 
 # Setting up husky for git hooks
 $ yarn prepare
-
-# Build local packages and sync them
-# for workspace `cathy` and `xanatha`
-$ yarn bootstrap
 ```
 
 #### Athena

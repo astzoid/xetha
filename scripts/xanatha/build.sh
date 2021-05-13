@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+set -e
 PROJECT="xanatha"
 if [ "$1" == "clean" ]; then
     . "$(dirname "$0")/clean.sh"
