@@ -9,6 +9,7 @@ on:
       - .eslintrc
       - .github/workflows/lint-shared.yml
       - scripts/shared/lint.sh
+      - shared/**
 
 jobs:
   pre_ci:
