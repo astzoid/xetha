@@ -1,19 +1,14 @@
-name: Staging - xanatha
+name: Lint - shared
 
 on:
   push:
     branches: [main]
     paths:
-      - scripts/bootstrap.sh
+      - tsconfig.json
       - config/tsconfig.eslint.json
       - .eslintrc
-      - tsconfig.json
-      - xanatha/**
-      - shared/database/**
-      - shared/env/**
-      - shared/types/**
-      - .github/workflows/test-xanatha.yml
-      - scripts/xanatha/**
+      - .github/workflows/lint-shared.yml
+      - scripts/shared/lint.sh
 
 jobs:
   pre_ci:
@@ -52,34 +47,4 @@ jobs:
         run: yarn --immutable --immutable-cache
 
       - name: Lint
-        run: yarn lint:xanatha
-
-  test:
-    needs: pre_ci
-    runs-on: ubuntu-latest
-    environment: Staging - xanatha
-    if: "(!contains(needs.pre_ci.outputs.commit_message, '[skip ci]') && !contains(needs.pre_ci.outputs.commit_message, 'chore(release): publish'))"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-
-      - name: Restore CI Cache
-        uses: actions/cache@v2.1.5
-        id: cache-restore
-        with:
-          path: |
-            node_modules
-            .yarn/cache
-          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Install Dependencies
-        if: ${{ !steps.cache-restore.outputs.cache-hit }}
-        run: yarn --immutable --immutable-cache
-
-      - name: Bootstrap
-        run: yarn bootstrap
-
-      - name: Build
-        run: yarn build:xanatha
+        run: yarn lint:shared

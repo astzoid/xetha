@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - scripts/bootstrap.sh
+      - config/tsconfig.eslint.json
+      - .eslintrc
       - tsconfig.json
       - athena/**
       - scripts/athena/**
