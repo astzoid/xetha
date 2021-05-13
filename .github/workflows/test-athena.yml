@@ -1,4 +1,4 @@
-name: test-athena
+name: Staging - athena
 
 on:
   push:
@@ -9,6 +9,8 @@ on:
       - athena/**
       - .github/workflows/test-athena.yml
       - scripts/athena/**
+      - shared/rest/**
+      - shared/types/**
 
 jobs:
   pre_ci:
@@ -23,6 +25,32 @@ jobs:
     outputs:
       commit_message: $( echo "${{ steps.commit_message.outputs.commit_message }}" )
 
+  lint:
+    needs: pre_ci
+    runs-on: ubuntu-latest
+    if: "(!contains(needs.pre_ci.outputs.commit_message, '[skip ci]') && !contains(needs.pre_ci.outputs.commit_message, 'chore(release): publish'))"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Restore CI Cache
+        uses: actions/cache@v2.1.5
+        id: cache-restore
+        with:
+          path: |
+            node_modules
+            .yarn/cache
+          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install Dependencies
+        if: ${{ !steps.cache-restore.outputs.cache-hit }}
+        run: yarn --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint:athena
+
   test:
     needs: pre_ci
     runs-on: ubuntu-latest
@@ -34,18 +62,18 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Yarn cache
-        uses: actions/cache@v2
-        id: yarn-cache
+      - name: Restore CI Cache
+        uses: actions/cache@v2.1.5
+        id: cache-restore
         with:
           path: |
+            node_modules
             .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install Dependencies
-        run: yarn install
+        if: ${{ !steps.cache-restore.outputs.cache-hit }}
+        run: yarn --frozen-lockfile
 
       - name: Bootstrap
         run: yarn bootstrap
