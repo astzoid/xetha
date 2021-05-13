@@ -6,7 +6,7 @@
     "xanatha",
     "shared/*"
   ],
-  "version": "independent",
+  "version": "0.2.331",
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
