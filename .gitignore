@@ -107,3 +107,5 @@ dist
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+!shared/**/dist
