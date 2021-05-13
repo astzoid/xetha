@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/oadpoaw/xetha/compare/athena@1.7.2...athena@1.8.1) (2021-05-13)
+
+
+### Bug Fixes
+
+* replace all `??` to `\|\|` ([4cd233b](https://github.com/oadpoaw/xetha/commit/4cd233b71b7ac31a95e50b559d46fce42c2f745a))
+
+
+
+# 1.8.0 (2021-05-13)
+
+
+### Bug Fixes
+
+* **athena:** production build ([803e86d](https://github.com/oadpoaw/xetha/commit/803e86d232692468243b3e0d6c8d7e478cea1fe4))
+* **athena:** workaround ([bf46f8c](https://github.com/oadpoaw/xetha/commit/bf46f8c171ac1d3a7763445a78916bf51ef25342))
+* **Snowpack:** workspaceRoot ([1b9a27d](https://github.com/oadpoaw/xetha/commit/1b9a27d0a2c578afdebff36f3e5d694b632b51bc))
+* production building ([c9d8e01](https://github.com/oadpoaw/xetha/commit/c9d8e01e4315a9857fa987a0356ac112f739a27c))
+* workflows `pre_ci` ([41832c6](https://github.com/oadpoaw/xetha/commit/41832c609e65684d4b8377298bbbebe3bd38f13f))
+
+
+
+
+
 # [1.8.0](https://github.com/oadpoaw/xetha/compare/v1.4.10...v1.8.0) (2021-05-13)
 
 
