@@ -7,6 +7,7 @@ on:
       - tsconfig.json
       - config/tsconfig.eslint.json
       - .eslintrc
+      - .eslintignore
       - .github/workflows/lint-shared.yml
       - scripts/shared/lint.sh
       - shared/**
@@ -27,7 +28,6 @@ jobs:
   lint:
     needs: pre_ci
     runs-on: ubuntu-latest
-    if: "(!contains(needs.pre_ci.outputs.commit_message, '[skip ci]') && !contains(needs.pre_ci.outputs.commit_message, 'chore(release): publish'))"
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1

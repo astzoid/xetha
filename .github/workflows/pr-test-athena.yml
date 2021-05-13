@@ -7,6 +7,7 @@ on:
       - scripts/bootstrap.sh
       - config/tsconfig.eslint.json
       - .eslintrc
+      - .eslintignore
       - tsconfig.json
       - athena/**
       - scripts/athena/**
@@ -29,7 +30,6 @@ jobs:
   lint:
     needs: pre_ci
     runs-on: ubuntu-latest
-    if: "(!contains(needs.pre_ci.outputs.commit_message, '[skip ci]') && !contains(needs.pre_ci.outputs.commit_message, 'chore(release): publish'))"
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
