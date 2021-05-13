@@ -1,12 +1,10 @@
-import type DiscordGuild from './DiscordGuild';
-
 type User = null | {
     user_id: string;
     username: string;
     discriminator: string;
-    avatar?: string;
-    tag: string;
-    guilds: DiscordGuild[];
+    avatar: string;
+    accessToken: string;
+    refreshToken: string;
 };
 
 export default User;

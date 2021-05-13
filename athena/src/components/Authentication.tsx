@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 
-import { Provider } from '../auth';
-import rest from '../auth/rest';
-import Logger from '../functions/Logger';
+import { Provider } from '@auth/user';
+import rest from '@auth/rest';
+import Logger from '@functions/Logger';
 
-import type User from '../typings/User';
+import type User from '@typings/User';
 
 export default function Authentication(props: { children: ReactNode }) {
     const [user, setUser] = useState<User>(null);

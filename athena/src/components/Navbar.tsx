@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import type { ReactNode } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import { Context } from '../auth';
-import { avatar } from '../functions/CDN';
-import useScreenType from '../hooks/useScreenType';
-import type User from '../typings/User';
+import { Context } from '@auth/user';
+import { avatar } from '@functions/CDN';
+import useScreenType from '@hooks/useScreenType';
+import type User from '@typings/User';
 import {
     makeStyles,
     AppBar,
@@ -156,7 +156,7 @@ function UserDrop({ user, showTag }: { user: User; showTag?: boolean }) {
                         color="inherit"
                     >
                         <Avatar
-                            alt={user.tag}
+                            alt={user.username}
                             src={avatar(
                                 user.user_id,
                                 user.discriminator,
@@ -257,7 +257,7 @@ function ItemMenu({ user, noUser }: { user: User; noUser?: boolean }) {
                                         <ListItem>
                                             <ListItemIcon>
                                                 <Avatar
-                                                    alt={user.tag}
+                                                    alt={user.username}
                                                     src={avatar(
                                                         user.user_id,
                                                         user.discriminator,

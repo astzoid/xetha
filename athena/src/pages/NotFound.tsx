@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Canvas from '../components/Canvas';
-import Content from '../components/Content';
-import Meta from '../components/Meta';
+import Canvas from '@components/Canvas';
+import Content from '@components/Content';
+import Meta from '@components/Meta';
 
 import { Button, Container, Typography } from '@material-ui/core';
 

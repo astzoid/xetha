@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Logger from '../functions/Logger';
+import Logger from '@functions/Logger';
 import type { ReactNode } from 'react';
 
 interface Props {
@@ -25,9 +25,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     }
 
     public render() {
-        if (this.state.error) {
-            return this.props.fallback;
-        }
+        if (this.state.error) return this.props.fallback;
 
         return this.props.children;
     }

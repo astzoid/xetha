@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import Canvas from '../components/Canvas';
-import Content from '../components/Content';
-import Meta from '../components/Meta';
+import Canvas from '@components/Canvas';
+import Content from '@components/Content';
+import Meta from '@components/Meta';
 import Sensor from '@oadpoaw/react-sensor';
 
 import { yellow, blue, red, green, pink } from '@material-ui/core/colors';

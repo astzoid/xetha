@@ -1,16 +1,16 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Authentication from './components/Authentication';
-import ErrorBoundary from './components/ErrorBoundary';
-import Navbar from './components/Navbar';
-import NotFound from './pages/NotFound';
-import WentWrong from './pages/WentWrong';
+import Authentication from '@components/Authentication';
+import ErrorBoundary from '@components/ErrorBoundary';
+import Navbar from '@components/Navbar';
+import NotFound from '@pages/NotFound';
+import WentWrong from '@pages/WentWrong';
 
-const Home = lazy(() => import('./routes/Home'));
+const Home = lazy(() => import('@routes/Home'));
 
-const Invite = lazy(() => import('./routes/Redirects/Invite'));
-const Patreon = lazy(() => import('./routes/Redirects/Patreon'));
-const Discord = lazy(() => import('./routes/Redirects/Discord'));
+const Invite = lazy(() => import('@routes/Redirects/Invite'));
+const Patreon = lazy(() => import('@routes/Redirects/Patreon'));
+const Discord = lazy(() => import('@routes/Redirects/Discord'));
 
 export default function App() {
     return (

@@ -13,7 +13,32 @@
             "DOM.Iterable"
         ],
         "moduleResolution": "node",
-        "jsx": "preserve"
+        "jsx": "preserve",
+        "importsNotUsedAsValues": "error",
+        "baseUrl": "src",
+        "paths": {
+            "@auth/*": [
+                "auth/*"
+            ],
+            "@components/*": [
+                "components/*"
+            ],
+            "@functions/*": [
+                "functions/*"
+            ],
+            "@hooks/*": [
+                "hooks/*"
+            ],
+            "@pages/*": [
+                "pages/*"
+            ],
+            "@routes/*": [
+                "routes/*"
+            ],
+            "@typings/*": [
+                "typings/*"
+            ]
+        }
     },
     "include": [
         "src"
