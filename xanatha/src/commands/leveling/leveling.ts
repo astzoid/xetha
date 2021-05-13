@@ -218,9 +218,10 @@ export default class extends Command {
                             return message.channel.send(
                                 `<:no:800415449488556053> Oh oh, it seems that there is no role is assigned to that level, please try again`,
                             );
-                        guild.leveling_role_rewards = guild.leveling_role_rewards.filter(
-                            (r) => r.level === level,
-                        );
+                        guild.leveling_role_rewards =
+                            guild.leveling_role_rewards.filter(
+                                (r) => r.level === level,
+                            );
                         await guild.save();
                         const prole = message.guild.roles.cache.get(role.id);
                         return message.channel.send(

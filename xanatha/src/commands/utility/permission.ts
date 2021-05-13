@@ -31,9 +31,10 @@ export default class extends Command {
             message.author.tag,
         );
 
-        const friendly = this.client.managers.permissions.levels[
-            this.client.managers.permissions.level(message, guild, profile)
-        ];
+        const friendly =
+            this.client.managers.permissions.levels[
+                this.client.managers.permissions.level(message, guild, profile)
+            ];
 
         await message.channel.send(
             new MessageEmbed()

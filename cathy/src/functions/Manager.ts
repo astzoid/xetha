@@ -21,9 +21,7 @@ interface ReturnData<T> {
 }
 
 const Manager = {
-    async user(
-        user_id: string,
-    ): Promise<
+    async user(user_id: string): Promise<
         ReturnData<{
             user: DiscordUser | null;
             data: Omit<ProfileAttributes, 'user_id' | 'tag'> | null;
@@ -69,9 +67,7 @@ const Manager = {
         throw response;
     },
 
-    async guild(
-        guild_id: string,
-    ): Promise<
+    async guild(guild_id: string): Promise<
         ReturnData<{
             guild: DiscordGuild;
             data: Omit<GuildAttributes, 'guild_id' | 'name'>;

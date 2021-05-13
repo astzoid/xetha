@@ -12,10 +12,8 @@ import Leveling from '../modules/Leveling';
 import type { GuildAttributes } from '@shared/database';
 import type { Disclosure } from 'disclosure-discord';
 
-const LevelingCooldown: Collection<
-    string,
-    Collection<string, number>
-> = new Collection();
+const LevelingCooldown: Collection<string, Collection<string, number>> =
+    new Collection();
 
 const Handlers = {
     async logging(

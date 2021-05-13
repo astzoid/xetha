@@ -11779,7 +11779,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.2.1":
+"prettier@npm:^2.2.1, prettier@npm:latest":
   version: 2.3.0
   resolution: "prettier@npm:2.3.0"
   bin:
@@ -15199,7 +15199,7 @@ fsevents@~2.1.2:
     lerna: ^4.0.0
     lint-staged: ^11.0.0
     npm-run-all: ^4.1.5
-    prettier: ^2.2.1
+    prettier: latest
     rimraf: ^3.0.2
     tslib: ^2.2.0
     typescript: ^4.2.4

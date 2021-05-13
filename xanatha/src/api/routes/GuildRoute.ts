@@ -20,9 +20,10 @@ export default function GuildRoute(manager: DisclosureSharder) {
             if (!guild)
                 return res.status(404).json({ message: 'Guild Not Found' });
 
-            const channelShards: GuildChannelManager[] = await manager.broadcastEval(
-                `this.guilds.cache.get('${guild_id}').channels`,
-            );
+            const channelShards: GuildChannelManager[] =
+                await manager.broadcastEval(
+                    `this.guilds.cache.get('${guild_id}').channels`,
+                );
             const roleShards: RoleManager[] = await manager.broadcastEval(
                 `this.guilds.cache.get('${guild_id}').roles`,
             );

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-PROJECT="athena"
+PROJECT="xanatha"
 echo "$PROJECT: formatting..."
 yarn prettier --write "./$PROJECT/src/**/*.ts"
