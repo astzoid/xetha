@@ -46,7 +46,7 @@ jobs:
 
       - name: Install Dependencies
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
-        run: yarn --immutable
+        run: yarn
 
       - name: Lint
         run: yarn lint:cathy
@@ -72,7 +72,7 @@ jobs:
 
       - name: Install Dependencies
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
-        run: yarn --immutable
+        run: yarn
 
       - name: Bootstrap
         run: yarn bootstrap
