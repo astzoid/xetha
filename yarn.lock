@@ -2880,9 +2880,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@snowpack/plugin-webpack@npm:2.3.0":
-  version: 2.3.0
-  resolution: "@snowpack/plugin-webpack@npm:2.3.0"
+"@snowpack/plugin-webpack@npm:2.3.1":
+  version: 2.3.1
+  resolution: "@snowpack/plugin-webpack@npm:2.3.1"
   dependencies:
     "@babel/core": ^7.0.0
     "@babel/preset-env": ^7.12.1
@@ -2898,7 +2898,7 @@ __metadata:
     terser-webpack-plugin: ^4.0.0
     webpack: ^4.43.0
     webpack-manifest-plugin: ^2.2.0
-  checksum: c75bf7b03a85f54aae200032ac9329892d9edb73dbca7fe03ad2d8b88fa2d1c2ced6420889263790edfa2b7f5188230e9a93b587039bff5c8ff92d1e51b9c387
+  checksum: 0284e0fa2198ffb7e8d7604f4e0068c6c7b8e5ee5501c701be0a74614f6eb13629f45b51ab30b294bd25a105ecc984a7f51a71d4599a4d905c2bf10bf69b04b4
   languageName: node
   linkType: hard
 
@@ -4042,7 +4042,7 @@ __metadata:
     "@snowpack/plugin-dotenv": ^2.1.0
     "@snowpack/plugin-react-refresh": ^2.4.2
     "@snowpack/plugin-typescript": ^1.2.1
-    "@snowpack/plugin-webpack": 2.3.0
+    "@snowpack/plugin-webpack": 2.3.1
     "@types/node-fetch": ^2.5.10
     "@types/react": ^17.0.3
     "@types/react-dom": ^17.0.3
@@ -4059,7 +4059,7 @@ __metadata:
     react-dom: ^17.0.2
     react-helmet-async: ^1.0.9
     react-router-dom: ^5.2.0
-    snowpack: 3.3.5
+    snowpack: 3.3.7
   languageName: unknown
   linkType: soft
 
@@ -13886,9 +13886,9 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"snowpack@npm:3.3.5":
-  version: 3.3.5
-  resolution: "snowpack@npm:3.3.5"
+"snowpack@npm:3.3.7":
+  version: 3.3.7
+  resolution: "snowpack@npm:3.3.7"
   dependencies:
     cli-spinners: ^2.5.0
     default-browser-id: ^2.0.0
@@ -13906,7 +13906,7 @@ fsevents@~2.1.2:
   bin:
     snowpack: index.bin.js
     sp: index.bin.js
-  checksum: b9a9b107110cf782d79e7562e37a32290d16330ea474028d376909580d172429d10ac0721b9039b89b01a93b3eb030d0dc8d75684f154d173ead595857a6a355
+  checksum: f0069b4e319e8f1843ddefa65511595040fe8f9f7c7cf586c345a6a35b9c7b57d34e892e0b8846572fdb1fc438a2285e08f61767cc812ae295e4634da918cc50
   languageName: node
   linkType: hard
 
