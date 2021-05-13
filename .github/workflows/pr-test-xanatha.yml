@@ -38,7 +38,7 @@ jobs:
           node-version: 14.x
 
       - name: Restore CI Cache
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2
         id: cache-restore
         with:
           path: |
@@ -48,7 +48,7 @@ jobs:
 
       - name: Install Dependencies
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
-        run: yarn --immutable --immutable-cache
+        run: yarn --immutable
 
       - name: Lint
         run: yarn lint:xanatha
@@ -64,7 +64,7 @@ jobs:
           node-version: 14.x
 
       - name: Restore CI Cache
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2
         id: cache-restore
         with:
           path: |
@@ -74,7 +74,7 @@ jobs:
 
       - name: Install Dependencies
         if: ${{ !steps.cache-restore.outputs.cache-hit }}
-        run: yarn --immutable --immutable-cache
+        run: yarn --immutable
 
       - name: Bootstrap
         run: yarn bootstrap
