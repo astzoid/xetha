@@ -49,8 +49,8 @@ export function validateTokens(
         let refresh: Token | null = null;
 
         try {
-            access = jwt.verify(accessToken, environment.JWT_SECRET) as Token;
             refresh = jwt.verify(refreshToken, environment.JWT_SECRET) as Token;
+            access = jwt.verify(accessToken, environment.JWT_SECRET) as Token;
 
             if (
                 access?.type === 'access' &&
@@ -61,11 +61,7 @@ export function validateTokens(
 
             resolve(false);
         } catch (err) {
-            if (
-                access?.type === 'access' &&
-                refresh?.type === 'refresh' &&
-                access?.user_id === refresh?.user_id
-            )
+            if (refresh && err.name === 'TokenExpiredError')
                 return resolve({
                     user_id: refresh.user_id,
                     tokens: {
