@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.decrypt = exports.encrypt = void 0;
 const tslib_1 = require("tslib");
 const crypto_1 = tslib_1.__importDefault(require("crypto"));
-const key = process.env.CLIENT_SECRET ?? 'some key';
+const key = process.env.JWT_SECRET ?? 'Were in development';
 function encrypt(val) {
     const cipher = crypto_1.default.createCipheriv('aes-256-cbc', key + key, key);
     let encrypted = cipher.update(val, 'utf8', 'base64');

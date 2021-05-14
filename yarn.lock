@@ -2739,21 +2739,21 @@ __metadata:
 
 "@shared/database@file:../shared/database::locator=cathy%40workspace%3Acathy":
   version: 1.8.0
-  resolution: "@shared/database@file:../shared/database#../shared/database::hash=25600c&locator=cathy%40workspace%3Acathy"
+  resolution: "@shared/database@file:../shared/database#../shared/database::hash=27ae3d&locator=cathy%40workspace%3Acathy"
   dependencies:
     dotenv: ^9.0.2
     mongoose: ^5.12.8
-  checksum: d4a2360d044460691d6406fb2619e23d7c6be63c1d95710f9bfd2132076dc22140d0ed6b51a27932e644f2b0c0adaaf0f989ea5820fa0d4025185f0a69c17974
+  checksum: a499281ea5e52eb9e97a9355caf0d219e21b4e4c26ce00c83b844d9ad0cd0898a2f067b2187018824ca733f59e33764830e4ac8b6941e03bd6290524abf2d312
   languageName: node
   linkType: hard
 
 "@shared/database@file:../shared/database::locator=xanatha%40workspace%3Axanatha":
   version: 1.8.0
-  resolution: "@shared/database@file:../shared/database#../shared/database::hash=25600c&locator=xanatha%40workspace%3Axanatha"
+  resolution: "@shared/database@file:../shared/database#../shared/database::hash=27ae3d&locator=xanatha%40workspace%3Axanatha"
   dependencies:
     dotenv: ^9.0.2
     mongoose: ^5.12.8
-  checksum: d4a2360d044460691d6406fb2619e23d7c6be63c1d95710f9bfd2132076dc22140d0ed6b51a27932e644f2b0c0adaaf0f989ea5820fa0d4025185f0a69c17974
+  checksum: a499281ea5e52eb9e97a9355caf0d219e21b4e4c26ce00c83b844d9ad0cd0898a2f067b2187018824ca733f59e33764830e4ac8b6941e03bd6290524abf2d312
   languageName: node
   linkType: hard
 
@@ -2768,19 +2768,19 @@ __metadata:
 
 "@shared/env@file:../shared/env::locator=cathy%40workspace%3Acathy":
   version: 1.8.0
-  resolution: "@shared/env@file:../shared/env#../shared/env::hash=a45c58&locator=cathy%40workspace%3Acathy"
+  resolution: "@shared/env@file:../shared/env#../shared/env::hash=efd871&locator=cathy%40workspace%3Acathy"
   dependencies:
     dotenv: ^9.0.2
-  checksum: 2d4b0f54b41b2b26fde918f6dcb4aaa390112f34d508ee01dceb0d580bc776a86ecd951096bcb5d2abc5fbe281b60b6e5128b515e9306e0861ada73cf8e0833e
+  checksum: 04fcf1c0df1d13d9efde68364f6d371677d51a8e2e22fae86debf8a4dc5f1ec2c5f707d9ff581978e1153a3e7836e009f5880d60eaeff1eb5eee4fcb14983cae
   languageName: node
   linkType: hard
 
 "@shared/env@file:../shared/env::locator=xanatha%40workspace%3Axanatha":
   version: 1.8.0
-  resolution: "@shared/env@file:../shared/env#../shared/env::hash=a45c58&locator=xanatha%40workspace%3Axanatha"
+  resolution: "@shared/env@file:../shared/env#../shared/env::hash=efd871&locator=xanatha%40workspace%3Axanatha"
   dependencies:
     dotenv: ^9.0.2
-  checksum: 2d4b0f54b41b2b26fde918f6dcb4aaa390112f34d508ee01dceb0d580bc776a86ecd951096bcb5d2abc5fbe281b60b6e5128b515e9306e0861ada73cf8e0833e
+  checksum: 04fcf1c0df1d13d9efde68364f6d371677d51a8e2e22fae86debf8a4dc5f1ec2c5f707d9ff581978e1153a3e7836e009f5880d60eaeff1eb5eee4fcb14983cae
   languageName: node
   linkType: hard
 
@@ -2966,7 +2966,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:*, @types/express@npm:^4.17.11":
+"@types/express@npm:^4.17.11":
   version: 4.17.11
   resolution: "@types/express@npm:4.17.11"
   dependencies:
@@ -2992,6 +2992,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/jsonwebtoken@npm:^8.5.1":
+  version: 8.5.1
+  resolution: "@types/jsonwebtoken@npm:8.5.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: f66ee4a12584a699a6dba5daa79d0f87ae77950a332f918c7f485b6d33501be84547fcac992d7f5a8960d04f77f206b118d9a558d8dd49f1aea99c64a17182b0
+  languageName: node
+  linkType: hard
+
 "@types/mime@npm:^1":
   version: 1.3.2
   resolution: "@types/mime@npm:1.3.2"
@@ -3013,7 +3022,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mongodb@npm:^3.5.27, @types/mongodb@npm:^3.6.12":
+"@types/mongodb@npm:^3.5.27":
   version: 3.6.12
   resolution: "@types/mongodb@npm:3.6.12"
   dependencies:
@@ -3054,50 +3063,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/oauth@npm:*":
-  version: 0.9.1
-  resolution: "@types/oauth@npm:0.9.1"
-  dependencies:
-    "@types/node": "*"
-  checksum: 0fc44360d075ba2d4fdfe9831cd003bb6aa5da95f33e56063bf8b8b38e377ff9bbfcf9709db7ddac22112bc9ca6f7810201a964d2254cd8de23d61e6d6c22da5
-  languageName: node
-  linkType: hard
-
 "@types/parse-json@npm:^4.0.0":
   version: 4.0.0
   resolution: "@types/parse-json@npm:4.0.0"
   checksum: 4a8f720afac47b474d3f2eece312340e72bc31bc9561cda37b596ce2ed218c0099765d302625bb67d659a8452a1f93d514f4863c11c7ebaf65430428687dc426
-  languageName: node
-  linkType: hard
-
-"@types/passport-discord@npm:^0.1.3":
-  version: 0.1.3
-  resolution: "@types/passport-discord@npm:0.1.3"
-  dependencies:
-    "@types/express": "*"
-    "@types/passport": "*"
-    "@types/passport-oauth2": "*"
-  checksum: ebc0df6cbc5fe347b9389e57b673cc41118bfa979c89e3f712b4be86e977f437f65dfa441805639eb2d741cab945cdc9df5b7bc5a3cc1262350b3be30dac4556
-  languageName: node
-  linkType: hard
-
-"@types/passport-oauth2@npm:*":
-  version: 1.4.10
-  resolution: "@types/passport-oauth2@npm:1.4.10"
-  dependencies:
-    "@types/express": "*"
-    "@types/oauth": "*"
-    "@types/passport": "*"
-  checksum: 242af065a77d90f37ad1cb95d2882a4f75db3163a0e12e4f2b5a804f00924af743f92b0eaa5967e77929cfb30e5d3e7ca20d20e2ecff30d47fbee4bf408c054e
-  languageName: node
-  linkType: hard
-
-"@types/passport@npm:*, @types/passport@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "@types/passport@npm:1.0.6"
-  dependencies:
-    "@types/express": "*"
-  checksum: 6d6a404e3ad0014f4724e0c48f213f3a2df6fc95d68ffabdbe619203e866e475cc0e76776a6833345bb0801dacf3ef1b6d29ef40c9da6ed1ea60a566ffbc4b2d
   languageName: node
   linkType: hard
 
@@ -4447,6 +4416,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"buffer-equal-constant-time@npm:1.0.1":
+  version: 1.0.1
+  resolution: "buffer-equal-constant-time@npm:1.0.1"
+  checksum: a38a6fead170594b97894658d0e62e3686ccaecea480051c0bf69ba29274eca87203452590c3b6a1b589a7da1baef89420da00a8f08c010675c1dbc25f58edf9
+  languageName: node
+  linkType: hard
+
 "buffer-from@npm:^1.0.0":
   version: 1.1.1
   resolution: "buffer-from@npm:1.1.1"
@@ -4714,15 +4690,15 @@ __metadata:
     "@shared/types": "file:../shared/types"
     "@types/cors": ^2.8.10
     "@types/express": ^4.17.11
-    "@types/mongodb": ^3.6.12
-    "@types/passport": ^1.0.6
-    "@types/passport-discord": ^0.1.3
+    "@types/jsonwebtoken": ^8.5.1
     "@types/socket.io": ^2.1.13
+    "@types/socket.io-client": ^1.4.36
     "@types/ws": ^7.4.2
     cors: ^2.8.5
     discord-oauth2: ^2.6.0
     express: ^4.17.1
     helmet: ^4.6.0
+    jsonwebtoken: ^8.5.1
     socket.io: ^4.1.1
     socket.io-client: ^4.1.1
   languageName: unknown
@@ -6171,6 +6147,15 @@ __metadata:
     jsbn: ~0.1.0
     safer-buffer: ^2.1.0
   checksum: 5b4dd05f24b2b94c1bb882488dba2b878bb5b83182669aa71fbdf53c6941618180cb226c4eb9a3e2fa51ad11f87b5edb0a7d7289cdef468ba2e6024542f73f07
+  languageName: node
+  linkType: hard
+
+"ecdsa-sig-formatter@npm:1.0.11":
+  version: 1.0.11
+  resolution: "ecdsa-sig-formatter@npm:1.0.11"
+  dependencies:
+    safe-buffer: ^5.0.1
+  checksum: 9d07775ee274e0ca3978a562e9eba14ce77ecc804d977d0e94525c2aa4a70d909eda5703810955d22fd06fc6312e6aacf85e233eebdabc7b27a0a38fd62902a4
   languageName: node
   linkType: hard
 
@@ -8856,6 +8841,24 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"jsonwebtoken@npm:^8.5.1":
+  version: 8.5.1
+  resolution: "jsonwebtoken@npm:8.5.1"
+  dependencies:
+    jws: ^3.2.2
+    lodash.includes: ^4.3.0
+    lodash.isboolean: ^3.0.3
+    lodash.isinteger: ^4.0.4
+    lodash.isnumber: ^3.0.3
+    lodash.isplainobject: ^4.0.6
+    lodash.isstring: ^4.0.1
+    lodash.once: ^4.0.0
+    ms: ^2.1.1
+    semver: ^5.6.0
+  checksum: ea44bbb7a7abab87eee57711a04093a2a04a5757faa3253f521327b840e07eff751986ed6c20985886c5aaa86245a833aa1eeda6eacb0c3fa9ea4e7074cdb0c3
+  languageName: node
+  linkType: hard
+
 "jsprim@npm:^1.2.2":
   version: 1.4.1
   resolution: "jsprim@npm:1.4.1"
@@ -8952,6 +8955,27 @@ fsevents@~2.1.2:
     is-in-browser: ^1.1.3
     tiny-warning: ^1.0.2
   checksum: 063877ab763dc3cc808ba1c198aaafa24ceb7b959fdfb524cab2c08b62c918e988f968315053ea86149705e8eaf534afba3a243df381560e3eee389deac6dbec
+  languageName: node
+  linkType: hard
+
+"jwa@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "jwa@npm:1.4.1"
+  dependencies:
+    buffer-equal-constant-time: 1.0.1
+    ecdsa-sig-formatter: 1.0.11
+    safe-buffer: ^5.0.1
+  checksum: e3a6234a3a33b0390c35cc7393890b1ca1bac22382755035ad252f6df9e1272dcf0ff0a717c7865657fc30e04b8d5ab07ea27e26f0763c60c557946963402752
+  languageName: node
+  linkType: hard
+
+"jws@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "jws@npm:3.2.2"
+  dependencies:
+    jwa: ^1.4.1
+    safe-buffer: ^5.0.1
+  checksum: 3990b26ebb6f368bf6c53bf580cd327f207052adedeb7900dde665e143fff9ea5d96d0b4282e85a631a6e3af76ada281a1ccc450b1916d579d07e9d36b564a19
   languageName: node
   linkType: hard
 
@@ -9260,6 +9284,27 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"lodash.includes@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "lodash.includes@npm:4.3.0"
+  checksum: 20d6b1bf7841a4eb21bcb124641a1d5fb368e3c86fb8834d80149ec92caef67f3bf316405e4ec309591f0a83e461cebb7b43b2b57d00fd45d1eb3009fe13be97
+  languageName: node
+  linkType: hard
+
+"lodash.isboolean@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "lodash.isboolean@npm:3.0.3"
+  checksum: e5b7a921f47759773266e66664e4a54f2438cc213fe336c5b96321d4328ebb2785e939bbcd07b29d5a20cdc6140d471abae1e94cdfb25937dc91ddc5150f41a0
+  languageName: node
+  linkType: hard
+
+"lodash.isinteger@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "lodash.isinteger@npm:4.0.4"
+  checksum: a29551cc9aaaf24cc4fdd7ce1734c7a19c748c704f061ef079f6026dc9666ac10e8ae08e4f0cd3aeb6094e20be043a7402c72ce70cbae9ea6ecce67ad997332c
+  languageName: node
+  linkType: hard
+
 "lodash.ismatch@npm:^4.4.0":
   version: 4.4.0
   resolution: "lodash.ismatch@npm:4.4.0"
@@ -9267,10 +9312,38 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"lodash.isnumber@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "lodash.isnumber@npm:3.0.3"
+  checksum: a33b10bf57dd27b32aac0bb4159d3f40db6b294095f42d7ff9f966a004932cdcc12417bf0750a9d3ac0c62690dd020d7d227b05ef486a8c9061963acf2ea3fad
+  languageName: node
+  linkType: hard
+
+"lodash.isplainobject@npm:^4.0.6":
+  version: 4.0.6
+  resolution: "lodash.isplainobject@npm:4.0.6"
+  checksum: 72a114b610ec32a42b8cb47680d1729398caea0ee0631c0b220b97b21e7df19312377cb077acb6593bf6c5abdbdb43c530aa66b440e30d53324986d386808cd0
+  languageName: node
+  linkType: hard
+
+"lodash.isstring@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "lodash.isstring@npm:4.0.1"
+  checksum: 20c46960b74fd63c27b534f1725cd4141ac19b35c7250affee37c8b7899b1a4c5e9820becfafe571a4d48cd4c86206ee03c2e93fe943dbeab82ddd5cab710540
+  languageName: node
+  linkType: hard
+
 "lodash.memoize@npm:^4.1.2":
   version: 4.1.2
   resolution: "lodash.memoize@npm:4.1.2"
   checksum: 080c1095b7795b293a06078737550dc0c8138192cadbafb4e4b1303357d367ac589a1a570fad8de154175b008ca7b2b48d6a7f1755a143e13b764e20a7104080
+  languageName: node
+  linkType: hard
+
+"lodash.once@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "lodash.once@npm:4.1.1"
+  checksum: 236e00ca5f20304fab5b38aa3aedb034959153dae6edf33d7f9b00406ced8f24ed232a74f1200505d9049165ceea2ce1256199e1683b0a25e9de89091d4b13c2
   languageName: node
   linkType: hard
 

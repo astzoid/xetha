@@ -88,6 +88,7 @@ $ yarn start:cathy
 
 Create `.env` inside [xanatha](../xanatha)
 ```env
+CLIENT_ID=
 CLIENT_SECRET=
 DISCORD_TOKEN=
 MONGODB_URI=

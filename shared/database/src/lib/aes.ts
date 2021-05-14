@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-const key = process.env.CLIENT_SECRET ?? 'some key';
+const key = process.env.JWT_SECRET ?? 'Were in development';
 
 export function encrypt(val: string) {
     const cipher = crypto.createCipheriv('aes-256-cbc', key + key, key);

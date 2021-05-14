@@ -22,11 +22,6 @@ exports.User = mongoose_1.default.model('user', new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
-    /**
-     * accessToken and refreshToken should be encrypted
-     * Discord API ToS Compliant:
-     * Take reasonable steps to secure End User Data
-     */
     accessToken: {
         type: String,
         required: true,
@@ -38,6 +33,10 @@ exports.User = mongoose_1.default.model('user', new mongoose_1.default.Schema({
         required: true,
         set: aes_1.encrypt,
         get: aes_1.decrypt,
+    },
+}, {
+    toJSON: {
+        getters: true,
     },
 }));
 //# sourceMappingURL=User.js.map
