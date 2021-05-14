@@ -9,7 +9,7 @@ import http from 'http';
 import { Server } from 'socket.io';
 
 import Logger from './utils/Logger';
-import { Config, corsOptions, Redirects } from './utils/Constants';
+import { corsOptions } from './utils/Constants';
 import WebSocketHandler from './ws/WebSocketHandler';
 import AuthService from './auth/AuthService';
 
