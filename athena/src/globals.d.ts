@@ -3,33 +3,51 @@
 // / <reference types="react-dom" />
 
 declare module '*.module.css' {
-    const src: { [key: string]: string };
-    export default src;
+    const classes: { [key: string]: string };
+    export default classes;
+}
+declare module '*.module.scss' {
+    const classes: { [key: string]: string };
+    export default classes;
+}
+declare module '*.module.sass' {
+    const classes: { [key: string]: string };
+    export default classes;
+}
+declare module '*.module.less' {
+    const classes: { [key: string]: string };
+    export default classes;
+}
+declare module '*.module.styl' {
+    const classes: { [key: string]: string };
+    export default classes;
 }
 
+declare module '*.css';
+declare module '*.scss';
+declare module '*.sass';
+declare module '*.less';
+declare module '*.styl';
+
+declare module '*.bmp' {
+    const ref: string;
+    export default ref;
+}
 declare module '*.gif' {
-    const src: string;
-    export default src;
+    const ref: string;
+    export default ref;
 }
-
 declare module '*.jpg' {
-    const src: string;
-    export default src;
+    const ref: string;
+    export default ref;
 }
-
 declare module '*.jpeg' {
-    const src: string;
-    export default src;
+    const ref: string;
+    export default ref;
 }
-
 declare module '*.png' {
-    const src: string;
-    export default src;
-}
-
-declare module '*.webp' {
-    const src: string;
-    export default src;
+    const ref: string;
+    export default ref;
 }
 
 declare module '*.svg' {
