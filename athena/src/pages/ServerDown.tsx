@@ -23,14 +23,17 @@ export default function ServerDown() {
         ) {
             retries = Number(query.get('retries'));
         }
-        setCount(5 * retries);
+        setCount((c) => (c = c * retries));
         setRetries(retries);
     }, []);
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
         if (retries > 0)
-            interval = setInterval(() => setCount(count - 1), 1000);
+            interval = setInterval(
+                () => setCount((c) => (c = c === 0 ? c : c - 1)),
+                1000,
+            );
 
         return () => clearInterval(interval);
     }, [retries]);

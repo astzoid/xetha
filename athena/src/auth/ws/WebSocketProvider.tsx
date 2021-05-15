@@ -65,6 +65,6 @@ const WebSocketProvider: React.FC<Props> = (props) => {
             {props.children}
         </WebSocketContext.Provider>
     );
-}
+};
 
 export default WebSocketProvider;
