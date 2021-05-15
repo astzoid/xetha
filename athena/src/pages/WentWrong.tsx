@@ -15,6 +15,7 @@ export default function WentWrong() {
                 description="Oh oh, something went wrong in this airspace!"
                 noindex
                 nofollow
+                revisitAfter="1d"
             />
             <Canvas particles={['5', '0']} />
             <Container>
