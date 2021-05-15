@@ -23,7 +23,7 @@ interface Props {
     children: ReactNode;
 }
 
-const WebSocketProvider: React.FC<Props>(props) {
+const WebSocketProvider: React.FC<Props> = (props) => {
     const [client, setClient] = useState<WebSocketClient | null>(null);
     const [user, setUser] = useState<User | null>(null);
     const [serverDown, setServerDown] = useState(false);
