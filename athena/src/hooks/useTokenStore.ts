@@ -21,10 +21,8 @@ function getDefaultValues() {
 const useTokenStore = create(
     combine(getDefaultValues(), (set) => ({
         setTokens: (x: { accessToken: string; refreshToken: string }) => {
-            try {
-                localStorage.setItem(accessTokenKey, x.accessToken);
-                localStorage.setItem(refreshTokenKey, x.refreshToken);
-            } catch {}
+            localStorage.setItem(accessTokenKey, x.accessToken);
+            localStorage.setItem(refreshTokenKey, x.refreshToken);
             set(x);
         },
     })),

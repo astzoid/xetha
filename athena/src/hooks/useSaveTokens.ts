@@ -28,6 +28,7 @@ export default function useSaveTokens() {
                 });
             } catch {}
             history.replace({ search: '' });
+            window.location.reload();
         }
     }, []);
 }
