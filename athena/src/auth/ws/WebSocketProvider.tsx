@@ -23,7 +23,7 @@ interface Props {
     children: ReactNode;
 }
 
-export default function WebSocketProvider(props: Props) {
+const WebSocketProvider: React.FC<Props>(props) {
     const [client, setClient] = useState<WebSocketClient | null>(null);
     const [user, setUser] = useState<User | null>(null);
     const [serverDown, setServerDown] = useState(false);
@@ -67,3 +67,5 @@ export default function WebSocketProvider(props: Props) {
         </WebSocketContext.Provider>
     );
 }
+
+export default WebSocketProvider;
