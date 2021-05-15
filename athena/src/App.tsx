@@ -1,9 +1,13 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Authentication from '@components/Authentication';
+
+import WebSocketProvider from '@auth/ws/WebSocketProvider';
+
 import ErrorBoundary from '@components/ErrorBoundary';
 import Navbar from '@components/Navbar';
+
 import NotFound from '@pages/NotFound';
+import ServerDown from '@pages/ServerDown';
 import WentWrong from '@pages/WentWrong';
 
 const Home = lazy(() => import('@routes/Home'));
@@ -14,7 +18,7 @@ const Discord = lazy(() => import('@routes/Redirects/Discord'));
 
 export default function App() {
     return (
-        <Authentication>
+        <WebSocketProvider fallback={<ServerDown />}>
             <Navbar />
             <Suspense fallback={null}>
                 <ErrorBoundary fallback={<WentWrong />}>
@@ -40,6 +44,6 @@ export default function App() {
                     </Switch>
                 </ErrorBoundary>
             </Suspense>
-        </Authentication>
+        </WebSocketProvider>
     );
 }

@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
-import type { ReactNode } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import { Context } from '@auth/user';
+
 import { avatar } from '@functions/CDN';
+
+import useClient from '@hooks/useClient';
 import useScreenType from '@hooks/useScreenType';
-import type User from '@typings/User';
+
 import {
     makeStyles,
     AppBar,
@@ -24,7 +25,11 @@ import {
     Toolbar,
     Typography,
 } from '@material-ui/core';
+
 import { Menu as MenuIcon } from '@material-ui/icons';
+
+import type { ReactNode } from 'react';
+import type User from '@typings/User';
 
 const useStyles = makeStyles((theme) => ({
     btn: {
@@ -101,7 +106,7 @@ function NavLink({ children, href }: { children: ReactNode; href: string }) {
     );
 }
 
-function Links({ user }: { user: User }) {
+function Links({ user }: { user: User | null }) {
     return (
         <>
             <NavLink href="/">Home</NavLink>
@@ -112,7 +117,7 @@ function Links({ user }: { user: User }) {
     );
 }
 
-function UserDrop({ user, showTag }: { user: User; showTag?: boolean }) {
+function UserDrop({ user, showTag }: { user: User | null; showTag?: boolean }) {
     const [state, setState] = useState(null);
     const open = Boolean(state);
     const classes = useStyles();
@@ -203,7 +208,7 @@ function MenuLink({ text, href }: { text: string; href: string }) {
     );
 }
 
-function ItemMenu({ user, noUser }: { user: User; noUser?: boolean }) {
+function ItemMenu({ user, noUser }: { user: User | null; noUser?: boolean }) {
     const classes = useStyles();
     const [state, setState] = useState(false);
     const { pathname } = useLocation();
@@ -316,7 +321,7 @@ function ItemMenu({ user, noUser }: { user: User; noUser?: boolean }) {
 
 export default function Navbar() {
     const screenType = useScreenType();
-    const user = useContext(Context);
+    const { user } = useClient();
 
     if (screenType === '1-cols') {
         return (
