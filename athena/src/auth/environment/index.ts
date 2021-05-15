@@ -16,7 +16,7 @@ interface Extras {
 
 const environment: Environment & Extras = {
     production,
-    self: production ? 'https://xetha-bot.me' : 'http://localhost:3001',
+    self: production ? 'https://xetha-bot.me' : 'http://localhost:3000',
     http: production ? 'https://gateway.xetha-bot.me' : 'http://localhost:3001',
     ws: production ? 'wss://gateway.xetha-bot.me' : 'ws://localhost:3001',
     client_id: production ? '775680113949933569' : '000000000000000000',
