@@ -24,7 +24,7 @@ export default class WebSocketClient {
     }) {
         this.socket.on('auth:success', (user: User | null) => {
             Logger.log(
-                'ws',
+                'WS',
                 `[CONNECTED] ${this.socket.id} ${user ? user.user_id : ''}`,
             );
             fns.onUser(user || null);

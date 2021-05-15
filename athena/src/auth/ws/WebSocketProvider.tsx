@@ -46,7 +46,6 @@ export default function WebSocketProvider(props: Props) {
                         useTokenStore.getState().setTokens(tokens);
                     },
                     onConnectionFailed: () => {
-                        console.log('server down');
                         setServerDown(true);
                     },
                 })
