@@ -61,7 +61,7 @@ export function validateTokens(
 
             resolve(false);
         } catch (err) {
-            if (refresh && err.name === 'TokenExpiredError')
+            if (refresh?.type === 'refresh' && err.name === 'TokenExpiredError')
                 return resolve({
                     user_id: refresh.user_id,
                     tokens: {
