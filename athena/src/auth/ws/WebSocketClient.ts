@@ -5,8 +5,6 @@ import type Tokens from '@typings/Tokens';
 import type User from '@typings/User';
 
 export default class WebSocketClient {
-    public user: User | null;
-
     private socket: typeof Socket;
 
     public constructor() {
@@ -17,11 +15,10 @@ export default class WebSocketClient {
             autoConnect: false,
             reconnection: false,
         });
-
-        this.user = null;
     }
 
     public listen(fns: {
+        onUser: (user: User | null) => void;
         onToken: (tokens: Tokens) => void;
         onConnectionFailed: () => void;
     }) {
@@ -30,7 +27,7 @@ export default class WebSocketClient {
                 'ws',
                 `[CONNECTED] ${this.socket.id} ${user ? user.user_id : ''}`,
             );
-            this.user = user || null;
+            fns.onUser(user || null);
         });
 
         this.socket.on('auth:token', fns.onToken);
@@ -42,6 +39,7 @@ export default class WebSocketClient {
 
         this.socket.on('error', (error: Error) => {
             Logger.error('[WS]', error);
+            fns.onConnectionFailed();
         });
 
         this.socket.on('connect_error', (error: Error) => {
@@ -58,17 +56,22 @@ export default class WebSocketClient {
     }
 
     public connect(tokens: { accessToken: string; refreshToken: string }) {
-        return new Promise<this>((resolve) => {
-            const fn = () => {
-                Logger.log('ws', `[FAST CONNECT] ${this.socket.io.uri}`);
-                this.socket.emit('auth', tokens);
-                this.socket.removeListener('connect', fn);
-                resolve(this);
-            };
+        return new Promise<this>((resolve, reject) => {
+            try {
+                Logger.log('WS', `[FAST CONNECT] ${this.socket.io.uri}`);
+                const fn = () => {
+                    Logger.log('WS', `[CONNECTED] ${this.socket.io.uri}`);
+                    this.socket.emit('auth', tokens);
+                    this.socket.removeListener('connect', fn);
+                    resolve(this);
+                };
 
-            this.socket.on('connect', fn);
-
-            this.socket.connect();
+                this.socket.on('connect', fn);
+                this.socket.connect();
+            } catch (err) {
+                Logger.error('[WS]', err);
+                reject(err);
+            }
         });
     }
 }

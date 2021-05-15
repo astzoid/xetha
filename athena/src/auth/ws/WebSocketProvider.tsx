@@ -6,8 +6,17 @@ import useSaveTokens from '@hooks/useSaveTokens';
 import useTokenStore from '@hooks/useTokenStore';
 
 import type { ReactNode } from 'react';
+import type User from '@typings/User';
 
-export const WebSocketContext = createContext<WebSocketClient | null>(null);
+interface Context {
+    client: WebSocketClient | null;
+    user: User | null;
+}
+
+export const WebSocketContext = createContext<Context>({
+    client: null,
+    user: null,
+});
 
 interface Props {
     fallback: ReactNode;
@@ -16,6 +25,7 @@ interface Props {
 
 export default function WebSocketProvider(props: Props) {
     const [client, setClient] = useState<WebSocketClient | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [serverDown, setServerDown] = useState(false);
     const query = useQueryParams();
 
@@ -29,16 +39,19 @@ export default function WebSocketProvider(props: Props) {
         if (connect) {
             new WebSocketClient()
                 .listen({
+                    onUser: (user) => {
+                        setUser(user);
+                    },
                     onToken: (tokens) => {
                         useTokenStore.getState().setTokens(tokens);
                     },
                     onConnectionFailed: () => {
+                        console.log('server down');
                         setServerDown(true);
                     },
                 })
                 .connect(useTokenStore.getState())
                 .then((ws) => {
-                    setServerDown(false);
                     setClient(ws);
                 });
         }
@@ -49,7 +62,7 @@ export default function WebSocketProvider(props: Props) {
     if (serverDown) return <>{props.fallback}</>;
 
     return (
-        <WebSocketContext.Provider value={client}>
+        <WebSocketContext.Provider value={{ client, user }}>
             {props.children}
         </WebSocketContext.Provider>
     );

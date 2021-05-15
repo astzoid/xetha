@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 
 import { avatar } from '@functions/CDN';
+import Login from '@functions/Login';
+import Logout from '@functions/Logout';
 
-import useClient from '@hooks/useClient';
 import useScreenType from '@hooks/useScreenType';
+import useUser from '@hooks/useUser';
 
 import {
     makeStyles,
@@ -130,11 +132,6 @@ function UserDrop({ user, showTag }: { user: User | null; showTag?: boolean }) {
         setState(null);
     };
 
-    const handleLogout = () => {
-        window.location.href = '/api/logout';
-        setState(null);
-    };
-
     return (
         <>
             {user ? (
@@ -184,11 +181,11 @@ function UserDrop({ user, showTag }: { user: User | null; showTag?: boolean }) {
                         open={open}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                        <MenuItem onClick={Logout}>Logout</MenuItem>
                     </Menu>
                 </div>
             ) : (
-                <Button variant="outlined" href="/api/login">
+                <Button variant="outlined" onClick={Login}>
                     Login
                 </Button>
             )}
@@ -287,26 +284,14 @@ function ItemMenu({ user, noUser }: { user: User | null; noUser?: boolean }) {
                                         </ListItem>
                                     </List>
                                     <List>
-                                        <ListItem
-                                            button
-                                            onClick={() =>
-                                                (window.location.href =
-                                                    '/api/logout')
-                                            }
-                                        >
+                                        <ListItem button onClick={Logout}>
                                             <ListItemText>Logout</ListItemText>
                                         </ListItem>
                                     </List>
                                 </>
                             ) : (
                                 <List>
-                                    <ListItem
-                                        button
-                                        onClick={() =>
-                                            (window.location.href =
-                                                '/api/login')
-                                        }
-                                    >
+                                    <ListItem button onClick={Login}>
                                         <ListItemText>Login</ListItemText>
                                     </ListItem>
                                 </List>
@@ -321,7 +306,7 @@ function ItemMenu({ user, noUser }: { user: User | null; noUser?: boolean }) {
 
 export default function Navbar() {
     const screenType = useScreenType();
-    const { user } = useClient();
+    const user = useUser();
 
     if (screenType === '1-cols') {
         return (

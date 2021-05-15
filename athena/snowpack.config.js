@@ -1,7 +1,6 @@
 // Snowpack Configuration File
 // See all supported options: https://www.snowpack.dev/reference/configuration
 
-const httpProxy = require('http-proxy');
 const path = require('path');
 
 /** @type {import('snowpack').SnowpackUserConfig} */
