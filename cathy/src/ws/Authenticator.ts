@@ -17,7 +17,7 @@ export default async function Authenticator(
     if (!userAuth) return socket.emit('auth:success', null);
     if (userAuth.tokens) {
         tokens = userAuth.tokens;
-        socket.emit('auth:token', userAuth.tokens.accessToken);
+        socket.emit('auth:token', userAuth.tokens);
     }
 
     const interval = setInterval(async () => {
@@ -31,7 +31,7 @@ export default async function Authenticator(
 
             if (auth && auth.tokens) {
                 tokens = auth.tokens;
-                socket.emit('auth:token', auth.tokens.accessToken);
+                socket.emit('auth:token', auth.tokens);
                 Logger.info(`[CLIENT] ${socket.id} refreshed`);
             }
 
