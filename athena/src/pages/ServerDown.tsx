@@ -27,8 +27,6 @@ export default function ServerDown() {
         setRetries(retries);
     }, []);
 
-    if (retries === 0) return null;
-
     useEffect(() => {
         let interval: NodeJS.Timeout;
         if (retries > 0)
@@ -43,6 +41,8 @@ export default function ServerDown() {
             window.location.reload();
         }
     }, [count]);
+
+    if (retries === 0) return null;
 
     return (
         <Content nofooter>
