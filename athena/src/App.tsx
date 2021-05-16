@@ -7,7 +7,6 @@ import ErrorBoundary from '@components/ErrorBoundary';
 import Navbar from '@components/Navbar';
 
 import NotFound from '@pages/NotFound';
-import ServerDown from '@pages/ServerDown';
 import WentWrong from '@pages/WentWrong';
 
 const Home = lazy(() => import('@routes/Home'));
@@ -18,7 +17,7 @@ const Discord = lazy(() => import('@routes/Redirects/Discord'));
 
 export default function App() {
     return (
-        <WebSocketProvider fallback={<ServerDown />}>
+        <WebSocketProvider>
             <Navbar />
             <Suspense fallback={null}>
                 <ErrorBoundary fallback={<WentWrong />}>
