@@ -22,7 +22,7 @@ export function signRefreshToken(user_id: string) {
         },
         environment.JWT_SECRET,
         {
-            expiresIn: '1d',
+            expiresIn: '12h',
         },
     );
 }
