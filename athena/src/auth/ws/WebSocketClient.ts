@@ -1,11 +1,9 @@
 import io, { Socket } from 'socket.io-client';
 import environment from '@auth/environment';
 import Logger from '@functions/Logger';
-import type Tokens from '@typings/Tokens';
-import type User from '@typings/User';
 
 export default class WebSocketClient {
-    private socket: typeof Socket;
+    public socket: typeof Socket;
 
     public constructor() {
         this.socket = io(environment.ws, {
@@ -13,24 +11,29 @@ export default class WebSocketClient {
             upgrade: environment.production,
             secure: environment.production,
             autoConnect: false,
-            reconnection: false,
         });
-    }
 
-    public listen(fns: {
-        onUser: (user: User | null) => void;
-        onToken: (tokens: Tokens) => void;
-        onConnectionFailed: () => void;
-    }) {
-        this.socket.on('auth:success', (user: User | null) => {
+        this.socket.on('message', (message: string) => {
+            Logger.log('SERVER', message);
+        });
+
+        this.socket.on('ping', () => {
+            Logger.log('WS', 'Ping received.');
+        });
+
+        this.socket.on('reconnect', (attempts: number) => {
             Logger.log(
                 'WS',
-                `[CONNECTED] ${this.socket.id} ${user ? user.user_id : ''}`,
+                `[FAST RECONNECT] ${this.socket.io.uri} ${attempts}`,
             );
-            fns.onUser(user || null);
         });
 
-        this.socket.on('auth:token', fns.onToken);
+        this.socket.on('reconnect_attempt', (attempts: number) => {
+            Logger.log(
+                'WS',
+                `[FAST RECONNECT ATTEMPT] ${this.socket.io.uri} ${attempts}`,
+            );
+        });
 
         this.socket.on('auth:error', (error: Error, code: number) => {
             Logger.error(`[WS] [AUTH] ${code}`, error);
@@ -39,37 +42,28 @@ export default class WebSocketClient {
 
         this.socket.on('error', (error: Error) => {
             Logger.error('[WS]', error);
-            fns.onConnectionFailed();
-        });
-
-        this.socket.on('connect_error', (error: Error) => {
-            Logger.error('[WS] [CONNECT]', error);
-            fns.onConnectionFailed();
         });
 
         this.socket.on('disconnect', (reason: string) => {
             Logger.warn('[WS] [DISCONNECT]', reason);
-            fns.onConnectionFailed();
         });
 
-        return this;
+        this.socket.on('reconnect_error', (error: Error) => {
+            Logger.error(`[WS] [RECONNECT]`, error);
+        });
     }
 
-    public connect(tokens: { accessToken: string; refreshToken: string }) {
-        return new Promise<this>((resolve, reject) => {
-            try {
-                Logger.log('WS', `[FAST CONNECT] ${this.socket.io.uri}`);
-                const fn = () => {
-                    Logger.log('WS', `[CONNECTED] ${this.socket.io.uri}`);
-                    this.socket.emit('auth', tokens);
-                    this.socket.removeListener('connect', fn);
-                    resolve(this);
-                };
+    public request<T = any>(path: string, query: any): Promise<T> {
+        return this._request(path, query);
+    }
 
-                this.socket.on('connect', fn);
-                this.socket.connect();
+    private _request(_path: string, _query: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            try {
+                // TODO
+                // Some cool websocket bidirectional requesting to the websocket
+                resolve(0);
             } catch (err) {
-                Logger.error('[WS]', err);
                 reject(err);
             }
         });
