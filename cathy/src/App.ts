@@ -12,6 +12,7 @@ import Logger from './utils/Logger';
 import { corsOptions } from './utils/Constants';
 import WebSocketHandler from './ws/WebSocketHandler';
 import AuthService from './auth/AuthService';
+import BotWSHandler from './ws/BotWSHandler';
 
 processor(Logger);
 
@@ -33,6 +34,7 @@ const io = new Server(server, {
     cors: corsOptions,
 });
 
+io.of('/xetha').on('connection', BotWSHandler);
 io.on('connection', WebSocketHandler);
 
 server.listen(3001, () => Logger.info(`Listening on PORT 3001`));

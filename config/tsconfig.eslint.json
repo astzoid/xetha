@@ -5,6 +5,7 @@
         "../athena/src/**/*.tsx",
         "../athena/src/**/*.ts",
         "../cathy/src/**/*.ts",
+        "../cathy/src/**/*.d.ts",
         "../xanatha/src/**/*.ts",
         "../shared/**/src/**/*.ts"
     ]
