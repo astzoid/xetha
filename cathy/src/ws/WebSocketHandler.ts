@@ -5,7 +5,7 @@ import type { Socket } from 'socket.io';
 import type { Tokens } from './Tokenizer';
 
 export default function WebSocketHandler(socket: Socket) {
-    Logger.info(`[client] ${socket.id} connected.`);
+    Logger.log('athena', `${socket.id} connected.`);
     Listeners(socket);
     let authenticated = false;
 

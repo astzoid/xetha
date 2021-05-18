@@ -21,7 +21,7 @@ export default async function Authenticator(
 
     const interval = setInterval(async () => {
         try {
-            Logger.info(`[client] ${socket.id} refreshing...`);
+            Logger.info(`[athena] ${socket.id} refreshing...`);
 
             const auth = await validateTokens(
                 tokens.accessToken,
@@ -31,13 +31,13 @@ export default async function Authenticator(
             if (auth && auth.tokens) {
                 tokens = auth.tokens;
                 socket.emit('auth:token', auth.tokens);
-                Logger.info(`[client] ${socket.id} refreshed`);
+                Logger.info(`[athena] ${socket.id} refreshed`);
             }
 
             if (!auth) {
                 socket.emit('auth:logout');
                 clearInterval(interval);
-                Logger.info(`[client] ${socket.id} logout`);
+                Logger.info(`[athena] ${socket.id} logout`);
             }
         } catch (err) {
             Logger.error(err);
