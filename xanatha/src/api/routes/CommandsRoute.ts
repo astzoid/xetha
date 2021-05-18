@@ -1,14 +1,11 @@
-import AsyncWrapper from '@oadpoaw/async-wrapper';
-import { Router } from 'express';
+import type { Socket } from 'socket.io';
 import type { DisclosureSharder } from 'disclosure-discord';
 import type { Command } from '@shared/types';
+import type Acknowledge from '../Acknowledge';
 
-export default function Commands(manager: DisclosureSharder) {
-    const route = Router();
-
-    route.get(
-        '/',
-        AsyncWrapper(async (_req, res) => {
+export default function Commands(manager: DisclosureSharder, socket: Socket) {
+    socket.on('commands', async (done: Acknowledge) => {
+        try {
             const shards = (await manager.broadcastEval(
                 `this.commands
                 .filter((command) => {
@@ -31,10 +28,9 @@ export default function Commands(manager: DisclosureSharder) {
                 });`,
                 0,
             )) as Array<Command>;
-
-            res.status(200).json(shards);
-        }),
-    );
-
-    return route;
+            done(null, shards);
+        } catch (err) {
+            done(err);
+        }
+    });
 }

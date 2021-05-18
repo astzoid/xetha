@@ -1,35 +1,31 @@
-import { Router } from 'express';
+import type { Socket } from 'socket.io';
 import type { User } from 'discord.js';
-import AsyncWrapper from '@oadpoaw/async-wrapper';
 import type { DisclosureSharder } from 'disclosure-discord';
 import type { DiscordUser } from '@shared/types';
+import type Acknowledge from '../Acknowledge';
 
-export default function UserRoute(manager: DisclosureSharder) {
-    const route = Router();
-
-    route.get(
-        '/:user_id',
-        AsyncWrapper(async (req, res) => {
-            const user_id = req.params.user_id as string;
-
+export default function UserRoute(manager: DisclosureSharder, socket: Socket) {
+    socket.on('user', async (user_id: string, done: Acknowledge) => {
+        try {
             const user = (await manager.broadcastEval(
                 `this.users.fetch('${user_id}').catch(() => { });`,
                 0,
             )) as User;
 
-            if (!user)
-                return res.status(404).json({ message: 'User Not Found' });
+            if (user) {
+                const payload: DiscordUser = {
+                    id: user.id,
+                    username: user.username,
+                    discriminator: user.discriminator,
+                    avatar: user.avatar,
+                };
 
-            const payload: DiscordUser = {
-                id: user.id,
-                username: user.username,
-                discriminator: user.discriminator,
-                avatar: user.avatar,
-            };
-
-            return res.status(200).json(payload);
-        }),
-    );
-
-    return route;
+                done(null, payload);
+            } else {
+                done(null, null);
+            }
+        } catch (err) {
+            done(err);
+        }
+    });
 }
