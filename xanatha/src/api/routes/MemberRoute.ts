@@ -11,6 +11,12 @@ export default function MemberRoute(
     socket.on(
         'member',
         async (guild_id: string, member_id: string, done: Acknowledge) => {
+            if (
+                typeof guild_id !== 'string' ||
+                typeof member_id !== 'string' ||
+                typeof done !== 'function'
+            )
+                return;
             try {
                 const shards = await manager.broadcastEval(`
                     (async () => {

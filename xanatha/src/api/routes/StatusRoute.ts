@@ -5,6 +5,7 @@ import type Acknowledge from '../Acknowledge';
 
 export default function Status(manager: DisclosureSharder, socket: Socket) {
     socket.on('status', async (done: Acknowledge) => {
+        if (typeof done !== 'function') return;
         try {
             const payload = (await manager.broadcastEval(
                 `({ id: this.shard.id, guilds: this.guilds.cache.size, ping: this.ws.ping, uptime: this.uptime });`,

@@ -3161,6 +3161,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/socket.io-client@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/socket.io-client@npm:3.0.0"
+  dependencies:
+    socket.io-client: "*"
+  checksum: d820b0d1493d917bf2ef0e046f736fc0ac8c1ce311a1dd6ed71d244e59207350418e8e6c40022ddd4daf2b2ec6e871a61fb221c56b689be6fea563726ed035ac
+  languageName: node
+  linkType: hard
+
 "@types/socket.io-parser@npm:*":
   version: 2.2.1
   resolution: "@types/socket.io-parser@npm:2.2.1"
@@ -3178,6 +3187,15 @@ __metadata:
     "@types/node": "*"
     "@types/socket.io-parser": "*"
   checksum: 262af53ccbcabf91ff2d672618e0e3dbade7cee5f55c5e5de358983e33f3b56626f6ef856db24d434667e5ec6f13bcd121ab63ef56fd3899ad7ea63d8f2c9653
+  languageName: node
+  linkType: hard
+
+"@types/socket.io@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@types/socket.io@npm:3.0.2"
+  dependencies:
+    socket.io: "*"
+  checksum: c1fb0ae4dcea4637f9e4077382f09bf94748a663949b83cfc328ac3cb3d761f4268736838cae03abb2e060eb8f5f08e0010999bc4aa73c1b5ef6ee720785884f
   languageName: node
   linkType: hard
 
@@ -4672,7 +4690,7 @@ __metadata:
     "@types/express": ^4.17.11
     "@types/jsonwebtoken": ^8.5.1
     "@types/socket.io": ^2.1.13
-    "@types/socket.io-client": ^1.4.36
+    "@types/socket.io-client": ^3.0.0
     "@types/ws": ^7.4.2
     cors: ^2.8.5
     discord-oauth2: ^2.6.0
@@ -4680,7 +4698,7 @@ __metadata:
     helmet: ^4.6.0
     jsonwebtoken: ^8.5.1
     socket.io: ^4.1.1
-    socket.io-client: ^4.1.1
+    socket.io-client: ^4.1.2
   languageName: unknown
   linkType: soft
 
@@ -13204,6 +13222,21 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"socket.io-client@npm:*, socket.io-client@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "socket.io-client@npm:4.1.2"
+  dependencies:
+    "@types/component-emitter": ^1.2.10
+    backo2: ~1.0.2
+    component-emitter: ~1.3.0
+    debug: ~4.3.1
+    engine.io-client: ~5.1.1
+    parseuri: 0.0.6
+    socket.io-parser: ~4.0.4
+  checksum: 932a1eb0fe47fa8d0369649e7c51d95e815f959f32b4e534010dc6f8fca8438dde6d77ca890638ce06e1901aaf7e78d26f717e95f4473115b74bd33ab7103234
+  languageName: node
+  linkType: hard
+
 "socket.io-client@npm:^4.1.1":
   version: 4.1.1
   resolution: "socket.io-client@npm:4.1.1"
@@ -13227,6 +13260,23 @@ fsevents@~2.1.2:
     component-emitter: ~1.3.0
     debug: ~4.3.1
   checksum: ee2ffffa30e11ecebe690291ed91e5f949bf4ab9446ad6659b84488dd4f5908514867970539d32e1d94d4a5596e0d191f2e0ad92f707324cc4753ceb328aea2a
+  languageName: node
+  linkType: hard
+
+"socket.io@npm:*, socket.io@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "socket.io@npm:4.1.2"
+  dependencies:
+    "@types/cookie": ^0.4.0
+    "@types/cors": ^2.8.8
+    "@types/node": ">=10.0.0"
+    accepts: ~1.3.4
+    base64id: ~2.0.0
+    debug: ~4.3.1
+    engine.io: ~5.1.0
+    socket.io-adapter: ~2.3.0
+    socket.io-parser: ~4.0.3
+  checksum: 006342e1a5e047d25af97ed6e8ac024d4826aad7f2e5558ada52438a2364c4077e254a4d45a43538707fe3de880be2fe80e8ae0db13d6b977b6afd219f9dda53
   languageName: node
   linkType: hard
 
@@ -15060,17 +15110,23 @@ fsevents@~2.1.2:
     "@shared/database": "file:../shared/database"
     "@shared/env": "file:../shared/env"
     "@shared/types": "file:../shared/types"
+    "@types/cors": ^2.8.10
+    "@types/express": ^4.17.11
     "@types/ms": ^0.7.31
     "@types/node-fetch": ^2.5.9
+    "@types/socket.io": ^3.0.2
     "@types/ws": ^7.4.2
     bufferutil: ^4.0.3
+    cors: ^2.8.5
     disclosure-discord: ^1.3.16
     discord.js: ^12.5.3
     dotenv: ^9.0.0
+    express: ^4.17.1
+    helmet: ^4.6.0
     moment: ^2.29.1
     ms: ^2.1.3
     node-fetch: ^2.6.1
-    socket.io-client: ^4.1.1
+    socket.io: ^4.1.2
     utf-8-validate: ^5.0.5
     validator: ^13.6.0
   languageName: unknown

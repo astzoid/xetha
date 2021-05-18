@@ -5,6 +5,7 @@ import type Acknowledge from '../Acknowledge';
 
 export default function Commands(manager: DisclosureSharder, socket: Socket) {
     socket.on('commands', async (done: Acknowledge) => {
+        if (typeof done !== 'function') return;
         try {
             const shards = (await manager.broadcastEval(
                 `this.commands

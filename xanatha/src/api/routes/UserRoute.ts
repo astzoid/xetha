@@ -6,6 +6,7 @@ import type Acknowledge from '../Acknowledge';
 
 export default function UserRoute(manager: DisclosureSharder, socket: Socket) {
     socket.on('user', async (user_id: string, done: Acknowledge) => {
+        if (typeof user_id !== 'string' || typeof done !== 'function') return;
         try {
             const user = (await manager.broadcastEval(
                 `this.users.fetch('${user_id}').catch(() => { });`,

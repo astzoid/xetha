@@ -6,6 +6,7 @@ import type Acknowledge from '../Acknowledge';
 
 export default function GuildRoute(manager: DisclosureSharder, socket: Socket) {
     socket.on('guild', async (guild_id: string, done: Acknowledge) => {
+        if (typeof guild_id !== 'string' || typeof done !== 'function') return;
         try {
             const shards = await manager.broadcastEval(
                 `this.guilds.cache.get('${guild_id}')`,
@@ -18,6 +19,7 @@ export default function GuildRoute(manager: DisclosureSharder, socket: Socket) {
                     await manager.broadcastEval(
                         `this.guilds.cache.get('${guild_id}').channels`,
                     );
+
                 const roleShards: RoleManager[] = await manager.broadcastEval(
                     `this.guilds.cache.get('${guild_id}').roles`,
                 );
@@ -64,6 +66,7 @@ export default function GuildRoute(manager: DisclosureSharder, socket: Socket) {
     });
 
     socket.on('guildUpdate', async (guild_id: string, done: Acknowledge) => {
+        if (typeof guild_id !== 'string' || typeof done !== 'function') return;
         try {
             await manager.broadcastEval(
                 `this.emit('guildDataUpdate', '${guild_id}')`,
