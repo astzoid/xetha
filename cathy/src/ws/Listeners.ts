@@ -5,11 +5,11 @@ import PublicRoutes from '../routes/public';
 export default function Listeners(socket: Socket) {
     socket.on('message', (message: string) => {
         if (typeof message === 'string')
-            Logger.log(`athena`, `${socket.id}: ${message}`);
+            Logger.info(`[athena] ${socket.id}: ${message}`);
     });
 
     socket.on('ping', () => {
-        Logger.log(`athena`, `Ping received.`);
+        Logger.info(`[athena] Ping received.`);
     });
 
     socket.on('request:public', PublicRoutes);
@@ -19,10 +19,10 @@ export default function Listeners(socket: Socket) {
     });
 
     socket.on('disconnect', (reason: string) => {
-        Logger.log(`athena`, `${socket.id} disconnected: ${reason}`);
+        Logger.info(`[athena] ${socket.id} disconnected: ${reason}`);
     });
 
     socket.on('disconnecting', (reason: string) => {
-        Logger.log(`athena`, `${socket.id} disconnecting: ${reason}`);
+        Logger.info(`[athena] ${socket.id} disconnecting: ${reason}`);
     });
 }

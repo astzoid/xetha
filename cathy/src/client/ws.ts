@@ -14,19 +14,19 @@ const socket = io(process.env.WEBSOCKET_SERVER ?? 'ws://localhost:3002', {
 });
 
 socket.on('message', (message: string) => {
-    Logger.log('xanatha', message);
+    Logger.info(`[xanatha] ${message}`);
 });
 
 socket.on('ping', () => {
-    Logger.log('ws', 'Ping received.');
+    Logger.info('[ws] Ping received.');
 });
 
 socket.on('reconnect', (attempts: number) => {
-    Logger.log('ws', `[FAST RECONNECT] ${socket.io.uri} ${attempts}`);
+    Logger.info(`[ws] [FAST RECONNECT] ${socket.io.uri} ${attempts}`);
 });
 
 socket.on('reconnect_attempt', (attempts: number) => {
-    Logger.log('ws', `[FAST RECONNECT ATTEMPT] ${socket.io.uri} ${attempts}`);
+    Logger.info(`[ws] [FAST RECONNECT ATTEMPT] ${socket.io.uri} ${attempts}`);
 });
 
 socket.on('error', (error: Error) => {

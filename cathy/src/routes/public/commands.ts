@@ -8,5 +8,5 @@ export default function commands(done: DoneCallback) {
         .catch((err) => {
             Logger.error(`[ws] Error`, err);
             done(new Error(`Internal WebSocket Error`));
-        })
+        });
 }

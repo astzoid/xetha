@@ -32,6 +32,7 @@ import { Menu as MenuIcon } from '@material-ui/icons';
 
 import type { ReactNode } from 'react';
 import type User from '@typings/User';
+import useLoading from '@hooks/useLoading';
 
 const useStyles = makeStyles((theme) => ({
     btn: {
@@ -109,11 +110,13 @@ function NavLink({ children, href }: { children: ReactNode; href: string }) {
 }
 
 function Links({ user }: { user: User | null }) {
+    const loading = useLoadng();
+
     return (
         <>
             <NavLink href="/">Home</NavLink>
             <NavLink href="/servers">Servers</NavLink>
-            {user && <NavLink href="/dashboard">Dashboard</NavLink>}
+            {user && !loading && <NavLink href="/dashboard">Dashboard</NavLink>}
             <NavLink href="/commands">Commands</NavLink>
         </>
     );
@@ -121,6 +124,7 @@ function Links({ user }: { user: User | null }) {
 
 function UserDrop({ user, showTag }: { user: User | null; showTag?: boolean }) {
     const [state, setState] = useState(null);
+    const loading = useLoading();
     const open = Boolean(state);
     const classes = useStyles();
 
@@ -134,7 +138,7 @@ function UserDrop({ user, showTag }: { user: User | null; showTag?: boolean }) {
 
     return (
         <>
-            {user ? (
+            {user && !loading ? (
                 <div className={classes.flex}>
                     {showTag && (
                         <>
@@ -208,6 +212,7 @@ function MenuLink({ text, href }: { text: string; href: string }) {
 function ItemMenu({ user, noUser }: { user: User | null; noUser?: boolean }) {
     const classes = useStyles();
     const [state, setState] = useState(false);
+    const loading = useLoading();
     const { pathname } = useLocation();
 
     useEffect(() => {
@@ -252,7 +257,7 @@ function ItemMenu({ user, noUser }: { user: User | null; noUser?: boolean }) {
                     <Divider />
                     {!noUser && (
                         <>
-                            {user ? (
+                            {user && !loading ? (
                                 <>
                                     <List>
                                         <ListItem>

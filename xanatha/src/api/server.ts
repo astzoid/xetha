@@ -35,15 +35,13 @@ export default function Server(manager: DisclosureSharder) {
         const { query } = socket.handshake;
         const key = query.key as string;
         if (typeof key !== 'string' && key !== getWSSecret()) {
-            Logger.log(
-                'cathy',
-                `${socket.handshake.address} tried to connect.`,
+            Logger.info(
+                `[cathy] ${socket.handshake.address} tried to connect.`,
             );
             socket.disconnect();
         } else {
-            Logger.log(
-                'cathy',
-                `${socket.id} ${socket.handshake.address} connected.`,
+            Logger.info(
+                `[cathy] ${socket.id} ${socket.handshake.address} connected.`,
             );
 
             CommandsRoute(manager, socket);
@@ -53,7 +51,7 @@ export default function Server(manager: DisclosureSharder) {
             UserRoute(manager, socket);
 
             socket.on('message', (message: string) => {
-                Logger.log('cathy', `${socket.id} ${message}`);
+                Logger.info(`[cathy]${socket.id} ${message}`);
             });
 
             socket.on('error', (error: Error) => {
@@ -61,11 +59,11 @@ export default function Server(manager: DisclosureSharder) {
             });
 
             socket.on('disconnect', (reason: string) => {
-                Logger.log('cathy', `${socket.id} disconnected: ${reason}`);
+                Logger.info(`[cathy]${socket.id} disconnected: ${reason}`);
             });
 
             socket.on('disconnecting', (reason: string) => {
-                Logger.log('cathy', `${socket.id} disconnecting: ${reason}`);
+                Logger.info(`[cathy]${socket.id} disconnecting: ${reason}`);
             });
         }
     });

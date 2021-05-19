@@ -52,20 +52,4 @@ export default class WebSocketClient {
             Logger.error(`[WS] [RECONNECT]`, error);
         });
     }
-
-    public request<T = any>(path: string, query: any): Promise<T> {
-        return this._request(path, query);
-    }
-
-    private _request(_path: string, _query: any): Promise<any> {
-        return new Promise((resolve, reject) => {
-            try {
-                // TODO
-                // Some cool websocket bidirectional requesting to the websocket
-                resolve(0);
-            } catch (err) {
-                reject(err);
-            }
-        });
-    }
 }

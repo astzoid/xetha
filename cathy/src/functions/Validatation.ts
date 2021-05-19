@@ -5,6 +5,7 @@ export default function Validation(
     guild: GuildAttributes,
     data: mongoose.UpdateQuery<GuildAttributes>,
 ): mongoose.UpdateQuery<GuildAttributes> {
-    // TODO, VALIDATION
+    // TODO
+    guild;
     return data;
 }
