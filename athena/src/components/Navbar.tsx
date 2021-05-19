@@ -110,7 +110,7 @@ function NavLink({ children, href }: { children: ReactNode; href: string }) {
 }
 
 function Links({ user }: { user: User | null }) {
-    const loading = useLoadng();
+    const loading = useLoading();
 
     return (
         <>
