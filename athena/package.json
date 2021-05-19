@@ -11,13 +11,14 @@
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@oadpoaw/react-sensor": "^1.4.2",
-    "@shared/rest": "file:../shared/rest",
     "pretty-ms": "^7.0.1",
-    "querystring": "^0.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet-async": "^1.0.9",
-    "react-router-dom": "^5.2.0"
+    "react-query": "^3.16.0",
+    "react-router-dom": "^5.2.0",
+    "socket.io-client": "^4.1.1",
+    "zustand": "^3.5.1"
   },
   "devDependencies": {
     "@shared/types": "file:../shared/types",
@@ -29,7 +30,7 @@
     "@types/react-dom": "^17.0.3",
     "@types/react-responsive": "^8.0.2",
     "@types/react-router-dom": "^5.1.7",
-    "http-proxy": "^1.18.1",
+    "@types/socket.io-client": "^1.4.36",
     "snowpack": "3.3.7"
   }
 }

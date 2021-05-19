@@ -1,45 +1,38 @@
 import '@shared/env';
 
-import './auth/OAuth2';
-import passport from 'passport';
+import processor from '@oadpoaw/processor';
+import { makeCatcher } from '@oadpoaw/async-wrapper';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import rateLimit from 'express-rate-limit';
-import session from 'express-session';
-import API from './api/v1';
+import http from 'http';
+import { Server } from 'socket.io';
+
+import AuthService from './auth/AuthService';
 import Logger from './utils/Logger';
-import processor from '@oadpoaw/processor';
-import { makeCatcher } from '@oadpoaw/async-wrapper';
-import {
-    corsOptions,
-    rateLimitOptions,
-    sessionOptions,
-} from './utils/Constants';
+import { corsOptions } from './utils/Constants';
+import WebSocketHandler from './ws/WebSocketHandler';
 
 processor(Logger);
 
-const app = express();
+const server = http.createServer(
+    express()
+        .set('trust proxy', 'loopback')
+        .use(express.json())
+        .use(express.urlencoded({ extended: true }))
+        .use(helmet())
+        .use(cors(corsOptions))
+        .get('/', (_req, res) => {
+            res.status(200).json({ message: 'Great! you found easter egg #6' });
+        })
+        .use('/api', AuthService)
+        .use(makeCatcher(Logger)),
+);
 
-app.set('trust proxy', '127.0.0.1');
+const io = new Server(server, {
+    cors: corsOptions,
+});
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+io.on('connection', WebSocketHandler);
 
-app.use(helmet());
-app.use(cors(corsOptions));
-
-app.use(cookieParser());
-app.use(session(sessionOptions));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(rateLimit(rateLimitOptions));
-
-app.use('/api', API);
-
-app.use(makeCatcher(Logger));
-
-app.listen(3001, () => Logger.info(`Listening on PORT 3001`));
+server.listen(3001, () => Logger.info(`Listening on PORT 3001`));

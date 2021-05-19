@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
-import type { ReactNode } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import { Context } from '@auth/user';
+
 import { avatar } from '@functions/CDN';
+import Login from '@functions/Login';
+import Logout from '@functions/Logout';
+
 import useScreenType from '@hooks/useScreenType';
-import type User from '@typings/User';
+import useUser from '@hooks/useUser';
+
 import {
     makeStyles,
     AppBar,
@@ -24,7 +27,12 @@ import {
     Toolbar,
     Typography,
 } from '@material-ui/core';
+
 import { Menu as MenuIcon } from '@material-ui/icons';
+
+import type { ReactNode } from 'react';
+import type User from '@typings/User';
+import useLoading from '@hooks/useLoading';
 
 const useStyles = makeStyles((theme) => ({
     btn: {
@@ -101,19 +109,22 @@ function NavLink({ children, href }: { children: ReactNode; href: string }) {
     );
 }
 
-function Links({ user }: { user: User }) {
+function Links({ user }: { user: User | null }) {
+    const loading = useLoading();
+
     return (
         <>
             <NavLink href="/">Home</NavLink>
             <NavLink href="/servers">Servers</NavLink>
-            {user && <NavLink href="/dashboard">Dashboard</NavLink>}
+            {user && !loading && <NavLink href="/dashboard">Dashboard</NavLink>}
             <NavLink href="/commands">Commands</NavLink>
         </>
     );
 }
 
-function UserDrop({ user, showTag }: { user: User; showTag?: boolean }) {
+function UserDrop({ user, showTag }: { user: User | null; showTag?: boolean }) {
     const [state, setState] = useState(null);
+    const loading = useLoading();
     const open = Boolean(state);
     const classes = useStyles();
 
@@ -125,14 +136,9 @@ function UserDrop({ user, showTag }: { user: User; showTag?: boolean }) {
         setState(null);
     };
 
-    const handleLogout = () => {
-        window.location.href = '/api/logout';
-        setState(null);
-    };
-
     return (
         <>
-            {user ? (
+            {user && !loading ? (
                 <div className={classes.flex}>
                     {showTag && (
                         <>
@@ -179,11 +185,11 @@ function UserDrop({ user, showTag }: { user: User; showTag?: boolean }) {
                         open={open}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                        <MenuItem onClick={Logout}>Logout</MenuItem>
                     </Menu>
                 </div>
             ) : (
-                <Button variant="outlined" href="/api/login">
+                <Button variant="outlined" onClick={Login}>
                     Login
                 </Button>
             )}
@@ -203,9 +209,10 @@ function MenuLink({ text, href }: { text: string; href: string }) {
     );
 }
 
-function ItemMenu({ user, noUser }: { user: User; noUser?: boolean }) {
+function ItemMenu({ user, noUser }: { user: User | null; noUser?: boolean }) {
     const classes = useStyles();
     const [state, setState] = useState(false);
+    const loading = useLoading();
     const { pathname } = useLocation();
 
     useEffect(() => {
@@ -250,7 +257,7 @@ function ItemMenu({ user, noUser }: { user: User; noUser?: boolean }) {
                     <Divider />
                     {!noUser && (
                         <>
-                            {user ? (
+                            {user && !loading ? (
                                 <>
                                     <List>
                                         <ListItem>
@@ -282,26 +289,14 @@ function ItemMenu({ user, noUser }: { user: User; noUser?: boolean }) {
                                         </ListItem>
                                     </List>
                                     <List>
-                                        <ListItem
-                                            button
-                                            onClick={() =>
-                                                (window.location.href =
-                                                    '/api/logout')
-                                            }
-                                        >
+                                        <ListItem button onClick={Logout}>
                                             <ListItemText>Logout</ListItemText>
                                         </ListItem>
                                     </List>
                                 </>
                             ) : (
                                 <List>
-                                    <ListItem
-                                        button
-                                        onClick={() =>
-                                            (window.location.href =
-                                                '/api/login')
-                                        }
-                                    >
+                                    <ListItem button onClick={Login}>
                                         <ListItemText>Login</ListItemText>
                                     </ListItem>
                                 </List>
@@ -316,7 +311,7 @@ function ItemMenu({ user, noUser }: { user: User; noUser?: boolean }) {
 
 export default function Navbar() {
     const screenType = useScreenType();
-    const user = useContext(Context);
+    const user = useUser();
 
     if (screenType === '1-cols') {
         return (

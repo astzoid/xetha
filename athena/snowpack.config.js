@@ -1,8 +1,6 @@
 // Snowpack Configuration File
 // See all supported options: https://www.snowpack.dev/reference/configuration
 
-const httpProxy = require('http-proxy');
-const proxy = httpProxy.createServer({ target: 'http://localhost:3001' });
 const path = require('path');
 
 /** @type {import('snowpack').SnowpackUserConfig} */
@@ -16,7 +14,6 @@ module.exports = {
     src: {
       url: '/dist',
     },
-    [path.join(path.resolve(__dirname), '..', 'shared/rest')]: '/shared/rest',
   },
   alias: {
     "@auth": "./src/auth",
@@ -25,7 +22,6 @@ module.exports = {
     "@hooks": "./src/hooks",
     "@pages": "./src/pages",
     "@routes": "./src/routes",
-    '@shared/rest': "../shared/rest/src"
   },
   plugins: [
     '@snowpack/plugin-react-refresh',
@@ -49,12 +45,6 @@ module.exports = {
     out: 'dist',
   },
   routes: [
-    {
-      src: '/api/.*',
-      dest: (req, res) => {
-        proxy.web(req, res);
-      },
-    },
     {
       match: "routes",
       src: ".*",
