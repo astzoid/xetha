@@ -15,7 +15,7 @@
     "@types/ms": "^0.7.31",
     "@types/node-fetch": "^2.5.9",
     "@types/socket.io": "^3.0.2",
-    "@types/ws": "^7.4.2"
+    "@types/ws": "^8.5.2"
   },
   "dependencies": {
     "@oadpoaw/array-chunk": "^1.4.1",
